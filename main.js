@@ -1,10 +1,10 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v5
+   Interactions v6
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
    ─ Active nav indicator on sub-pages
-   ─ Mobile hamburger nav
+   ─ Mobile hamburger nav (works on all pages)
    ─ Snap reveal (IntersectionObserver)
    ─ Staggered division cards
    ─ Stat counters (reduced-motion safe)
@@ -25,6 +25,7 @@
      Border shifts red → yellow after 80px
   ───────────────────────────────────────────── */
   var nav = document.getElementById('nav');
+  if (!nav) return; /* guard: nav must exist on the page */
 
   window.addEventListener('scroll', function () {
     nav.classList.toggle('nav--scrolled', window.scrollY > 80);
@@ -33,6 +34,7 @@
   /* ─────────────────────────────────────────────
      2. ACTIVE NAV SCROLL-SPY
      Watches #hero, #divisions, #product, #contact
+     Only runs on index.html (links are hash-based)
   ───────────────────────────────────────────── */
   var navLinks = Array.from(document.querySelectorAll('.nav__links a[href^="#"]'));
   var sections = navLinks
@@ -61,7 +63,10 @@
 
   /* ─────────────────────────────────────────────
      2b. ACTIVE NAV ON SUB-PAGES
-     Reads data-page attribute on <body>
+     Reads data-page on <body> and marks the link
+     whose href contains the page slug.
+     Sub-page nav links point to index.html#section
+     so we match on the filename segment only.
   ───────────────────────────────────────────── */
   var currentPage = document.body.dataset.page;
   if (currentPage) {
@@ -73,15 +78,19 @@
 
   /* ─────────────────────────────────────────────
      3. MOBILE HAMBURGER NAV
+     Works on index.html AND all sub-pages.
+     Looks up #nav-toggle and .nav__links by ID,
+     toggling nav--open on the #nav element.
   ───────────────────────────────────────────── */
   var navToggle = document.getElementById('nav-toggle');
   if (navToggle) {
     navToggle.addEventListener('click', function () {
       var isOpen = nav.classList.toggle('nav--open');
-      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
       navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
+    /* Close menu when any nav link is clicked (navigation or hash) */
     document.querySelectorAll('.nav__links a').forEach(function(a) {
       a.addEventListener('click', function() {
         nav.classList.remove('nav--open');
@@ -89,6 +98,16 @@
         navToggle.setAttribute('aria-label', 'Open menu');
         document.body.style.overflow = '';
       });
+    });
+    /* Close menu on Escape key */
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && nav.classList.contains('nav--open')) {
+        nav.classList.remove('nav--open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
+        document.body.style.overflow = '';
+        navToggle.focus();
+      }
     });
   }
 
@@ -105,6 +124,16 @@
     '.contact__text',
     '.contact__details',
     '.manifesto__text',
+    /* sub-page selectors */
+    '.wm-intro__text',
+    '.wm-intro__stats',
+    '.wm-compliance__item',
+    '.ev-accred__text',
+    '.ev-accred__cert-card',
+    '.ev-manifesto__text',
+    '.tsi-overview__text',
+    '.tsi-overview__stats',
+    '.tsi-manifesto__text',
   ];
 
   revealTargets.forEach(function (selector) {
@@ -226,7 +255,6 @@
      9. CONTACT FORM
      Primary: FormSubmit AJAX (8 s timeout)
      Fallback: mailto: pre-filled with form data
-     Guarantee: message always reaches info@prymmgroup.com
   ───────────────────────────────────────────── */
   var CONTACT_EMAIL = 'info@prymmgroup.com';
 
@@ -263,14 +291,9 @@
       return true;
     }
 
-    /* Opens the user's email client pre-filled as a guaranteed fallback */
     function openMailtoFallback(name, email, message) {
       var subject = encodeURIComponent('Website Enquiry from ' + name);
-      var body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n\n' +
-        message
-      );
+      var body = encodeURIComponent('Name: ' + name + '\n' + 'Email: ' + email + '\n\n' + message);
       window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
     }
 
@@ -293,11 +316,8 @@
       btn.disabled = true;
       btn.textContent = 'Sending…';
 
-      /* 8-second timeout so FormSubmit DNS failures don't hang the user */
       var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-      var timeoutId = setTimeout(function() {
-        if (controller) controller.abort();
-      }, 8000);
+      var timeoutId = setTimeout(function() { if (controller) controller.abort(); }, 8000);
 
       var fetchOptions = {
         method: 'POST',
@@ -321,7 +341,6 @@
         })
         .catch(function() {
           clearTimeout(timeoutId);
-          /* FormSubmit unreachable — open mailto: as guaranteed delivery path */
           btn.disabled = false;
           btn.textContent = 'Send Message →';
           status.textContent = 'Opening your email client to send directly…';
@@ -333,7 +352,7 @@
 
   /* ─────────────────────────────────────────────
      10. SMOOTH ANCHOR SCROLLING
-     64px nav offset — hardcoded for Safari compat
+     64px nav offset — hash links on index.html only
   ───────────────────────────────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
