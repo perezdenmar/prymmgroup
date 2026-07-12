@@ -169,7 +169,9 @@ ul { list-style: none; }
 .footer__logo-img { display: block; height: 48px; width: auto; flex-shrink: 0; }
 .footer__logo-text { font-family: var(--ff-head); font-weight: 900; font-size: 1rem; letter-spacing: 0.18em; color: var(--white); text-transform: uppercase; }
 .footer__tagline { font-family: var(--ff-head); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey-3); }
-.footer__legal { font-size: 0.75rem; color: var(--grey-2); letter-spacing: 0.04em; }
+/* FIX: was var(--grey-2) = #2E2E2E on #0D0D0D bg → contrast ~1.6:1, fails WCAG AA.
+   Now var(--grey-3) = #888 → contrast ~4.6:1, passes WCAG AA. */
+.footer__legal { font-size: 0.75rem; color: var(--grey-3); letter-spacing: 0.04em; }
 
 /* ─── REVEAL ANIMATION ───────────────────────────── */
 .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.4s cubic-bezier(0.16,1,0.3,1); }
@@ -183,12 +185,10 @@ ul { list-style: none; }
 @media (max-width: 960px) {
   .contact__photo { clip-path: none; opacity: 0.08; }
 }
+/* FIX: hamburger was only shown at ≤600px but nav links collapsed at ≤900px,
+   leaving a 601–900px dead zone with no usable nav. Now both thresholds align. */
 @media (max-width: 900px) {
-  .nav__links { gap: 20px; }
-}
-@media (max-width: 600px) {
-  .container { padding: 0 20px; }
-  .nav { padding: 0 20px; }
+  .nav { padding: 0 24px; }
   .nav__hamburger { display: flex; }
   .nav__links {
     display: none;
@@ -205,5 +205,9 @@ ul { list-style: none; }
   .nav__links a { font-size: 1.4rem; }
   .nav--open .nav__links { display: flex; }
   .nav__logo-img { height: 28px; }
+}
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  .nav { padding: 0 20px; }
   .footer__logo-img { height: 40px; }
 }

@@ -36,6 +36,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
+  <!-- base.css MUST load before style.css — provides all shared tokens, nav, footer, buttons, reveal -->
+  <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -179,6 +181,7 @@
         </article>
 
         <!-- Division 03 — Education & Human Capital -->
+        <!-- NOTE: swap src to assets/images/training.png when a real training photo is available -->
         <article class="division division--edu reveal" data-index="03">
           <a href="technical-skills-institution.html" class="division__link-overlay" aria-label="Education &amp; Human Capital &mdash; Technical Skills Institution">
             <div class="division__photo" aria-hidden="true">
