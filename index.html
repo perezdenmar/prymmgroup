@@ -37,86 +37,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    /* Division 03 — Education & Human Capital identity background
-       CSS-only fill: no <img> tag needed; works correctly inside
-       the division__link-overlay absolute positioning context.
-       Replace with a real training photo when assets/images/training.png is added. */
-    .division--edu .division__photo {
-      background:
-        /* diagonal stripe texture */
-        repeating-linear-gradient(
-          -52deg,
-          transparent,
-          transparent 36px,
-          rgba(245,196,0,0.045) 36px,
-          rgba(245,196,0,0.045) 38px
-        ),
-        /* radial yellow glow centre-right */
-        radial-gradient(ellipse 70% 55% at 78% 42%, rgba(245,196,0,0.22) 0%, transparent 70%),
-        /* base dark background */
-        #0d0d0d;
-    }
-    /* Keep the standard bottom-up overlay so text stays readable */
-    .division--edu .division__photo-overlay {
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.96) 0%,
-        rgba(0,0,0,0.68) 45%,
-        rgba(0,0,0,0.18) 100%
-      );
-    }
-    /* TSI monogram watermark — absolutely fills the photo div */
-    .division--edu .division__photo::before {
-      content: 'TSI';
-      position: absolute;
-      right: -12px;
-      top: 50%;
-      transform: translateY(-60%);
-      font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-      font-weight: 900;
-      font-size: clamp(6rem, 10vw, 9.5rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
-      color: rgba(245,196,0,0.12);
-      text-transform: uppercase;
-      pointer-events: none;
-      user-select: none;
-      z-index: 1;
-    }
-    /* TESDA badge — top-right corner */
-    .division--edu .division__photo::after {
-      content: 'TESDA\A Accredited';
-      white-space: pre;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-      font-weight: 700;
-      font-size: 0.58rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(245,196,0,0.70);
-      text-align: right;
-      line-height: 1.6;
-      z-index: 3;
-      pointer-events: none;
-    }
-    /* Yellow top accent bar override for edu (already set by color-bar but reinforce) */
-    .division--edu:hover .division__photo {
-      background:
-        repeating-linear-gradient(
-          -52deg,
-          transparent,
-          transparent 36px,
-          rgba(245,196,0,0.07) 36px,
-          rgba(245,196,0,0.07) 38px
-        ),
-        radial-gradient(ellipse 70% 55% at 78% 42%, rgba(245,196,0,0.32) 0%, transparent 70%),
-        #0d0d0d;
-    }
-  </style>
 </head>
 <body>
 
@@ -209,7 +129,7 @@
 
         <!-- Division 01 — Industrial & Trade -->
         <article class="division division--industrial reveal" data-index="01">
-          <a href="waste-management.html" class="division__link-overlay" aria-label="Industrial &amp; Trade — Waste Management">
+          <a href="waste-management.html" class="division__link-overlay" aria-label="Industrial &amp; Trade &mdash; Waste Management">
             <div class="division__photo" aria-hidden="true">
               <img
                 src="assets/images/excavator.png"
@@ -230,7 +150,7 @@
 
         <!-- Division 02 — Technology & Systems -->
         <article class="division division--tech reveal" data-index="02">
-          <a href="ev-charging-station.html" class="division__link-overlay" aria-label="Technology &amp; Systems — EV Charging Station">
+          <a href="ev-charging-station.html" class="division__link-overlay" aria-label="Technology &amp; Systems &mdash; EV Charging Station">
             <div class="division__photo" aria-hidden="true">
               <img
                 src="assets/images/evcharging.png"
@@ -249,14 +169,15 @@
           </a>
         </article>
 
-        <!-- Division 03 — Education & Human Capital
-             Background: CSS identity panel (yellow glow + TSI watermark + TESDA badge).
-             Swap for a real <img src="assets/images/training.png"> when available.
-             The division__photo div fills via position:absolute inset:0 from style.css;
-             its background is set in the <style> block in <head>. -->
+        <!-- Division 03 — Education & Human Capital -->
         <article class="division division--edu reveal" data-index="03">
-          <a href="technical-skills-institution.html" class="division__link-overlay" aria-label="Education &amp; Human Capital — Technical Skills Institution">
+          <a href="technical-skills-institution.html" class="division__link-overlay" aria-label="Education &amp; Human Capital &mdash; Technical Skills Institution">
             <div class="division__photo" aria-hidden="true">
+              <img
+                src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80&auto=format&fit=crop&crop=center"
+                alt="Vocational students learning hands-on technical skills in a training workshop"
+                loading="lazy"
+              />
               <div class="division__photo-overlay"></div>
             </div>
             <div class="division__color-bar" aria-hidden="true"></div>
