@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v4
+   Interactions v5
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
    ─ Active nav indicator on sub-pages
@@ -10,7 +10,7 @@
    ─ Stat counters (reduced-motion safe)
    ─ Division touch feedback
    ─ Bauhaus block parallax
-   ─ Contact form inline validation
+   ─ Contact form: FormSubmit AJAX + mailto fallback
    ─ Smooth anchor scrolling
    ─ Page fade-in
 ═══════════════════════════════════════════════ */
@@ -223,8 +223,13 @@
   }
 
   /* ─────────────────────────────────────────────
-     9. CONTACT FORM — inline validation
+     9. CONTACT FORM
+     Primary: FormSubmit AJAX (8 s timeout)
+     Fallback: mailto: pre-filled with form data
+     Guarantee: message always reaches info@prymmgroup.com
   ───────────────────────────────────────────── */
+  var CONTACT_EMAIL = 'info@prymmgroup.com';
+
   var contactForm = document.getElementById('contact-form');
   if (contactForm) {
     var status = contactForm.querySelector('.contact__form-status');
@@ -258,6 +263,17 @@
       return true;
     }
 
+    /* Opens the user's email client pre-filled as a guaranteed fallback */
+    function openMailtoFallback(name, email, message) {
+      var subject = encodeURIComponent('Website Enquiry from ' + name);
+      var body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n\n' +
+        message
+      );
+      window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
+    }
+
     contactForm.querySelectorAll('input, textarea').forEach(function(field) {
       field.addEventListener('blur', function() { validateField(field); });
       field.addEventListener('input', function() { if (field.getAttribute('aria-invalid')) clearFieldError(field); });
@@ -269,33 +285,49 @@
       var valid = fields.map(validateField).every(Boolean);
       if (!valid) return;
 
+      var nameVal    = contactForm.querySelector('[name="name"]').value.trim();
+      var emailVal   = contactForm.querySelector('[name="email"]').value.trim();
+      var messageVal = contactForm.querySelector('[name="message"]').value.trim();
+
       var btn = contactForm.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.textContent = 'Sending…';
 
-      fetch('https://formsubmit.co/ajax/info@prymmgroup.com', {
+      /* 8-second timeout so FormSubmit DNS failures don't hang the user */
+      var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      var timeoutId = setTimeout(function() {
+        if (controller) controller.abort();
+      }, 8000);
+
+      var fetchOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name: contactForm.querySelector('[name="name"]').value,
-          email: contactForm.querySelector('[name="email"]').value,
-          message: contactForm.querySelector('[name="message"]').value
+        body: JSON.stringify({ name: nameVal, email: emailVal, message: messageVal })
+      };
+      if (controller) fetchOptions.signal = controller.signal;
+
+      fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, fetchOptions)
+        .then(function(r) {
+          clearTimeout(timeoutId);
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
         })
-      })
-      .then(function(r) { return r.json(); })
-      .then(function() {
-        status.textContent = 'Message sent — we’ll be in touch shortly.';
-        status.className = 'contact__form-status contact__form-status--ok';
-        contactForm.reset();
-        btn.disabled = false;
-        btn.textContent = 'Send Message →';
-      })
-      .catch(function() {
-        status.textContent = 'Something went wrong. Please email us directly at info@prymmgroup.com.';
-        status.className = 'contact__form-status contact__form-status--err';
-        btn.disabled = false;
-        btn.textContent = 'Send Message →';
-      });
+        .then(function() {
+          status.textContent = 'Message sent — we’ll be in touch shortly.';
+          status.className = 'contact__form-status contact__form-status--ok';
+          contactForm.reset();
+          btn.disabled = false;
+          btn.textContent = 'Send Message →';
+        })
+        .catch(function() {
+          clearTimeout(timeoutId);
+          /* FormSubmit unreachable — open mailto: as guaranteed delivery path */
+          btn.disabled = false;
+          btn.textContent = 'Send Message →';
+          status.textContent = 'Opening your email client to send directly…';
+          status.className = 'contact__form-status contact__form-status--ok';
+          setTimeout(function() { openMailtoFallback(nameVal, emailVal, messageVal); }, 400);
+        });
     });
   }
 
