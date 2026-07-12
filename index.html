@@ -53,11 +53,14 @@
       />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
-    <ul class="nav__links">
+    <ul class="nav__links" id="nav-links">
       <li><a href="#divisions">Divisions</a></li>
       <li><a href="#product">Technology</a></li>
       <li><a href="#contact" class="nav__cta">Contact</a></li>
     </ul>
+    <button class="nav__hamburger" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -67,6 +70,8 @@
         src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1920&q=80&auto=format&fit=crop&crop=center"
         alt=""
         class="hero__photo-img"
+        width="1920"
+        height="1080"
         loading="eager"
         fetchpriority="high"
       />
@@ -103,8 +108,8 @@
       </div>
       <div class="hero__stat-divider" aria-hidden="true"></div>
       <div class="hero__stat">
-        <span class="hero__stat-num">0</span>
-        <span class="hero__stat-label">Landfill Framework</span>
+        <span class="hero__stat-num">0<sup>%</sup></span>
+        <span class="hero__stat-label">Waste to Landfill</span>
       </div>
     </div>
   </section>
@@ -134,6 +139,8 @@
               <img
                 src="assets/images/excavator.png"
                 alt="Heavy machinery excavator"
+                width="800"
+                height="600"
                 loading="lazy"
               />
               <div class="division__photo-overlay"></div>
@@ -155,6 +162,8 @@
               <img
                 src="assets/images/evcharging.png"
                 alt="Electric vehicle charging station"
+                width="800"
+                height="600"
                 loading="lazy"
               />
               <div class="division__photo-overlay"></div>
@@ -176,6 +185,8 @@
               <img
                 src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80&auto=format&fit=crop&crop=center"
                 alt="Vocational students learning hands-on technical skills in a training workshop"
+                width="800"
+                height="534"
                 loading="lazy"
               />
               <div class="division__photo-overlay"></div>
@@ -200,6 +211,8 @@
       <img
         src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&q=80&auto=format&fit=crop&crop=center"
         alt=""
+        width="1920"
+        height="1080"
         loading="lazy"
       />
       <div class="product__photo-overlay"></div>
@@ -254,6 +267,7 @@
         <div class="manifesto__block manifesto__block--b"></div>
       </div>
       <p class="manifesto__text reveal">Physical infrastructure. Digital intelligence. Human capacity.<br />Three pillars. One enterprise. Infinite progress.</p>
+      <a href="#divisions" class="btn btn--secondary manifesto__cta">Explore Our Divisions &rarr;</a>
     </div>
   </section>
 
@@ -263,6 +277,8 @@
       <img
         src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80&auto=format&fit=crop&crop=center"
         alt=""
+        width="1200"
+        height="800"
         loading="lazy"
       />
       <div class="contact__photo-overlay"></div>
@@ -287,7 +303,23 @@
           <span class="contact__item-label">Address</span>
           <span class="contact__item-value">Wilmington, Delaware, USA</span>
         </div>
-        <a href="mailto:info@prymmgroup.com" class="btn btn--primary contact__btn">Send a Message &rarr;</a>
+
+        <form class="contact__form" id="contact-form" novalidate>
+          <div class="contact__field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" placeholder="Your name" required autocomplete="name" />
+          </div>
+          <div class="contact__field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" placeholder="your@email.com" required autocomplete="email" />
+          </div>
+          <div class="contact__field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="4" placeholder="Tell us about your project" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Send Message &rarr;</button>
+          <p class="contact__form-status" aria-live="polite"></p>
+        </form>
       </div>
     </div>
   </section>

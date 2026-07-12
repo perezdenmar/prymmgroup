@@ -1,22 +1,30 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v3
+   Interactions v4
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
+   ─ Active nav indicator on sub-pages
+   ─ Mobile hamburger nav
    ─ Snap reveal (IntersectionObserver)
    ─ Staggered division cards
-   ─ Stat counters
+   ─ Stat counters (reduced-motion safe)
+   ─ Division touch feedback
+   ─ Bauhaus block parallax
+   ─ Contact form inline validation
    ─ Smooth anchor scrolling
+   ─ Page fade-in
 ═══════════════════════════════════════════════ */
 
 (function () {
   'use strict';
 
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ─────────────────────────────────────────────
      1. NAV SCROLL STATE
      Border shifts red → yellow after 80px
   ───────────────────────────────────────────── */
-  const nav = document.getElementById('nav');
+  var nav = document.getElementById('nav');
 
   window.addEventListener('scroll', function () {
     nav.classList.toggle('nav--scrolled', window.scrollY > 80);
@@ -25,51 +33,69 @@
   /* ─────────────────────────────────────────────
      2. ACTIVE NAV SCROLL-SPY
      Watches #hero, #divisions, #product, #contact
-     Adds .is-active to matching nav link when
-     section occupies the top 40% of the viewport.
-     The CTA (“Contact”) is excluded from underline
-     treatment via CSS (.nav__cta::after {display:none})
-     but still receives .is-active for colour parity.
   ───────────────────────────────────────────── */
-  const navLinks = Array.from(document.querySelectorAll('.nav__links a[href^="#"]'));
-  const sections = navLinks
-    .map(a => document.querySelector(a.getAttribute('href')))
+  var navLinks = Array.from(document.querySelectorAll('.nav__links a[href^="#"]'));
+  var sections = navLinks
+    .map(function(a) { return document.querySelector(a.getAttribute('href')); })
     .filter(Boolean);
 
   function setActiveLink(activeSection) {
-    navLinks.forEach(a => {
-      const target = document.querySelector(a.getAttribute('href'));
+    navLinks.forEach(function(a) {
+      var target = document.querySelector(a.getAttribute('href'));
       a.classList.toggle('is-active', target === activeSection);
     });
   }
 
-  const spyObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          setActiveLink(entry.target);
-        }
-      });
-    },
-    {
-      // Trigger when section crosses the top 40% line
-      rootMargin: '0px 0px -60% 0px',
-      threshold: 0
-    }
-  );
-
-  sections.forEach(function (s) { spyObserver.observe(s); });
-
-  // Set initial active state on load
-  if (sections.length) setActiveLink(sections[0]);
+  if (sections.length) {
+    var spyObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) setActiveLink(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -60% 0px', threshold: 0 }
+    );
+    sections.forEach(function (s) { spyObserver.observe(s); });
+    setActiveLink(sections[0]);
+  }
 
   /* ─────────────────────────────────────────────
-     3. SNAP REVEAL
-     Elements snap into place using
-     cubic-bezier(0.16, 1, 0.3, 1) defined in CSS.
-     Observer fires once per element — no re-hiding.
+     2b. ACTIVE NAV ON SUB-PAGES
+     Reads data-page attribute on <body>
   ───────────────────────────────────────────── */
-  const revealTargets = [
+  var currentPage = document.body.dataset.page;
+  if (currentPage) {
+    document.querySelectorAll('.nav__links a').forEach(function(a) {
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf(currentPage) !== -1) a.classList.add('is-active');
+    });
+  }
+
+  /* ─────────────────────────────────────────────
+     3. MOBILE HAMBURGER NAV
+  ───────────────────────────────────────────── */
+  var navToggle = document.getElementById('nav-toggle');
+  if (navToggle) {
+    navToggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('nav--open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    document.querySelectorAll('.nav__links a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        nav.classList.remove('nav--open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ─────────────────────────────────────────────
+     4. SNAP REVEAL
+  ───────────────────────────────────────────── */
+  var revealTargets = [
     '.mission__quote',
     '.section-header',
     '.division',
@@ -87,7 +113,7 @@
     });
   });
 
-  const revealObserver = new IntersectionObserver(
+  var revealObserver = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -104,18 +130,18 @@
   });
 
   /* ─────────────────────────────────────────────
-     4. STAGGERED DIVISION CARDS
-     60ms delay increment per card
+     5. STAGGERED DIVISION CARDS
   ───────────────────────────────────────────── */
   document.querySelectorAll('.division').forEach(function (el, i) {
     el.style.transitionDelay = (i * 60) + 'ms';
   });
 
   /* ─────────────────────────────────────────────
-     5. STAT COUNTERS
-     Counts up mechanically over 600ms on first view
+     6. STAT COUNTERS — reduced-motion + zero-value safe
   ───────────────────────────────────────────── */
   function animateCounter(el, target) {
+    if (target === 0) { el.textContent = 0; return; }
+    if (prefersReduced) { el.textContent = target; return; }
     var start = 0;
     var step = 16;
     var increment = target / (600 / step);
@@ -139,13 +165,14 @@
         nums.forEach(function (el, i) {
           var sup = el.querySelector('sup');
           if (sup) {
-            // Preserve <sup> element after animation
-            setTimeout(function () {
-              el.textContent = targets[i];
-              var newSup = document.createElement('sup');
-              newSup.textContent = sup.textContent;
-              el.appendChild(newSup);
-            }, 620);
+            if (!prefersReduced) {
+              setTimeout(function () {
+                el.textContent = targets[i];
+                var newSup = document.createElement('sup');
+                newSup.textContent = sup.textContent;
+                el.appendChild(newSup);
+              }, 620);
+            }
           } else {
             animateCounter(el, targets[i]);
           }
@@ -160,20 +187,128 @@
   if (statStrip) statsObserver.observe(statStrip);
 
   /* ─────────────────────────────────────────────
-     6. SMOOTH ANCHOR SCROLLING
-     Overrides browser default for nav-height offset.
-     html { scroll-behavior: smooth } handles all
-     other anchor clicks. This handles only nav links
-     that need the 64px offset correction.
+     7. DIVISION TOUCH FEEDBACK
+  ───────────────────────────────────────────── */
+  document.querySelectorAll('.division').forEach(function(card) {
+    card.addEventListener('touchstart', function() {
+      card.classList.add('division--active');
+    }, { passive: true });
+    card.addEventListener('touchend', function() {
+      setTimeout(function() { card.classList.remove('division--active'); }, 300);
+    }, { passive: true });
+  });
+
+  /* ─────────────────────────────────────────────
+     8. BAUHAUS BLOCK PARALLAX
+     Subtle depth shift on scroll, RAF-throttled
+  ───────────────────────────────────────────── */
+  if (!prefersReduced) {
+    var blockRed    = document.querySelector('.hero__block--red');
+    var blockYellow = document.querySelector('.hero__block--yellow');
+    var blockBlue   = document.querySelector('.hero__block--blue');
+    var ticking = false;
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          var y = window.scrollY;
+          if (blockRed)    blockRed.style.transform    = 'translateY(' + (y * -0.08) + 'px)';
+          if (blockYellow) blockYellow.style.transform = 'translateY(' + (y * -0.12) + 'px)';
+          if (blockBlue)   blockBlue.style.transform   = 'translateY(' + (y * -0.16) + 'px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ─────────────────────────────────────────────
+     9. CONTACT FORM — inline validation
+  ───────────────────────────────────────────── */
+  var contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    var status = contactForm.querySelector('.contact__form-status');
+
+    function showFieldError(input, msg) {
+      var err = input.parentElement.querySelector('.contact__field-error');
+      if (!err) {
+        err = document.createElement('span');
+        err.className = 'contact__field-error';
+        err.setAttribute('aria-live', 'polite');
+        input.parentElement.appendChild(err);
+      }
+      err.textContent = msg;
+      input.setAttribute('aria-invalid', 'true');
+    }
+
+    function clearFieldError(input) {
+      var err = input.parentElement.querySelector('.contact__field-error');
+      if (err) err.textContent = '';
+      input.removeAttribute('aria-invalid');
+    }
+
+    function validateField(input) {
+      if (input.type === 'email') {
+        if (!input.value.trim()) { showFieldError(input, 'Email is required.'); return false; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) { showFieldError(input, 'Enter a valid email address.'); return false; }
+      } else {
+        if (!input.value.trim()) { showFieldError(input, input.name.charAt(0).toUpperCase() + input.name.slice(1) + ' is required.'); return false; }
+      }
+      clearFieldError(input);
+      return true;
+    }
+
+    contactForm.querySelectorAll('input, textarea').forEach(function(field) {
+      field.addEventListener('blur', function() { validateField(field); });
+      field.addEventListener('input', function() { if (field.getAttribute('aria-invalid')) clearFieldError(field); });
+    });
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var fields = Array.from(contactForm.querySelectorAll('input, textarea'));
+      var valid = fields.map(validateField).every(Boolean);
+      if (!valid) return;
+
+      var btn = contactForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      fetch('https://formsubmit.co/ajax/info@prymmgroup.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: contactForm.querySelector('[name="name"]').value,
+          email: contactForm.querySelector('[name="email"]').value,
+          message: contactForm.querySelector('[name="message"]').value
+        })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function() {
+        status.textContent = 'Message sent — we’ll be in touch shortly.';
+        status.className = 'contact__form-status contact__form-status--ok';
+        contactForm.reset();
+        btn.disabled = false;
+        btn.textContent = 'Send Message →';
+      })
+      .catch(function() {
+        status.textContent = 'Something went wrong. Please email us directly at info@prymmgroup.com.';
+        status.className = 'contact__form-status contact__form-status--err';
+        btn.disabled = false;
+        btn.textContent = 'Send Message →';
+      });
+    });
+  }
+
+  /* ─────────────────────────────────────────────
+     10. SMOOTH ANCHOR SCROLLING
+     64px nav offset — hardcoded for Safari compat
   ───────────────────────────────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
       var target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      var navH = parseInt(
-        getComputedStyle(document.documentElement).getPropertyValue('--nav-h')
-      ) || 64;
+      var navH = 64;
       var top = target.getBoundingClientRect().top + window.scrollY - navH;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
