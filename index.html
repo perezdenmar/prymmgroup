@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Prymm Group LLC — Sustainable Solutions. Lasting Relationships.</title>
   <meta name="description" content="The Prymm Group integrates physical, digital, and human infrastructure to deliver sustainable progress. Industrial &amp; Trade, Technology &amp; Systems, Education &amp; Human Capital." />
+
+  <!-- ══ Open Graph ─ LinkedIn / Facebook / WhatsApp preview card ══ -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="The Prymm Group LLC" />
+  <meta property="og:title"       content="The Prymm Group LLC — Sustainable Solutions. Lasting Relationships." />
+  <meta property="og:description" content="We integrate physical, digital, and human infrastructure to modernize operations and empower communities — delivering sustainable progress that stands the test of time." />
+  <meta property="og:url"         content="https://prymmgroup.com/" />
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=85&auto=format&fit=crop&crop=center" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt"    content="Aerial view of a lush green forest canopy representing The Prymm Group’s environmental stewardship mission" />
+  <!-- TODO (production): replace og:image with locally hosted, compressed WebP asset -->
+
+  <!-- ══ Twitter / X Card ══ -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="The Prymm Group LLC — Sustainable Solutions. Lasting Relationships." />
+  <meta name="twitter:description" content="We integrate physical, digital, and human infrastructure to modernize operations and empower communities — delivering sustainable progress that stands the test of time." />
+  <meta name="twitter:image"       content="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=85&auto=format&fit=crop&crop=center" />
+  <meta name="twitter:image:alt"   content="Aerial view of a lush green forest canopy representing The Prymm Group’s environmental stewardship mission" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
@@ -25,8 +45,9 @@
   </nav>
 
   <!-- ══ HERO ══
-       Photo: aerial lush green forest canopy — Unsplash free commercial use
-       Photographer: Sergei Akulich (unsplash.com/photos/green-trees-aerial)
+       Decorative background — aria-hidden container + alt="" is correct per WCAG 2.1
+       Photo: aerial lush green forest canopy
+       TODO (production): replace Unsplash URL with locally hosted WebP asset
   -->
   <section class="hero" id="hero">
     <div class="hero__photo" aria-hidden="true">
@@ -86,12 +107,9 @@
   </section>
 
   <!-- ══ DIVISIONS ══
-       01 Industrial & Trade:
-          Photo: large-scale solar farm / clean energy infrastructure
-       02 Technology & Systems:
-          Photo: wind turbines in green rolling hills
-       03 Education & Human Capital:
-          Photo: technician inspecting solar panel installation
+       Division card images provide contextual reinforcement — descriptive alt applied.
+       Container remains aria-hidden; alt text is the screen-reader fallback within it.
+       TODO (production): replace Unsplash URLs with locally hosted WebP assets
   -->
   <section class="divisions" id="divisions">
     <div class="container">
@@ -105,7 +123,7 @@
           <div class="division__photo" aria-hidden="true">
             <img
               src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=75&auto=format&fit=crop&crop=center"
-              alt=""
+              alt="Large-scale solar farm with rows of photovoltaic panels under an open sky"
               loading="lazy"
             />
             <div class="division__photo-overlay"></div>
@@ -123,7 +141,7 @@
           <div class="division__photo" aria-hidden="true">
             <img
               src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=75&auto=format&fit=crop&crop=center"
-              alt=""
+              alt="Wind turbines rising from rolling green hills against a clear sky"
               loading="lazy"
             />
             <div class="division__photo-overlay"></div>
@@ -141,7 +159,7 @@
           <div class="division__photo" aria-hidden="true">
             <img
               src="https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?w=800&q=75&auto=format&fit=crop&crop=center"
-              alt=""
+              alt="Technician inspecting a rooftop solar panel installation in a natural outdoor setting"
               loading="lazy"
             />
             <div class="division__photo-overlay"></div>
@@ -160,8 +178,8 @@
   </section>
 
   <!-- ══ PRODUCT SPOTLIGHT ══
-       Photo: clean waste-to-energy / green industrial facility with sky
-       Emanuele Stigliani — industrial plant + green hillside
+       Decorative full-bleed background — aria-hidden + alt="" correct
+       TODO (production): replace Unsplash URL with locally hosted WebP asset
   -->
   <section class="product" id="product">
     <div class="product__photo" aria-hidden="true">
@@ -226,7 +244,8 @@
   </section>
 
   <!-- ══ CONTACT ══
-       Photo: misty green mountain valley / pristine natural landscape
+       Decorative right-panel background — aria-hidden + alt="" correct
+       TODO (production): replace Unsplash URL with locally hosted WebP asset
   -->
   <section class="contact" id="contact">
     <div class="contact__photo" aria-hidden="true">
@@ -269,7 +288,7 @@
         <span class="nav__logo-text">PRYMM GROUP</span>
       </div>
       <p class="footer__tagline">Sustainable Solutions. Lasting Relationships.</p>
-      <p class="footer__legal">&copy; 2025 The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
+      <p class="footer__legal">&copy; 2026 The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
     </div>
   </footer>
 
