@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us &mdash; The Prymm Group LLC</title>
   <meta name="description" content="Founded in 2017, The Prymm Group is a Delaware LLC operating across Industrial &amp; Trade, Technology &amp; Systems, and Education &amp; Human Capital. We bridge global innovations with local excellence." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://prymmgroup.com/about.html" />
 
   <!-- Favicons -->
   <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
@@ -29,11 +31,31 @@
   <meta name="twitter:description" content="Founded in 2017, The Prymm Group bridges global innovations with local excellence across three core divisions." />
   <meta name="twitter:image"       content="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=85&auto=format&fit=crop&crop=center" />
 
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="about.css" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About Us — The Prymm Group LLC",
+    "url": "https://prymmgroup.com/about.html",
+    "description": "Founded in 2017, The Prymm Group bridges global innovations with local excellence across three core divisions.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "The Prymm Group LLC",
+      "url": "https://prymmgroup.com"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -47,6 +69,7 @@
         width="36"
         height="36"
         loading="eager"
+        decoding="sync"
       />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
@@ -72,6 +95,7 @@
         height="1080"
         loading="eager"
         fetchpriority="high"
+        decoding="async"
       />
       <div class="about-hero__photo-overlay" aria-hidden="true"></div>
     </div>
@@ -117,6 +141,7 @@
             width="900"
             height="600"
             loading="lazy"
+            decoding="async"
           />
           <div class="about-story__photo-bar about-story__photo-bar--red"></div>
           <div class="about-story__photo-bar about-story__photo-bar--yellow"></div>
@@ -177,6 +202,7 @@
         width="1920"
         height="1080"
         loading="lazy"
+        decoding="async"
       />
       <div class="about-philosophy__overlay"></div>
     </div>
@@ -230,6 +256,7 @@
           width="48"
           height="48"
           loading="lazy"
+          decoding="async"
         />
         <span class="footer__logo-text">PRYMM GROUP</span>
       </a>
