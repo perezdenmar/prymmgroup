@@ -6,12 +6,22 @@
   <title>The Prymm Group LLC — Sustainable Solutions. Lasting Relationships.</title>
   <meta name="description" content="The Prymm Group integrates physical, digital, and human infrastructure to deliver sustainable progress. Industrial &amp; Trade, Technology &amp; Systems, Education &amp; Human Capital." />
 
-  <!-- ══ Favicons ══ -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+  <!-- ══ Favicons — full resolution set from assets/favicon/ ══ -->
+  <!-- 1. Legacy browsers / tab icon -->
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+  <!-- 2. Modern browsers — 16×16 tab icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+  <!-- 3. Modern browsers — 32×32 tab / taskbar -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+  <!-- 4. Apple home-screen icon (180×180 standard) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+  <!-- 5. Android Chrome — 192×192 home-screen icon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png" />
+  <!-- 6. Android Chrome — 512×512 splash-screen icon -->
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png" />
+  <!-- 7. Web app manifest (PWA metadata + theme colour) -->
   <link rel="manifest" href="assets/favicon/site.webmanifest" />
-  <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+
   <!-- ══ Open Graph ─ LinkedIn / Facebook / WhatsApp preview card ══ -->
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="The Prymm Group LLC" />
@@ -37,11 +47,7 @@
 </head>
 <body>
 
-  <!-- ══ NAV ══
-       Logo: image asset replaces previous text/mark placeholder.
-       Height capped at 36px to sit flush within the 64px nav bar;
-       width is auto so the GP mark’s proportions are never distorted.
-  -->
+  <!-- ══ NAV ══ -->
   <nav class="nav" id="nav">
     <a href="#hero" class="nav__logo" aria-label="The Prymm Group — home">
       <img
@@ -61,10 +67,7 @@
     </ul>
   </nav>
 
-  <!-- ══ HERO ══
-       Photo: bright coastal forest meeting the ocean
-       Typography lives in left 55%; right side lets the ocean-and-forest scale breathe
-  -->
+  <!-- ══ HERO ══ -->
   <section class="hero" id="hero">
     <div class="hero__photo" aria-hidden="true">
       <img
@@ -287,11 +290,6 @@
     </div>
   </section>
 
-  <!-- ══ FOOTER ══
-       Logo: image asset replaces previous text placeholder.
-       Larger at 48px tall for the footer’s more spacious layout;
-       auto width preserves the GP mark proportions.
-  -->
   <footer class="footer">
     <div class="container footer__inner">
       <a href="#hero" class="footer__logo" aria-label="The Prymm Group — back to top">
