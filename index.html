@@ -12,9 +12,6 @@
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════
-       NAV
-  ═══════════════════════════════════════════ -->
   <nav class="nav" id="nav">
     <div class="nav__logo">
       <span class="nav__logo-mark">P</span>
@@ -27,10 +24,18 @@
     </ul>
   </nav>
 
-  <!-- ═══════════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════════ -->
   <section class="hero" id="hero">
+    <div class="hero__photo" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1920&q=80&auto=format&fit=crop"
+        alt=""
+        class="hero__photo-img"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero__photo-overlay" aria-hidden="true"></div>
+    </div>
+
     <div class="hero__grid-overlay" aria-hidden="true">
       <div class="hero__block hero__block--red"></div>
       <div class="hero__block hero__block--yellow"></div>
@@ -38,6 +43,7 @@
       <div class="hero__rule hero__rule--h"></div>
       <div class="hero__rule hero__rule--v"></div>
     </div>
+
     <div class="hero__content">
       <p class="hero__eyebrow">EST. WILMINGTON, DELAWARE</p>
       <h1 class="hero__headline">
@@ -66,9 +72,6 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       MISSION BAND
-  ═══════════════════════════════════════════ -->
   <section class="mission">
     <div class="mission__inner">
       <div class="mission__accent" aria-hidden="true"></div>
@@ -78,18 +81,22 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       DIVISIONS
-  ═══════════════════════════════════════════ -->
   <section class="divisions" id="divisions">
     <div class="container">
-      <header class="section-header">
+      <header class="section-header reveal">
         <span class="section-header__label">Our Structure</span>
         <h2 class="section-header__title">Three Divisions.<br />One Direction.</h2>
       </header>
       <div class="divisions__grid">
-
-        <article class="division division--industrial" data-index="01">
+        <article class="division division--industrial reveal" data-index="01">
+          <div class="division__photo" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1565034946487-077786996e27?w=800&q=75&auto=format&fit=crop"
+              alt=""
+              loading="lazy"
+            />
+            <div class="division__photo-overlay"></div>
+          </div>
           <div class="division__color-bar" aria-hidden="true"></div>
           <div class="division__body">
             <p class="division__index">01</p>
@@ -99,7 +106,15 @@
           </div>
         </article>
 
-        <article class="division division--tech" data-index="02">
+        <article class="division division--tech reveal" data-index="02">
+          <div class="division__photo" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=75&auto=format&fit=crop"
+              alt=""
+              loading="lazy"
+            />
+            <div class="division__photo-overlay"></div>
+          </div>
           <div class="division__color-bar" aria-hidden="true"></div>
           <div class="division__body">
             <p class="division__index">02</p>
@@ -109,7 +124,15 @@
           </div>
         </article>
 
-        <article class="division division--edu" data-index="03">
+        <article class="division division--edu reveal" data-index="03">
+          <div class="division__photo" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=75&auto=format&fit=crop"
+              alt=""
+              loading="lazy"
+            />
+            <div class="division__photo-overlay"></div>
+          </div>
           <div class="division__color-bar" aria-hidden="true"></div>
           <div class="division__body">
             <p class="division__index">03</p>
@@ -118,24 +141,29 @@
             <span class="division__arrow" aria-hidden="true">→</span>
           </div>
         </article>
-
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       PRODUCT SPOTLIGHT — Waste-to-Energy
-  ═══════════════════════════════════════════ -->
   <section class="product" id="product">
+    <div class="product__photo" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1920&q=80&auto=format&fit=crop"
+        alt=""
+        loading="lazy"
+      />
+      <div class="product__photo-overlay"></div>
+    </div>
+
     <div class="product__flag" aria-hidden="true"></div>
     <div class="container product__inner">
-      <div class="product__text">
+      <div class="product__text reveal">
         <span class="section-header__label">Industrial &amp; Trade — Featured Solution</span>
         <h2 class="product__title">Thermal<br />Technology.<br /><span class="product__title-accent">Zero Landfill.</span></h2>
         <p class="product__lead">As land scarcity intensifies and the Waste-to-Energy Act reshapes the Philippine environmental landscape, The Prymm Group introduces world-class Japanese thermal technology to resolve the mounting municipal and biomedical waste crisis.</p>
         <a href="#contact" class="btn btn--secondary">Request a Technical Brief</a>
       </div>
-      <div class="product__benefits">
+      <div class="product__benefits reveal">
         <div class="benefit">
           <div class="benefit__icon benefit__icon--red" aria-hidden="true">✔</div>
           <div class="benefit__copy">
@@ -168,9 +196,6 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       MANIFESTO BAND
-  ═══════════════════════════════════════════ -->
   <section class="manifesto">
     <div class="manifesto__inner">
       <div class="manifesto__blocks" aria-hidden="true">
@@ -178,21 +203,27 @@
         <div class="manifesto__block manifesto__block--y"></div>
         <div class="manifesto__block manifesto__block--b"></div>
       </div>
-      <p class="manifesto__text">Physical infrastructure. Digital intelligence. Human capacity.<br />Three pillars. One enterprise. Infinite progress.</p>
+      <p class="manifesto__text reveal">Physical infrastructure. Digital intelligence. Human capacity.<br />Three pillars. One enterprise. Infinite progress.</p>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       CONTACT / CTA
-  ═══════════════════════════════════════════ -->
   <section class="contact" id="contact">
+    <div class="contact__photo" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80&auto=format&fit=crop"
+        alt=""
+        loading="lazy"
+      />
+      <div class="contact__photo-overlay"></div>
+    </div>
+
     <div class="container contact__inner">
-      <div class="contact__text">
+      <div class="contact__text reveal">
         <span class="section-header__label">Start the Conversation</span>
         <h2 class="contact__title">Ready to Build<br />Something That Lasts?</h2>
         <p class="contact__sub">Speak with our team about environmental infrastructure solutions, technology partnerships, or workforce development programs.</p>
       </div>
-      <div class="contact__details">
+      <div class="contact__details reveal">
         <a href="mailto:info@prymmgroup.com" class="contact__item">
           <span class="contact__item-label">Email</span>
           <span class="contact__item-value">info@prymmgroup.com</span>
@@ -210,9 +241,6 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__logo">
