@@ -1,6 +1,6 @@
 /* =====================================================
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Style System v6 — division__link-overlay added
+   Style System v7 — contact readability fix
 ===================================================== */
 
 :root {
@@ -295,19 +295,45 @@ ul { list-style: none; }
 .manifesto__text { font-family: var(--ff-head); font-size: clamp(1rem, 2.2vw, 1.45rem); font-weight: 700; line-height: 1.5; letter-spacing: 0.02em; color: var(--white); text-transform: uppercase; }
 
 /* CONTACT */
-.contact { position: relative; padding: 120px 0; background: var(--white); border-top: 6px solid var(--red); overflow: hidden; }
+.contact { position: relative; padding: 120px 0; background: var(--black); border-top: 6px solid var(--red); overflow: hidden; }
 .contact__photo { position: absolute; inset: 0; z-index: 0; clip-path: polygon(50% 0, 100% 0, 100% 100%, 44% 100%); }
-.contact__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; filter: saturate(1.10) brightness(0.80); }
-.contact__photo-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(247,245,240,1.0) 0%, rgba(247,245,240,0.0) 30%, rgba(0,0,0,0.28) 100%); }
+.contact__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; filter: saturate(0.6) brightness(0.35); }
+/* Overlay: solid dark on left (text column), heavy dark scrim on right (photo column) */
+.contact__photo-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to right,
+      rgba(13,13,13,1.0)   0%,
+      rgba(13,13,13,1.0)  48%,
+      rgba(13,13,13,0.82) 60%,
+      rgba(13,13,13,0.55) 80%,
+      rgba(13,13,13,0.40) 100%
+    );
+}
 .contact__inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.contact__title { font-family: var(--ff-head); font-weight: 900; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1; text-transform: uppercase; margin-bottom: 20px; color: var(--black); }
-.contact__sub  { font-size: 0.95rem; line-height: 1.75; color: var(--grey-2); }
+/* Left column — title & sub on dark background */
+.contact__title { font-family: var(--ff-head); font-weight: 900; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1; text-transform: uppercase; margin-bottom: 20px; color: var(--white); }
+.contact__sub  { font-size: 0.95rem; line-height: 1.75; color: rgba(247,245,240,0.60); }
+/* Right column — detail items, white text on dark-scrimmed photo */
 .contact__details { display: flex; flex-direction: column; gap: 0; }
-.contact__item { display: flex; flex-direction: column; gap: 4px; padding: 24px 0; border-bottom: 2px solid var(--black); transition: padding-left 0ms; }
-.contact__item:first-child { border-top: 2px solid var(--black); }
+.contact__item {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(247,245,240,0.15);
+  transition: padding-left 0.2s var(--ease);
+}
+.contact__item:first-child { border-top: 1px solid rgba(247,245,240,0.15); }
 .contact__item:not(.contact__item--no-link):hover { padding-left: 16px; }
-.contact__item-label { font-family: var(--ff-head); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey-3); }
-.contact__item-value { font-family: var(--ff-head); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; color: var(--black); }
+.contact__item-label {
+  font-family: var(--ff-head); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--yellow);
+}
+.contact__item-value {
+  font-family: var(--ff-head); font-weight: 700; font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
 .contact__btn { margin-top: 36px; }
 
 /* FOOTER */
@@ -333,7 +359,7 @@ ul { list-style: none; }
   .division:last-child { border-bottom: none; }
   .product__inner { grid-template-columns: 1fr; gap: 60px; }
   .contact__inner { grid-template-columns: 1fr; gap: 60px; }
-  .contact__photo { clip-path: none; opacity: 0.15; }
+  .contact__photo { clip-path: none; opacity: 0.08; }
   .hero__block--red    { width: 200px; height: 200px; }
   .hero__block--yellow { width: 100px; height: 100px; top: calc(var(--nav-h) + 200px); }
   .hero__block--blue   { width: 60px; height: 60px; right: 100px; top: calc(var(--nav-h) + 300px); }
