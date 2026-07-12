@@ -1,0 +1,373 @@
+/* =====================================================
+   EV CHARGING STATION PAGE — ev-charging-station.css
+   Extends style.css; never overrides global tokens
+===================================================== */
+
+/* ── HERO ──────────────────────────────────────── */
+.ev-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: var(--nav-h);
+  overflow: hidden;
+  background: var(--black);
+}
+.ev-hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.ev-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
+  display: block;
+  filter: saturate(1.1) brightness(0.60);
+}
+.ev-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0.20) 100%),
+    linear-gradient(to top,   rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.00) 40%);
+}
+.ev-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 60px 40px 56px;
+  max-width: 720px;
+}
+.ev-hero__breadcrumb {
+  font-family: var(--ff-head);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.45);
+  margin-bottom: 20px;
+}
+.ev-hero__breadcrumb a {
+  color: rgba(247,245,240,0.45);
+  transition: color 0.15s;
+}
+.ev-hero__breadcrumb a:hover { color: var(--yellow); }
+.ev-hero__headline {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow: 0 2px 32px rgba(0,0,0,0.9);
+  margin-bottom: 20px;
+}
+.ev-hero__headline em {
+  font-style: normal;
+  color: var(--blue);
+}
+.ev-hero__sub {
+  font-family: var(--ff-head);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.65);
+}
+/* DOE badge — right anchor */
+.ev-hero__badge {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 2;
+  background: var(--blue);
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 148px;
+  border-left: 5px solid var(--yellow);
+}
+.ev-hero__badge-label {
+  font-family: var(--ff-head);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.65);
+}
+.ev-hero__badge-cert {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+.ev-hero__badge-sub {
+  font-family: var(--ff-head);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+/* ── ACCREDITATION BAND ─────────────────────────── */
+.ev-accred {
+  background: var(--white);
+  padding: 100px 0;
+  border-bottom: 3px solid var(--black);
+}
+.ev-accred__inner {
+  display: grid;
+  grid-template-columns: 6px 1fr 380px;
+  gap: 56px;
+  align-items: start;
+}
+.ev-accred__accent {
+  width: 6px;
+  align-self: stretch;
+  min-height: 80px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+.ev-accred__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: var(--black);
+}
+.ev-accred__text p {
+  font-size: 0.95rem;
+  line-height: 1.78;
+  color: var(--grey-2);
+  margin-bottom: 16px;
+}
+.ev-accred__text p:last-child { margin-bottom: 0; }
+.ev-accred__text strong {
+  color: var(--black);
+  font-weight: 700;
+}
+
+/* Certificate card */
+.ev-accred__cert-card {
+  background: var(--black);
+  border: 3px solid var(--grey-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ev-accred__cert-header {
+  background: var(--blue);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ev-accred__cert-seal {
+  font-size: 1.4rem;
+  color: var(--yellow);
+  flex-shrink: 0;
+}
+.ev-accred__cert-title-text {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.ev-accred__cert-body {
+  padding: 8px 0;
+}
+.ev-accred__cert-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--grey-2);
+}
+.ev-accred__cert-row:last-child { border-bottom: none; }
+.ev-accred__cert-key {
+  font-family: var(--ff-head);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey-3);
+}
+.ev-accred__cert-val {
+  font-family: var(--ff-head);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+}
+.ev-accred__cert-val--mono {
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: var(--yellow);
+  letter-spacing: 0.06em;
+}
+.ev-accred__cert-footer {
+  display: flex;
+  height: 8px;
+}
+.ev-accred__cert-bar { flex: 1; }
+.ev-accred__cert-bar--b { background: var(--blue); }
+.ev-accred__cert-bar--y { background: var(--yellow); }
+.ev-accred__cert-bar--r { background: var(--red); }
+
+/* ── PERMISSIONS GRID ────────────────────────────── */
+.ev-perms {
+  background: var(--black);
+  padding: 100px 0 120px;
+}
+.ev-perms__header .section-header__label { color: var(--yellow); opacity: 0.7; }
+.ev-perms__header .section-header__title { color: var(--white); }
+.ev-perms__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 3px solid var(--grey-2);
+}
+.ev-perm-card {
+  position: relative;
+  padding: 40px 32px 44px;
+  border-right: 3px solid var(--grey-2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: background 0.15s;
+}
+.ev-perm-card:last-child { border-right: none; }
+.ev-perm-card:hover { background: rgba(255,255,255,0.025); }
+.ev-perm-card__index {
+  font-family: var(--ff-head);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--grey-3);
+  margin-bottom: 4px;
+}
+.ev-perm-card__icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.ev-perm-card__icon--blue   { background: var(--blue); }
+.ev-perm-card__icon--yellow { background: var(--yellow); color: var(--black); }
+.ev-perm-card__icon--red    { background: var(--red); }
+.ev-perm-card__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.15;
+}
+.ev-perm-card__desc {
+  font-size: 0.875rem;
+  line-height: 1.68;
+  color: rgba(247,245,240,0.62);
+}
+
+/* ── MANIFESTO BAND ────────────────────────────── */
+.ev-manifesto {
+  background: var(--blue);
+  padding: 72px 40px;
+}
+.ev-manifesto__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.ev-manifesto__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.ev-manifesto__block  { width: 8px; height: 56px; }
+.ev-manifesto__block--b { background: rgba(247,245,240,0.25); }
+.ev-manifesto__block--y { background: var(--yellow); }
+.ev-manifesto__block--r { background: var(--red); }
+.ev-manifesto__text {
+  font-family: var(--ff-head);
+  font-size: clamp(1rem, 2.4vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+/* ── CTA BAND ──────────────────────────────────────── */
+.ev-cta {
+  background: var(--white);
+  padding: 100px 0;
+  border-top: 6px solid var(--blue);
+}
+.ev-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.ev-cta__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.ev-cta__sub {
+  font-size: 0.95rem;
+  color: var(--grey-2);
+  max-width: 520px;
+  line-height: 1.75;
+  margin-bottom: 8px;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .ev-accred__inner { grid-template-columns: 6px 1fr; }
+  .ev-accred__cert { grid-column: 2; }
+  .ev-perms__grid { grid-template-columns: repeat(2, 1fr); }
+  .ev-perm-card:nth-child(2) { border-right: none; }
+  .ev-perm-card:nth-child(3) { border-right: 3px solid var(--grey-2); border-top: 3px solid var(--grey-2); }
+  .ev-perm-card:nth-child(4) { border-right: none; border-top: 3px solid var(--grey-2); }
+}
+@media (max-width: 860px) {
+  .ev-accred__inner { gap: 36px; }
+  .ev-manifesto__inner { flex-direction: column; gap: 24px; }
+  .ev-manifesto__blocks { flex-direction: row; }
+  .ev-manifesto__block { width: 56px; height: 8px; }
+}
+@media (max-width: 600px) {
+  .ev-hero__badge { right: 20px; bottom: 20px; min-width: 120px; }
+  .ev-hero__content { padding: 40px 20px 40px; }
+  .ev-perms__grid { grid-template-columns: 1fr; }
+  .ev-perm-card { border-right: none; border-bottom: 3px solid var(--grey-2); }
+  .ev-perm-card:last-child { border-bottom: none; }
+  .ev-perm-card:nth-child(2) { border-right: none; }
+  .ev-perm-card:nth-child(3) { border-right: none; }
+  .ev-perm-card:nth-child(4) { border-top: none; }
+  .ev-cta__inner { padding: 0 20px; }
+}
