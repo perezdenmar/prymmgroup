@@ -1,0 +1,419 @@
+/* =====================================================
+   TECHNICAL SKILLS INSTITUTION — technical-skills-institution.css
+   Extends style.css; never overrides global tokens
+===================================================== */
+
+/* ── HERO ─────────────────────────────────────────── */
+.tsi-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: var(--nav-h);
+  overflow: hidden;
+  background: var(--black);
+}
+.tsi-hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.tsi-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  filter: saturate(0.95) brightness(0.55);
+}
+.tsi-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.68) 45%, rgba(0,0,0,0.18) 100%),
+    linear-gradient(to top,   rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.00) 42%);
+}
+.tsi-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 60px 40px 56px;
+  max-width: 720px;
+}
+.tsi-hero__breadcrumb {
+  font-family: var(--ff-head);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.45);
+  margin-bottom: 20px;
+}
+.tsi-hero__breadcrumb a {
+  color: rgba(247,245,240,0.45);
+  transition: color 0.15s;
+}
+.tsi-hero__breadcrumb a:hover { color: var(--yellow); }
+.tsi-hero__headline {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow: 0 2px 32px rgba(0,0,0,0.9);
+  margin-bottom: 20px;
+}
+.tsi-hero__headline em {
+  font-style: normal;
+  color: var(--yellow);
+}
+.tsi-hero__sub {
+  font-family: var(--ff-head);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.65);
+}
+/* TESDA badge */
+.tsi-hero__badge {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 2;
+  background: var(--red);
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 148px;
+  border-left: 5px solid var(--yellow);
+}
+.tsi-hero__badge-label {
+  font-family: var(--ff-head);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.70);
+}
+.tsi-hero__badge-cert {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+.tsi-hero__badge-sub {
+  font-family: var(--ff-head);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ── OVERVIEW BAND ────────────────────────────────── */
+.tsi-overview {
+  background: var(--white);
+  padding: 100px 0;
+  border-bottom: 3px solid var(--black);
+}
+.tsi-overview__inner {
+  display: grid;
+  grid-template-columns: 6px 1fr auto;
+  gap: 56px;
+  align-items: start;
+}
+.tsi-overview__accent {
+  width: 6px;
+  align-self: stretch;
+  min-height: 80px;
+  background: var(--yellow);
+  flex-shrink: 0;
+}
+.tsi-overview__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: var(--black);
+}
+.tsi-overview__text p {
+  font-size: 0.95rem;
+  line-height: 1.78;
+  color: var(--grey-2);
+  margin-bottom: 16px;
+}
+.tsi-overview__text p:last-child { margin-bottom: 0; }
+
+/* Stats sidebar */
+.tsi-overview__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex-shrink: 0;
+  min-width: 180px;
+  border-left: 3px solid var(--black);
+  padding-left: 32px;
+}
+.tsi-stat__num {
+  display: block;
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--black);
+}
+.tsi-stat__num sub {
+  font-size: 0.9rem;
+  font-weight: 700;
+  vertical-align: baseline;
+  margin-left: 2px;
+  color: var(--grey-3);
+}
+.tsi-stat__label {
+  display: block;
+  font-family: var(--ff-head);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey-3);
+  margin-top: 4px;
+}
+
+/* ── CAREER TRACKS GRID ───────────────────────────── */
+.tsi-tracks {
+  background: var(--black);
+  padding: 100px 0 120px;
+}
+.tsi-tracks__header .section-header__label { color: var(--yellow); opacity: 0.7; }
+.tsi-tracks__header .section-header__title { color: var(--white); }
+.tsi-tracks__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 3px solid var(--grey-2);
+}
+.tsi-track-card {
+  padding: 44px 36px 48px;
+  border-right: 3px solid var(--grey-2);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: background 0.15s;
+}
+.tsi-track-card:last-child { border-right: none; }
+.tsi-track-card:hover { background: rgba(255,255,255,0.025); }
+.tsi-track-card__index {
+  font-family: var(--ff-head);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--grey-3);
+}
+.tsi-track-card__icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.tsi-track-card__icon--red    { background: var(--red);    color: var(--white); }
+.tsi-track-card__icon--yellow { background: var(--yellow); color: var(--black); }
+.tsi-track-card__icon--blue   { background: var(--blue);   color: var(--white); }
+.tsi-track-card__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.1;
+}
+.tsi-track-card__desc {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(247,245,240,0.60);
+}
+.tsi-track-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--grey-2);
+  padding-top: 18px;
+  margin-top: auto;
+}
+.tsi-track-card__list li {
+  font-family: var(--ff-head);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-3);
+  padding-left: 14px;
+  position: relative;
+}
+.tsi-track-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  background: var(--yellow);
+}
+
+/* ── PILLARS BAND ─────────────────────────────────── */
+.tsi-pillars {
+  background: var(--white);
+  padding: 100px 0;
+  border-top: 6px solid var(--yellow);
+  border-bottom: 3px solid var(--black);
+}
+.tsi-pillars__header .section-header__title { color: var(--black); }
+.tsi-pillars__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 16px;
+}
+.tsi-pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tsi-pillar__bar {
+  height: 5px;
+  width: 100%;
+}
+.tsi-pillar__bar--red    { background: var(--red); }
+.tsi-pillar__bar--yellow { background: var(--yellow); }
+.tsi-pillar__bar--blue   { background: var(--blue); }
+.tsi-pillar__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  color: var(--black);
+  line-height: 1.2;
+}
+.tsi-pillar__desc {
+  font-size: 0.875rem;
+  line-height: 1.72;
+  color: var(--grey-2);
+}
+
+/* ── MANIFESTO BAND ───────────────────────────────── */
+.tsi-manifesto {
+  background: var(--black);
+  padding: 72px 40px;
+}
+.tsi-manifesto__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.tsi-manifesto__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.tsi-manifesto__block  { width: 8px; height: 56px; }
+.tsi-manifesto__block--r { background: var(--red); }
+.tsi-manifesto__block--y { background: var(--yellow); }
+.tsi-manifesto__block--b { background: var(--blue); }
+.tsi-manifesto__text {
+  font-family: var(--ff-head);
+  font-size: clamp(1rem, 2.4vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+/* ── CTA BAND ─────────────────────────────────────── */
+.tsi-cta {
+  background: var(--yellow);
+  padding: 100px 0;
+}
+.tsi-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.tsi-cta__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.tsi-cta__sub {
+  font-size: 0.95rem;
+  color: rgba(0,0,0,0.65);
+  max-width: 520px;
+  line-height: 1.75;
+  margin-bottom: 8px;
+}
+.tsi-cta .btn--primary {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+.tsi-cta .btn--primary:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 1100px) {
+  .tsi-pillars__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 960px) {
+  .tsi-tracks__grid { grid-template-columns: 1fr; }
+  .tsi-track-card { border-right: none; border-bottom: 3px solid var(--grey-2); }
+  .tsi-track-card:last-child { border-bottom: none; }
+  .tsi-overview__inner { grid-template-columns: 6px 1fr; }
+  .tsi-overview__stats {
+    grid-column: 2;
+    flex-direction: row;
+    border-left: none;
+    border-top: 3px solid var(--black);
+    padding-left: 0;
+    padding-top: 24px;
+  }
+}
+@media (max-width: 860px) {
+  .tsi-manifesto__inner { flex-direction: column; gap: 24px; }
+  .tsi-manifesto__blocks { flex-direction: row; }
+  .tsi-manifesto__block { width: 56px; height: 8px; }
+  .tsi-pillars__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .tsi-hero__badge { right: 20px; bottom: 20px; min-width: 120px; }
+  .tsi-hero__content { padding: 40px 20px 40px; }
+  .tsi-overview__stats { flex-direction: column; }
+  .tsi-pillars__grid { grid-template-columns: 1fr; }
+  .tsi-cta__inner { padding: 0 20px; }
+}
