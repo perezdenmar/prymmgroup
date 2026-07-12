@@ -16,7 +16,6 @@
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt"    content="Bright coastal forest meeting the ocean, representing The Prymm Group’s sustainable operations and expansive scale" />
-  <!-- TODO (production): replace og:image with locally hosted, compressed WebP asset -->
 
   <!-- ══ Twitter / X Card ══ -->
   <meta name="twitter:card"        content="summary_large_image" />
@@ -32,11 +31,23 @@
 </head>
 <body>
 
+  <!-- ══ NAV ══
+       Logo: image asset replaces previous text/mark placeholder.
+       Height capped at 36px to sit flush within the 64px nav bar;
+       width is auto so the GP mark’s proportions are never distorted.
+  -->
   <nav class="nav" id="nav">
-    <div class="nav__logo">
-      <span class="nav__logo-mark">P</span>
+    <a href="#hero" class="nav__logo" aria-label="The Prymm Group — home">
+      <img
+        src="assets/prymm-group-logo.png"
+        alt="Prymm Group logo — interlocking G and P in red and blue"
+        class="nav__logo-img"
+        width="36"
+        height="36"
+        loading="eager"
+      />
       <span class="nav__logo-text">PRYMM GROUP</span>
-    </div>
+    </a>
     <ul class="nav__links">
       <li><a href="#divisions">Divisions</a></li>
       <li><a href="#product">Technology</a></li>
@@ -45,9 +56,8 @@
   </nav>
 
   <!-- ══ HERO ══
-       Photo: bright coastal forest meeting the ocean — wide negative space retained
+       Photo: bright coastal forest meeting the ocean
        Typography lives in left 55%; right side lets the ocean-and-forest scale breathe
-       TODO (production): replace with locally hosted WebP asset
   -->
   <section class="hero" id="hero">
     <div class="hero__photo" aria-hidden="true">
@@ -106,9 +116,7 @@
     </div>
   </section>
 
-  <!-- ══ DIVISIONS ══
-       TODO (production): replace Unsplash URLs with locally hosted WebP assets
-  -->
+  <!-- ══ DIVISIONS ══ -->
   <section class="divisions" id="divisions">
     <div class="container">
       <header class="section-header reveal">
@@ -175,9 +183,7 @@
     </div>
   </section>
 
-  <!-- ══ PRODUCT SPOTLIGHT ══
-       TODO (production): replace with locally hosted WebP asset
-  -->
+  <!-- ══ PRODUCT SPOTLIGHT ══ -->
   <section class="product" id="product">
     <div class="product__photo" aria-hidden="true">
       <img
@@ -240,9 +246,7 @@
     </div>
   </section>
 
-  <!-- ══ CONTACT ══
-       TODO (production): replace with locally hosted WebP asset
-  -->
+  <!-- ══ CONTACT ══ -->
   <section class="contact" id="contact">
     <div class="contact__photo" aria-hidden="true">
       <img
@@ -277,12 +281,24 @@
     </div>
   </section>
 
+  <!-- ══ FOOTER ══
+       Logo: image asset replaces previous text placeholder.
+       Larger at 48px tall for the footer’s more spacious layout;
+       auto width preserves the GP mark proportions.
+  -->
   <footer class="footer">
     <div class="container footer__inner">
-      <div class="footer__logo">
-        <span class="nav__logo-mark">P</span>
-        <span class="nav__logo-text">PRYMM GROUP</span>
-      </div>
+      <a href="#hero" class="footer__logo" aria-label="The Prymm Group — back to top">
+        <img
+          src="assets/prymm-group-logo.png"
+          alt="Prymm Group logo"
+          class="footer__logo-img"
+          width="48"
+          height="48"
+          loading="lazy"
+        />
+        <span class="footer__logo-text">PRYMM GROUP</span>
+      </a>
       <p class="footer__tagline">Sustainable Solutions. Lasting Relationships.</p>
       <p class="footer__legal">&copy; 2026 The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
     </div>
