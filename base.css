@@ -204,7 +204,6 @@ ul { list-style: none; }
   display: none;
   flex-direction: column;
   gap: 5px;
-  /* fix 7: 44×44px minimum tap target */
   padding: 10px;
   cursor: pointer;
   background: none;
@@ -223,7 +222,6 @@ ul { list-style: none; }
   background: var(--white);
   transition: transform var(--t-base) var(--ease), opacity var(--t-base), background var(--t-base) var(--ease);
 }
-/* fix 4: X bars shift to yellow when open */
 .nav--open .nav__hamburger span { background: var(--yellow); }
 .nav--open .nav__hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav--open .nav__hamburger span:nth-child(2) { opacity: 0; }
@@ -237,7 +235,6 @@ ul { list-style: none; }
   top: var(--nav-h);
   background: rgba(0,0,0,0.45);
   z-index: 998;
-  /* fix 2 */
 }
 .nav--open .nav__backdrop { display: block; }
 
@@ -289,8 +286,8 @@ ul { list-style: none; }
     -webkit-backdrop-filter: blur(12px);
     flex-direction: column;
     align-items: flex-start;
-    padding: 40px 32px 60px;
-    gap: 8px;
+    padding: 48px 40px 60px;
+    gap: 0;
     z-index: 999;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -313,6 +310,7 @@ ul { list-style: none; }
   /* Stagger each link item sliding in */
   .nav--open .nav__links li {
     animation: nav-slide-down 320ms var(--ease-snap) both;
+    width: 100%;
   }
   .nav--open .nav__links li:nth-child(1) { animation-delay: 60ms; }
   .nav--open .nav__links li:nth-child(2) { animation-delay: 100ms; }
@@ -321,14 +319,16 @@ ul { list-style: none; }
 
   /* Larger tap targets for mobile links */
   .nav__links a {
-    font-size: 1.6rem;
-    padding: 14px 0;
+    display: block;
+    font-size: 2rem;
+    padding: 20px 0;
     width: 100%;
     border-bottom: 1px solid rgba(247,245,240,0.08);
+    color: var(--grey-3);
   }
   .nav__links li:last-child a { border-bottom: none; }
 
-  /* fix 5: active link gets yellow left-border treatment on mobile */
+  /* active link highlight on mobile */
   .nav__links a.is-active {
     color: var(--yellow);
     border-left: 3px solid var(--yellow);
@@ -336,13 +336,15 @@ ul { list-style: none; }
   }
   .nav__links a.is-active::after { display: none; }
 
-  /* CTA button full-width treatment in mobile nav */
+  /* CTA button treatment in mobile nav */
   .nav__links .nav__cta {
-    margin-top: 12px;
-    padding: 16px 24px;
+    display: inline-block;
+    margin-top: 28px;
+    padding: 16px 32px;
     font-size: 1rem;
     width: auto;
     align-self: flex-start;
+    border-bottom: none !important;
   }
 
   .nav__logo-img { height: 28px; }
