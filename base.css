@@ -70,7 +70,6 @@ ul { list-style: none; }
   background: var(--yellow);
   z-index: 9999;
   pointer-events: none;
-  /* Subtle glow so it reads on both dark and light nav */
   box-shadow: 0 0 8px rgba(245, 196, 0, 0.55);
   transition: width 0.08s linear;
   will-change: width;
@@ -87,7 +86,6 @@ ul { list-style: none; }
   padding: 14px 32px;
   border: 3px solid transparent;
   cursor: pointer;
-  /* PHASE 4 FIX: restored transition — was 0ms, buttons had zero visual feedback */
   transition:
     background var(--t-base) var(--ease),
     color var(--t-base) var(--ease),
@@ -155,7 +153,6 @@ ul { list-style: none; }
   padding-bottom: 4px;
 }
 .nav__links a:hover { color: var(--white); }
-/* PHASE 4: explicit focus-visible ring for keyboard nav on dark background */
 .nav__links a:focus-visible {
   outline: 2px solid var(--yellow);
   outline-offset: 4px;
@@ -187,8 +184,7 @@ ul { list-style: none; }
   cursor: pointer;
   background: none;
   border: none;
-  z-index: 101;
-  /* PHASE 4: visible focus ring for hamburger button */
+  z-index: 1001;
 }
 .nav__hamburger:focus-visible {
   outline: 2px solid var(--yellow);
@@ -228,6 +224,10 @@ ul { list-style: none; }
 /* ─── KEYFRAMES ──────────────────────────────────── */
 @keyframes bauhaus-snap-in { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
 @keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes nav-slide-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* ─── RESPONSIVE — SHARED ────────────────────────── */
 @media (max-width: 960px) {
@@ -236,24 +236,84 @@ ul { list-style: none; }
 @media (max-width: 900px) {
   .nav { padding: 0 24px; }
   .nav__hamburger { display: flex; }
+
+  /* Mobile nav panel — hidden state */
   .nav__links {
-    display: none;
     position: fixed;
-    inset: var(--nav-h) 0 0 0;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(100dvh - var(--nav-h));
     background: rgba(13,13,13,0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     flex-direction: column;
     align-items: flex-start;
-    padding: 40px 24px;
-    gap: 32px;
-    z-index: 99;
+    padding: 40px 32px 60px;
+    gap: 8px;
+    z-index: 999;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Hidden by default — using opacity + pointer-events so
+       children remain in the DOM for focus-trap and transitions */
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition:
+      opacity 280ms var(--ease-snap),
+      transform 280ms var(--ease-snap);
   }
-  .nav__links a { font-size: 1.4rem; }
-  .nav--open .nav__links { display: flex; }
+
+  /* Open state */
+  .nav--open .nav__links {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Stagger each link item sliding in */
+  .nav--open .nav__links li {
+    animation: nav-slide-down 320ms var(--ease-snap) both;
+  }
+  .nav--open .nav__links li:nth-child(1) { animation-delay: 60ms; }
+  .nav--open .nav__links li:nth-child(2) { animation-delay: 100ms; }
+  .nav--open .nav__links li:nth-child(3) { animation-delay: 140ms; }
+  .nav--open .nav__links li:nth-child(4) { animation-delay: 180ms; }
+
+  /* Larger tap targets for mobile links */
+  .nav__links a {
+    font-size: 1.6rem;
+    padding: 14px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(247,245,240,0.08);
+  }
+  .nav__links li:last-child a { border-bottom: none; }
+
+  /* CTA button full-width treatment in mobile nav */
+  .nav__links .nav__cta {
+    margin-top: 12px;
+    padding: 16px 24px;
+    font-size: 1rem;
+    width: auto;
+    align-self: flex-start;
+  }
+
   .nav__logo-img { height: 28px; }
 }
 @media (max-width: 600px) {
   .container { padding: 0 20px; }
   .nav { padding: 0 20px; }
   .footer__logo-img { height: 40px; }
+}
+
+/* Reduced motion — skip nav animation */
+@media (prefers-reduced-motion: reduce) {
+  .nav__links {
+    transition: none !important;
+  }
+  .nav--open .nav__links li {
+    animation: none !important;
+  }
 }
