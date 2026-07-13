@@ -1,10 +1,14 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v7 — Phase 4 UX Polish
+   Interactions v8 — Hamburger UX Polish
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
    ─ Active nav indicator on sub-pages
    ─ Mobile hamburger nav + FOCUS TRAP
+   ─ Body scroll lock when nav open
+   ─ Backdrop tap-to-close
+   ─ Escape key close
+   ─ aria-expanded + aria-label on hamburger
    ─ Snap reveal (IntersectionObserver)
    ─ Staggered division cards + benefit items
    ─ Stat counters (eased, reduced-motion safe)
@@ -100,11 +104,20 @@
 
   /* ─────────────────────────────────────────────
      3. MOBILE HAMBURGER NAV + FOCUS TRAP
-     Focus cycles within the open menu via Tab/Shift+Tab.
-     Escape closes and returns focus to the toggle button.
+     ─ Body scroll locked while open
+     ─ Backdrop tap closes the menu
+     ─ Escape closes and returns focus to toggle
+     ─ aria-expanded + aria-label kept in sync
+     ─ Focus cycles within the open menu via Tab/Shift+Tab
   ───────────────────────────────────────────── */
   var navToggle = document.getElementById('nav-toggle');
   var navLinksContainer = document.getElementById('nav-links');
+
+  /* Inject backdrop element */
+  var backdrop = document.createElement('div');
+  backdrop.className = 'nav__backdrop';
+  backdrop.setAttribute('aria-hidden', 'true');
+  nav.appendChild(backdrop);
 
   function getFocusableNavItems() {
     return Array.from(
@@ -118,6 +131,7 @@
     nav.classList.add('nav--open');
     navToggle.setAttribute('aria-expanded', 'true');
     navToggle.setAttribute('aria-label', 'Close menu');
+    /* fix 1: lock body scroll */
     document.body.style.overflow = 'hidden';
     /* Move focus to first nav item */
     var items = getFocusableNavItems();
@@ -128,25 +142,35 @@
     nav.classList.remove('nav--open');
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.setAttribute('aria-label', 'Open menu');
+    /* fix 1: restore body scroll */
     document.body.style.overflow = '';
     if (returnFocus) navToggle.focus();
   }
 
   if (navToggle) {
+    /* Initialise aria state */
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Open menu');
+    navToggle.setAttribute('aria-controls', 'nav-links');
+
     navToggle.addEventListener('click', function () {
       if (nav.classList.contains('nav--open')) { closeNav(false); }
       else { openNav(); }
     });
+
+    /* fix 2: backdrop tap closes */
+    backdrop.addEventListener('click', function () { closeNav(false); });
 
     /* Close menu when any nav link is clicked */
     document.querySelectorAll('.nav__links a').forEach(function(a) {
       a.addEventListener('click', function() { closeNav(false); });
     });
 
-    /* Keyboard: Escape + Tab focus trap */
+    /* fix 5: Escape + Tab focus trap */
     document.addEventListener('keydown', function(e) {
       if (!nav.classList.contains('nav--open')) return;
 
+      /* fix 5: Escape closes and returns focus */
       if (e.key === 'Escape') {
         closeNav(true);
         return;
@@ -160,13 +184,11 @@
         var active = document.activeElement;
 
         if (e.shiftKey) {
-          /* Shift+Tab: if focus is on first item, wrap to navToggle */
           if (active === first) {
             e.preventDefault();
             navToggle.focus();
           }
         } else {
-          /* Tab: if focus is on navToggle or last item, wrap to first */
           if (active === last || active === navToggle) {
             e.preventDefault();
             first.focus();
@@ -421,16 +443,16 @@
           return r.json();
         })
         .then(function() {
-          status.textContent = 'Message sent \u2014 we’ll be in touch shortly.';
+          status.textContent = 'Message sent — we’ll be in touch shortly.';
           status.className = 'contact__form-status contact__form-status--ok';
           contactForm.reset();
           btn.disabled = false;
-          btn.textContent = 'Send Message \u2192';
+          btn.textContent = 'Send Message →';
         })
         .catch(function() {
           clearTimeout(timeoutId);
           btn.disabled = false;
-          btn.textContent = 'Send Message \u2192';
+          btn.textContent = 'Send Message →';
           status.textContent = 'Opening your email client to send directly…';
           status.className = 'contact__form-status contact__form-status--ok';
           setTimeout(function() { openMailtoFallback(nameVal, emailVal, messageVal); }, 400);
@@ -462,9 +484,7 @@
   if (!prefersReduced) {
     document.querySelectorAll('a[href]').forEach(function(link) {
       var href = link.getAttribute('href');
-      /* Skip: hash anchors, external, mailto, tel, already-handled */
       if (!href || href.charAt(0) === '#' || /^(mailto|tel|http|https|\/\/)/.test(href)) return;
-      /* Skip target="_blank" */
       if (link.target === '_blank') return;
 
       link.addEventListener('click', function(e) {

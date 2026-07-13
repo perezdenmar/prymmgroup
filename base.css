@@ -180,7 +180,8 @@ ul { list-style: none; }
   display: none;
   flex-direction: column;
   gap: 5px;
-  padding: 10px 8px;
+  /* fix 7: 44×44px minimum tap target */
+  padding: 10px;
   cursor: pointer;
   background: none;
   border: none;
@@ -196,11 +197,25 @@ ul { list-style: none; }
   width: 22px;
   height: 2px;
   background: var(--white);
-  transition: transform var(--t-base) var(--ease), opacity var(--t-base);
+  transition: transform var(--t-base) var(--ease), opacity var(--t-base), background var(--t-base) var(--ease);
 }
+/* fix 4: X bars shift to yellow when open */
+.nav--open .nav__hamburger span { background: var(--yellow); }
 .nav--open .nav__hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav--open .nav__hamburger span:nth-child(2) { opacity: 0; }
 .nav--open .nav__hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ─── NAV BACKDROP (tap outside to close) ────────── */
+.nav__backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: var(--nav-h);
+  background: rgba(0,0,0,0.45);
+  z-index: 998;
+  /* fix 2 */
+}
+.nav--open .nav__backdrop { display: block; }
 
 /* ─── FOOTER ─────────────────────────────────────── */
 .footer { background: var(--black); padding: 48px 0; border-top: 2px solid var(--grey-2); }
@@ -255,8 +270,6 @@ ul { list-style: none; }
     z-index: 999;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    /* Hidden by default — using opacity + pointer-events so
-       children remain in the DOM for focus-trap and transitions */
     display: flex;
     opacity: 0;
     pointer-events: none;
@@ -290,6 +303,14 @@ ul { list-style: none; }
     border-bottom: 1px solid rgba(247,245,240,0.08);
   }
   .nav__links li:last-child a { border-bottom: none; }
+
+  /* fix 5: active link gets yellow left-border treatment on mobile */
+  .nav__links a.is-active {
+    color: var(--yellow);
+    border-left: 3px solid var(--yellow);
+    padding-left: 12px;
+  }
+  .nav__links a.is-active::after { display: none; }
 
   /* CTA button full-width treatment in mobile nav */
   .nav__links .nav__cta {
