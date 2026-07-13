@@ -73,6 +73,9 @@
 </head>
 <body>
 
+  <!-- SKIP LINK -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="#hero" class="nav__logo" aria-label="The Prymm Group &mdash; home">
@@ -97,6 +100,8 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <main id="main-content">
 
   <!-- HERO -->
   <section class="hero" id="hero">
@@ -346,6 +351,10 @@
         </div>
 
         <form class="contact__form" id="contact-form" novalidate>
+          <!-- Honeypot — invisible to humans, traps bots -->
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <!-- FormSubmit email subject -->
+          <input type="hidden" name="_subject" value="New Enquiry &mdash; The Prymm Group" />
           <div class="contact__field">
             <label for="cf-name">Name</label>
             <input id="cf-name" name="name" type="text" placeholder="Your name" required autocomplete="name" />
@@ -364,6 +373,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">

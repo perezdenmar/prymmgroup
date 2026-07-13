@@ -53,6 +53,30 @@ body.page-exit { animation: page-fade-out 0.22s var(--ease) both; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
+/* ─── SKIP LINK (WCAG 2.1 Level A) ──────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--nav-h);
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--ff-head);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  z-index: 10000;
+  border: 2px solid var(--black);
+  transition: top 0.15s var(--ease);
+  white-space: nowrap;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+
 /* ─── LAYOUT ─────────────────────────────────────── */
 .container {
   width: 100%;
