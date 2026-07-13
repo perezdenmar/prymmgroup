@@ -86,7 +86,6 @@
 }
 .division:last-child { border-right: none; }
 
-/* PHASE 4: hover top-bar fades in instead of appearing instantly */
 .division::before {
   content: '';
   position: absolute;
@@ -158,7 +157,6 @@
 .division__index { font-family: var(--ff-head); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; color: rgba(247,245,240,0.35); margin-bottom: 20px; }
 .division__name { font-family: var(--ff-head); font-weight: 900; font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.05; text-transform: uppercase; color: var(--white); margin-bottom: 20px; text-shadow: 0 1px 16px rgba(0,0,0,0.95); }
 .division__desc { font-size: clamp(0.8rem, 2vw, 0.9rem); line-height: 1.65; color: rgba(247,245,240,0.72); flex: 1; }
-/* PHASE 4: arrow nudges right on hover */
 .division__arrow {
   display: block;
   font-size: 1.5rem;
@@ -168,60 +166,6 @@
 }
 .division:hover .division__arrow,
 .division--active .division__arrow { color: var(--yellow); transform: translateX(6px); }
-
-/* EDU card — Unsplash vocational training photo */
-/* NOTE: swap src to assets/images/training.png when a real training photo is available */
-.division--edu .division__photo {
-  position: absolute; inset: 0; z-index: 0;
-  background: var(--black);
-  display: flex; flex-direction: column;
-  align-items: flex-end; justify-content: flex-start;
-  overflow: hidden;
-}
-.edu-identity { pointer-events: none; width: 100%; height: 100%; position: relative; }
-.edu-identity__bars {
-  display: flex; flex-direction: column; gap: 0;
-  position: absolute; top: 0; right: 0;
-  width: 8px; height: 100%;
-}
-.edu-identity__bar { flex: 1; }
-.edu-identity__bar--r { background: var(--red); }
-.edu-identity__bar--y { background: var(--yellow); }
-.edu-identity__bar--b { background: var(--blue); }
-.edu-identity__monogram {
-  position: absolute;
-  top: 50%; right: 20px;
-  transform: translateY(-50%);
-  font-family: var(--ff-head);
-  font-weight: 900;
-  font-size: 5rem;
-  line-height: 1;
-  color: var(--yellow);
-  opacity: 0.18;
-  letter-spacing: -0.04em;
-  pointer-events: none;
-  user-select: none;
-}
-.edu-identity__stripe {
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 18px,
-    rgba(255,255,255,0.015) 18px,
-    rgba(255,255,255,0.015) 19px
-  );
-}
-/* PHASE 4 FIX: explicit transition on edu overlay (was missing) */
-.edu-identity__overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.12) 100%);
-  transition: background var(--t-slow) var(--ease);
-}
-.division--edu:hover .edu-identity__overlay,
-.division--edu.division--active .edu-identity__overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.30) 100%);
-}
 
 /* PRODUCT SPOTLIGHT */
 .product { position: relative; padding: clamp(60px, 8vw, 120px) 0; overflow: hidden; background: #0f1f0f; }
@@ -267,7 +211,6 @@
 .contact__title { font-family: var(--ff-head); font-weight: 900; font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1; text-transform: uppercase; margin-bottom: 20px; color: var(--white); }
 .contact__sub  { font-size: clamp(0.85rem, 2vw, 0.95rem); line-height: 1.75; color: rgba(247,245,240,0.60); }
 .contact__details { display: flex; flex-direction: column; gap: 0; }
-/* PHASE 4 FIX: transition on all properties including padding-left for smooth return */
 .contact__item {
   display: flex; flex-direction: column; gap: 4px;
   padding: 24px 0;
