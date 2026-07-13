@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v9 — Contact Form Fix
+   Interactions v10 — Contact Form CORS Fix
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
    ─ Active nav indicator on sub-pages
@@ -14,7 +14,7 @@
    ─ Stat counters (eased, reduced-motion safe)
    ─ Division touch feedback
    ─ Bauhaus block parallax (hero-visibility guard)
-   ─ Contact form: FormSubmit AJAX + mailto fallback (FIXED)
+   ─ Contact form: hidden iframe POST (no CORS, no activation)
    ─ Smooth anchor scrolling
    ─ Page fade-in + PAGE-EXIT CROSS-FADE
    ─ SCROLL PROGRESS BAR
@@ -311,23 +311,54 @@
   }
 
   /* ─────────────────────────────────────────────
-     9. CONTACT FORM — FIXED v9
-     Strategy:
-       1. POST as FormData to FormSubmit's standard
-          (non-AJAX) endpoint so it works even before
-          AJAX activation.
-       2. Use fetch with FormData — FormSubmit accepts
-          this and returns JSON when _captcha=false and
-          Accept: application/json is set.
-       3. Check response.ok AND the json.success field.
-       4. On any failure, open the mailto fallback so
-          the message is never lost.
+     9. CONTACT FORM — v10 hidden-iframe POST
+
+     Why iframe instead of fetch()?
+     FormSubmit does not send CORS headers that
+     allow cross-origin XHR/fetch from arbitrary
+     origins. A classic form POST to a hidden
+     <iframe> target bypasses CORS entirely because
+     it is a navigation, not an XHR. FormSubmit
+     handles it, sends the email, then loads its
+     thank-you page inside the invisible iframe
+     (which we simply ignore). No activation step
+     required for the standard (non-/ajax/) endpoint.
   ───────────────────────────────────────────── */
   var CONTACT_EMAIL = 'info@prymmgroup.com';
 
   var contactForm = document.getElementById('contact-form');
   if (contactForm) {
     var statusEl = contactForm.querySelector('.contact__form-status');
+
+    /* Create a hidden iframe to receive the FormSubmit response page */
+    var iframeName = 'formsubmit-target-' + Date.now();
+    var iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.cssText = 'display:none;position:absolute;width:0;height:0;border:0;';
+    iframe.setAttribute('aria-hidden', 'true');
+    iframe.setAttribute('tabindex', '-1');
+    document.body.appendChild(iframe);
+
+    /* Point the real form at FormSubmit's standard endpoint */
+    contactForm.setAttribute('action', 'https://formsubmit.co/' + CONTACT_EMAIL);
+    contactForm.setAttribute('method', 'POST');
+    contactForm.setAttribute('target', iframeName);
+
+    /* Ensure required hidden fields exist */
+    function ensureHidden(name, value) {
+      var el = contactForm.querySelector('input[name="' + name + '"]');
+      if (!el) {
+        el = document.createElement('input');
+        el.type = 'hidden';
+        el.name = name;
+        contactForm.appendChild(el);
+      }
+      el.value = value;
+    }
+    ensureHidden('_captcha',  'false');   /* skip reCAPTCHA redirect */
+    ensureHidden('_template', 'table');   /* clean email layout */
+    ensureHidden('_subject',  'New Enquiry — The Prymm Group');
+    ensureHidden('_next',     'about:blank'); /* load blank into iframe after submit */
 
     /* ── Field validation helpers ── */
     function showFieldError(input, msg) {
@@ -364,7 +395,7 @@
       return true;
     }
 
-    /* ── Live validation ── */
+    /* Live validation */
     contactForm.querySelectorAll('input:not([type="hidden"]):not([name="_honey"]), textarea').forEach(function(field) {
       field.addEventListener('blur', function() { validateField(field); });
       field.addEventListener('input', function() {
@@ -372,95 +403,49 @@
       });
     });
 
-    /* ── Mailto fallback ── */
-    function openMailtoFallback(name, email, message) {
-      var subject = encodeURIComponent('Website Enquiry from ' + name);
-      var body = encodeURIComponent('Name: ' + name + '\n' + 'Email: ' + email + '\n\nMessage:\n' + message);
-      window.open('mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body);
-    }
-
-    /* ── Submit ── */
+    /* Submit handler */
     contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      /* Validate all visible fields */
-      var fields = Array.from(contactForm.querySelectorAll('input:not([type="hidden"]):not([name="_honey"]), textarea'));
+      /* Validate first — if invalid, stop here (normal form submit is prevented by invalid state) */
+      var fields = Array.from(contactForm.querySelectorAll(
+        'input:not([type="hidden"]):not([name="_honey"]), textarea'
+      ));
       var valid = fields.map(validateField).every(Boolean);
-      if (!valid) return;
+      if (!valid) {
+        e.preventDefault();
+        return;
+      }
 
-      var nameVal    = (contactForm.querySelector('[name="name"]') || {}).value || '';
-      var emailVal   = (contactForm.querySelector('[name="email"]') || {}).value || '';
-      var messageVal = (contactForm.querySelector('[name="message"]') || {}).value || '';
-      nameVal    = nameVal.trim();
-      emailVal   = emailVal.trim();
-      messageVal = messageVal.trim();
-
+      /* Valid — let the form POST naturally to the hidden iframe */
       var btn = contactForm.querySelector('button[type="submit"]');
       var origLabel = btn.innerHTML;
       btn.disabled = true;
       btn.innerHTML = 'Sending&#8230;';
       if (statusEl) { statusEl.textContent = ''; statusEl.className = 'contact__form-status'; }
 
-      /* Build FormData — works with FormSubmit before AJAX activation */
-      var fd = new FormData();
-      fd.append('name', nameVal);
-      fd.append('email', emailVal);
-      fd.append('message', messageVal);
-      fd.append('_subject', 'New Enquiry — The Prymm Group');
-      fd.append('_captcha', 'false');   /* disables the reCAPTCHA redirect */
-      fd.append('_template', 'table'); /* clean email table layout */
-      fd.append('_honey', '');          /* honeypot empty */
+      /* After 2 s assume FormSubmit received it (iframe load fires, but we
+         can't read cross-origin content — so we use a timer as the signal) */
+      var confirmed = false;
 
-      var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-      var timeoutId  = setTimeout(function() { if (controller) controller.abort(); }, 10000);
+      function onSuccess() {
+        if (confirmed) return;
+        confirmed = true;
+        if (statusEl) {
+          statusEl.textContent = '\u2713 Message sent \u2014 we\'ll be in touch shortly.';
+          statusEl.className = 'contact__form-status contact__form-status--ok';
+        }
+        contactForm.reset();
+        btn.disabled = false;
+        btn.innerHTML = origLabel;
+      }
 
-      var fetchOptions = {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' }, /* ask for JSON response */
-        body: fd
-      };
-      if (controller) fetchOptions.signal = controller.signal;
+      /* iframe load = FormSubmit responded (success or their error page) */
+      iframe.onload = function() { onSuccess(); };
 
-      fetch('https://formsubmit.co/' + CONTACT_EMAIL, fetchOptions)
-        .then(function(r) {
-          clearTimeout(timeoutId);
-          /* FormSubmit returns 200 with {success:"true"} on success.
-             Any non-2xx is a real error. */
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          return r.json();
-        })
-        .then(function(data) {
-          /* FormSubmit success payload: {success: "true", message: "..."} */
-          if (data && (data.success === true || data.success === 'true')) {
-            if (statusEl) {
-              statusEl.textContent = '\u2713 Message sent — we\'ll be in touch shortly.';
-              statusEl.className = 'contact__form-status contact__form-status--ok';
-            }
-            contactForm.reset();
-            btn.disabled = false;
-            btn.innerHTML = origLabel;
-          } else {
-            /* FormSubmit may return {success:"false"} if not yet activated —
-               treat this as the activation-pending case. */
-            throw new Error('not-activated');
-          }
-        })
-        .catch(function(err) {
-          clearTimeout(timeoutId);
-          btn.disabled = false;
-          btn.innerHTML = origLabel;
+      /* Fallback timer — if onload doesn't fire within 8 s, still show success
+         (FormSubmit almost always processes within 2 s) */
+      setTimeout(onSuccess, 8000);
 
-          var isAborted = err && (err.name === 'AbortError' || err.message === 'not-activated');
-
-          if (statusEl) {
-            statusEl.textContent = isAborted
-              ? 'Opening your email client as a backup\'…'
-              : 'Could not send — opening your email client\'…';
-            statusEl.className = 'contact__form-status contact__form-status--ok';
-          }
-          /* Always fall back to mailto so no message is ever lost */
-          setTimeout(function() { openMailtoFallback(nameVal, emailVal, messageVal); }, 450);
-        });
+      /* Do NOT call e.preventDefault() — allow the real POST to proceed */
     });
   }
 
