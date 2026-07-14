@@ -4,61 +4,240 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About &mdash; The Prymm Group LLC</title>
-  <meta name="description" content="The Prymm Group LLC — company background, leadership, mission, and values. Building sustainable infrastructure since 2017." />
+  <meta name="description" content="The Prymm Group LLC &mdash; company background, mission, values, and the three divisions driving sustainable infrastructure since 2017." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://prymmgroup.com/about" />
   <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
   <link rel="manifest" href="assets/favicon/site.webmanifest" />
+
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="The Prymm Group LLC" />
   <meta property="og:title"       content="About &mdash; The Prymm Group LLC" />
-  <meta property="og:description" content="Company background, leadership, mission and values. Building sustainable infrastructure since 2017." />
+  <meta property="og:description" content="Company background, mission and values. Building sustainable infrastructure since 2017." />
   <meta property="og:url"         content="https://prymmgroup.com/about" />
   <meta property="og:image"       content="https://prymmgroup.com/assets/prymm-group-logo.png" />
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt"    content="The Prymm Group LLC logo" />
+
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="About &mdash; The Prymm Group LLC" />
-  <meta name="twitter:description" content="Company background, leadership, mission and values. Building sustainable infrastructure since 2017." />
+  <meta name="twitter:description" content="Company background, mission and values. Building sustainable infrastructure since 2017." />
   <meta name="twitter:image"       content="https://prymmgroup.com/assets/prymm-group-logo.png" />
+  <meta name="twitter:image:alt"   content="The Prymm Group LLC logo" />
+
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="about.css" />
 </head>
 <body data-page="about">
+
   <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- NAV -->
   <nav class="nav" id="nav">
-    <a href="index.html" class="nav__logo" aria-label="The Prymm Group &mdash; home">
+    <a href="/" class="nav__logo" aria-label="The Prymm Group &mdash; home">
       <img src="assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="sync" />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
     <ul class="nav__links" id="nav-links-about">
-      <li><a href="index.html#divisions">Divisions</a></li>
-      <li><a href="index.html#product">Technology</a></li>
-      <li><a href="about.html" aria-current="page">About</a></li>
-      <li><a href="appointments.html">Appointments</a></li>
-      <li><a href="index.html#contact" class="nav__cta">Contact</a></li>
+      <li><a href="/#divisions">Divisions</a></li>
+      <li><a href="/#product">Technology</a></li>
+      <li><a href="/about" aria-current="page">About</a></li>
+      <li><a href="/appointments">Appointments</a></li>
+      <li><a href="/#contact" class="nav__cta">Contact</a></li>
     </ul>
     <button class="nav__hamburger" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links-about">
       <span></span><span></span><span></span>
     </button>
   </nav>
+
   <main id="main-content">
-    <!-- Page content loaded from about.css / existing markup -->
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="about-hero__photo" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80&auto=format&fit=crop&crop=center"
+          alt=""
+          class="about-hero__photo-img"
+          width="1920"
+          height="1080"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="about-hero__photo-overlay" aria-hidden="true"></div>
+      </div>
+
+      <div class="about-hero__grid-overlay" aria-hidden="true">
+        <div class="about-hero__block about-hero__block--red"></div>
+        <div class="about-hero__block about-hero__block--yellow"></div>
+        <div class="about-hero__block about-hero__block--blue"></div>
+      </div>
+
+      <div class="about-hero__content container">
+        <p class="about-hero__eyebrow">Est. 2017 &mdash; Wilmington, Delaware</p>
+        <h1 class="about-hero__headline">
+          BUILT ON<br />
+          <em>PURPOSE.</em>
+        </h1>
+        <p class="about-hero__sub">Our Story &nbsp;&bull;&nbsp; Our Mission &nbsp;&bull;&nbsp; Our People</p>
+      </div>
+    </section>
+
+    <!-- INTRO BAND -->
+    <section class="about-intro">
+      <div class="about-intro__inner">
+        <div class="about-intro__accent" aria-hidden="true"></div>
+        <blockquote class="about-intro__quote">
+          We exist to build the capacity for tomorrow &mdash; integrating physical infrastructure, digital systems, and human capital into one unified enterprise.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="about-story">
+      <div class="container about-story__inner">
+
+        <!-- Text column -->
+        <div class="about-story__text">
+          <h2 class="about-story__title">
+            WHO WE<br /><em>ARE.</em>
+          </h2>
+          <p class="about-story__body">
+            The Prymm Group LLC was founded in 2017 in Wilmington, Delaware, with a singular conviction: that the most pressing challenges facing communities &mdash; environmental degradation, infrastructure gaps, and workforce displacement &mdash; are interconnected, and therefore demand an interconnected response.
+          </p>
+          <p class="about-story__body">
+            We are not a single-service company. We are a multi-division enterprise operating across Industrial &amp; Trade, Technology &amp; Systems, and Education &amp; Human Capital. Each division is distinct in its domain, but unified by a shared commitment to sustainable progress and lasting relationships.
+          </p>
+          <p class="about-story__body">
+            From deploying world-class Japanese thermal waste technology in the Philippines, to installing EV charging infrastructure, to training the next generation of technical workers &mdash; every project we undertake is measured against one standard: does it stand the test of time?
+          </p>
+        </div>
+
+        <!-- Photo column -->
+        <div class="about-story__visual">
+          <div class="about-story__photo-wrap">
+            <div class="about-story__founded" aria-label="Founded 2017">
+              <span class="about-story__founded-year">2017</span>
+              <span class="about-story__founded-label">EST.</span>
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=80&auto=format&fit=crop&crop=center"
+              alt="Modern open-plan office representing The Prymm Group's operational headquarters"
+              class="about-story__photo"
+              width="900"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="about-story__photo-bar about-story__photo-bar--red"   aria-hidden="true"></div>
+            <div class="about-story__photo-bar about-story__photo-bar--yellow" aria-hidden="true"></div>
+            <div class="about-story__photo-bar about-story__photo-bar--blue"  aria-hidden="true"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DIVISIONS STRIP -->
+    <section class="about-divisions">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-header__label">Our Structure</span>
+          <h2 class="section-header__title">Three Divisions.<br />One Direction.</h2>
+        </header>
+
+        <div class="about-divisions__grid">
+
+          <a href="/waste-management" class="about-div-card about-div-card--industrial reveal" aria-label="Industrial &amp; Trade &mdash; Waste Management">
+            <div class="about-div-card__bar" aria-hidden="true"></div>
+            <p class="about-div-card__index">01</p>
+            <h3 class="about-div-card__name">Industrial<br />&amp; Trade</h3>
+            <p class="about-div-card__desc">Heavy machinery fabrication and global environmental technologies. We engineer the physical backbone of modern infrastructure &mdash; from thermal waste systems to industrial-grade fabrication.</p>
+            <span class="about-div-card__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a href="/ev-charging-station" class="about-div-card about-div-card--tech reveal" aria-label="Technology &amp; Systems &mdash; EV Charging">
+            <div class="about-div-card__bar" aria-hidden="true"></div>
+            <p class="about-div-card__index">02</p>
+            <h3 class="about-div-card__name">Technology<br />&amp; Systems</h3>
+            <p class="about-div-card__desc">Digital platforms, EV infrastructure, and systems innovation. We build the intelligent networks that orchestrate tomorrow's operations and connect communities to clean energy.</p>
+            <span class="about-div-card__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a href="/technical-skills-institution" class="about-div-card about-div-card--edu reveal" aria-label="Education &amp; Human Capital &mdash; Technical Skills Institution">
+            <div class="about-div-card__bar" aria-hidden="true"></div>
+            <p class="about-div-card__index">03</p>
+            <h3 class="about-div-card__name">Education<br />&amp; Human Capital</h3>
+            <p class="about-div-card__desc">Technical-vocational training and workforce upskilling. We develop the human operators who sustain every system we build &mdash; because infrastructure is only as strong as the people behind it.</p>
+            <span class="about-div-card__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY / VALUES -->
+    <section class="about-philosophy">
+      <div class="about-philosophy__photo" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=80&auto=format&fit=crop&crop=center"
+          alt=""
+          width="1920"
+          height="1080"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="about-philosophy__overlay" aria-hidden="true"></div>
+      </div>
+
+      <div class="container about-philosophy__inner reveal">
+        <span class="section-header__label" style="color:rgba(247,245,240,0.45)">Our Philosophy</span>
+        <h2 class="about-philosophy__title">
+          PRINCIPLES<br />THAT ENDURE.
+        </h2>
+        <p class="about-philosophy__body">
+          Every decision we make &mdash; every partnership we form, every system we deploy &mdash; is governed by three core principles that have guided us since day one.
+        </p>
+
+        <div class="about-philosophy__pillars">
+          <div class="about-philosophy__pillar">
+            <div class="about-philosophy__pillar-bar about-philosophy__pillar-bar--red" aria-hidden="true"></div>
+            <strong>Sustainability First</strong>
+            <p>We reject short-term thinking. Every solution we propose must reduce environmental impact, extend useful life, and contribute to a regenerative economy.</p>
+          </div>
+          <div class="about-philosophy__pillar">
+            <div class="about-philosophy__pillar-bar about-philosophy__pillar-bar--yellow" aria-hidden="true"></div>
+            <strong>Lasting Relationships</strong>
+            <p>We build with people, not just for them. Our partners, clients, and communities are stakeholders in every outcome we pursue.</p>
+          </div>
+          <div class="about-philosophy__pillar">
+            <div class="about-philosophy__pillar-bar about-philosophy__pillar-bar--blue" aria-hidden="true"></div>
+            <strong>Integrated Progress</strong>
+            <p>Physical, digital, and human systems do not exist in isolation. We connect them &mdash; because real progress requires all three working in concert.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
-      <a href="index.html" class="footer__logo" aria-label="The Prymm Group &mdash; back to home">
+      <a href="/" class="footer__logo" aria-label="The Prymm Group &mdash; back to home">
         <img src="assets/prymm-group-logo.png" alt="Prymm Group logo" class="footer__logo-img" width="48" height="48" loading="lazy" decoding="async" />
         <span class="footer__logo-text">PRYMM GROUP</span>
       </a>
@@ -66,6 +245,7 @@
       <p class="footer__legal">&copy; 2026 The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
     </div>
   </footer>
+
   <script src="main.js"></script>
 </body>
 </html>
