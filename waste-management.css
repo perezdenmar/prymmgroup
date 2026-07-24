@@ -277,7 +277,7 @@
   transition: background 0.12s;
 }
 .wm-table tbody tr:hover {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.06);
 }
 .wm-table tbody td {
   padding: 16px 16px;
@@ -288,6 +288,7 @@
 }
 .wm-table tbody td:last-child { border-right: none; }
 
+/* Sticky spec column for mobile readability */
 .wm-table__spec {
   font-family: var(--ff-head);
   font-size: 0.78rem;
@@ -298,6 +299,9 @@
   background: var(--grey-1);
   border-right: 3px solid var(--grey-2) !important;
   padding: 16px 16px;
+  position: sticky;
+  left: 0;
+  z-index: 1;
 }
 
 .wm-table__row--alt td:not(.wm-table__spec):not(.wm-table__highlight) {
@@ -305,6 +309,18 @@
 }
 .wm-table__row--alt .wm-table__spec {
   background: rgba(28,28,28,0.95);
+}
+
+/* Who It's For row */
+.wm-table__row--who .wm-table__spec {
+  color: var(--yellow);
+  opacity: 0.85;
+}
+.wm-table__who {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: rgba(247,245,240,0.65) !important;
+  font-style: italic;
 }
 
 /* KGV 600 column highlight — Industrial flagship */
@@ -328,6 +344,12 @@ thead th:last-child {
   font-size: 0.82rem;
   line-height: 1.55;
 }
+.wm-table__note {
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.65;
+  font-style: italic;
+}
 
 /* CTA row */
 .wm-table__row--cta td {
@@ -339,6 +361,19 @@ thead th:last-child {
   font-size: 0.75rem;
   padding: 10px 22px;
   white-space: nowrap;
+}
+
+/* sr-only utility (in case base.css doesn't include it) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 /* ── DOWNLOAD BROCHURE CTA ────────────────────────── */
@@ -539,4 +574,6 @@ thead th:last-child {
   .wm-cta__inner { padding: 0 20px; }
   .wm-download__action { flex-direction: column; align-items: flex-start; }
   .wm-download__btn { width: 100%; text-align: center; }
+  /* On small screens, release sticky spec column to avoid too-narrow layout */
+  .wm-table__spec { position: static; }
 }
