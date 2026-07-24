@@ -45,6 +45,7 @@
 
   <style>
     /* ── VIDEO HERO ─────────────────────────────────────── */
+    .wm-hero__photo { background: #0a0a0a; }
     .wm-hero__video {
       position: absolute;
       inset: 0;
@@ -60,7 +61,6 @@
     @media (prefers-reduced-motion: reduce) {
       .wm-hero__video { animation-play-state: paused; }
     }
-    .wm-hero__photo { background: #0a0a0a; }
   </style>
 
   <!-- Schema.org JSON-LD -->
@@ -125,12 +125,13 @@
   <section class="wm-hero">
     <div class="wm-hero__photo" aria-hidden="true">
       <!--
-        VIDEO SOURCE: media.githubusercontent.com
-        GitHub Pages serves assets via its CDN but does NOT set
-        Content-Type: video/mp4 for .mp4 files fetched with a
-        relative path — browsers silently refuse to play them.
-        media.githubusercontent.com is GitHub’s dedicated binary
-        CDN and correctly serves video/mp4, enabling autoplay.
+        VIDEO SOURCE STRATEGY:
+        Three sources in priority order:
+          1. Relative path (same-origin, GitHub Pages serves with correct video/mp4 MIME)
+          2. perezdenmar.github.io absolute (fallback if CNAME rewrite delays)
+          3. Dark #0a0a0a background on .wm-hero__photo if both fail
+        The <img> fallback inside <video> is intentionally omitted —
+        we do not want the old static image to reappear.
       -->
       <video
         class="wm-hero__video"
@@ -144,10 +145,8 @@
         aria-hidden="true"
         tabindex="-1"
       >
-        <source
-          src="https://media.githubusercontent.com/media/perezdenmar/prymmgroup/main/assets/incinerator_equipment.mp4"
-          type="video/mp4"
-        />
+        <source src="../assets/incinerator_equipment.mp4" type="video/mp4" />
+        <source src="https://perezdenmar.github.io/prymmgroup/assets/incinerator_equipment.mp4" type="video/mp4" />
       </video>
       <div class="wm-hero__overlay" aria-hidden="true"></div>
     </div>
@@ -311,12 +310,18 @@
   <script src="../main.js"></script>
   <script>
     (function () {
+      /* Reduced-motion: pause video for users who prefer it */
       var mq  = window.matchMedia('(prefers-reduced-motion: reduce)');
       var vid = document.querySelector('.wm-hero__video');
       if (!vid) return;
       if (mq.matches) { vid.pause(); vid.currentTime = 0; }
       mq.addEventListener('change', function (e) {
         e.matches ? vid.pause() : vid.play();
+      });
+
+      /* Debug: log if video fails to load so we can diagnose source issues */
+      vid.addEventListener('error', function () {
+        console.warn('[HeroVideo] Failed to load video source.');
       });
     })();
   </script>
