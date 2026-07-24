@@ -44,10 +44,7 @@
   <link rel="stylesheet" href="../waste-management.css" />
 
   <style>
-    /* ── VIDEO HERO OVERRIDES ──────────────────────────
-       Replaces .wm-hero__img behaviour for <video>.
-       Scoped here to keep waste-management.css clean.
-    ──────────────────────────────────────────────── */
+    /* ── VIDEO HERO ─────────────────────────────────────── */
     .wm-hero__video {
       position: absolute;
       inset: 0;
@@ -56,19 +53,13 @@
       object-fit: cover;
       object-position: center 40%;
       display: block;
-      /* Match the original image colour grading exactly */
       filter: saturate(0.9) brightness(0.65);
       z-index: 0;
-      /* GPU-composited layer — avoids repaint on transform */
       will-change: transform;
     }
-
-    /* Pause video for users who prefer reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .wm-hero__video { animation-play-state: paused; }
     }
-
-    /* Fallback background while video loads */
     .wm-hero__photo { background: #0a0a0a; }
   </style>
 
@@ -97,50 +88,10 @@
       "@type": "ItemList",
       "name": "KGV Series Thermal Incinerators",
       "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Product",
-            "name": "KGV-20 WG",
-            "description": "Entry-level thermal incinerator. 1,000 kg/day capacity. Ideal for remote communities, small hospitals, and barangay-level LGUs.",
-            "brand": { "@type": "Brand", "name": "KGV Series" },
-            "offers": { "@type": "Offer", "url": "https://prymmgroup.com/appointments?model=KGV-20-WG", "seller": { "@type": "Organization", "name": "The Prymm Group LLC" } }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Product",
-            "name": "KGV-45 WG",
-            "description": "Standard thermal incinerator. 2,000 kg/day capacity. Suited for district hospitals, mid-size industrial sites, and city-level waste programs.",
-            "brand": { "@type": "Brand", "name": "KGV Series" },
-            "offers": { "@type": "Offer", "url": "https://prymmgroup.com/appointments?model=KGV-45-WG", "seller": { "@type": "Organization", "name": "The Prymm Group LLC" } }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Product",
-            "name": "KGV 75",
-            "description": "Advanced thermal incinerator. 5,000 kg/day capacity. Designed for provincial LGUs, large industrial campuses, and biomedical waste facilities.",
-            "brand": { "@type": "Brand", "name": "KGV Series" },
-            "offers": { "@type": "Offer", "url": "https://prymmgroup.com/appointments?model=KGV-75", "seller": { "@type": "Organization", "name": "The Prymm Group LLC" } }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "item": {
-            "@type": "Product",
-            "name": "KGV 600",
-            "description": "Industrial-grade flagship incinerator. 12,000 kg/day capacity. Built for city/metro municipalities, large seaports, and major industrial operators.",
-            "brand": { "@type": "Brand", "name": "KGV Series" },
-            "offers": { "@type": "Offer", "url": "https://prymmgroup.com/appointments?model=KGV-600", "seller": { "@type": "Organization", "name": "The Prymm Group LLC" } }
-          }
-        }
+        { "@type": "ListItem", "position": 1, "item": { "@type": "Product", "name": "KGV-20 WG", "description": "Entry-level thermal incinerator. 1,000 kg/day capacity.", "brand": { "@type": "Brand", "name": "KGV Series" }, "offers": { "@type": "Offer", "url": "https://prymmgroup.com/appointments?model=KGV-20-WG", "seller": { "@type": "Organization", "name": "The Prymm Group LLC" } } } },
+        { "@type": "ListItem", "position": 2, "item": { "@type": "Product", "name": "KGV-45 WG", "description": "Standard thermal incinerator. 2,000 kg/day capacity.", "brand": { "@type": "Brand", "name": "KGV Series" }, "offers": { "@type": "Offer", "url": "https://prymmgroup.com/appointments?model=KGV-45-WG", "seller": { "@type": "Organization", "name": "The Prymm Group LLC" } } } },
+        { "@type": "ListItem", "position": 3, "item": { "@type": "Product", "name": "KGV 75",    "description": "Advanced thermal incinerator. 5,000 kg/day capacity.",  "brand": { "@type": "Brand", "name": "KGV Series" }, "offers": { "@type": "Offer", "url": "https://prymmgroup.com/appointments?model=KGV-75",    "seller": { "@type": "Organization", "name": "The Prymm Group LLC" } } } },
+        { "@type": "ListItem", "position": 4, "item": { "@type": "Product", "name": "KGV 600",   "description": "Industrial-grade flagship. 12,000 kg/day capacity.",  "brand": { "@type": "Brand", "name": "KGV Series" }, "offers": { "@type": "Offer", "url": "https://prymmgroup.com/appointments?model=KGV-600",   "seller": { "@type": "Organization", "name": "The Prymm Group LLC" } } } }
       ]
     }
   }
@@ -172,26 +123,14 @@
 
   <!-- PAGE HERO -->
   <section class="wm-hero">
-    <!--
-      .wm-hero__photo holds ALL background media.
-      Layer order (bottom → top):
-        0 — <video>   (ambient background)
-        1 — .wm-hero__overlay  (gradient darken)
-        2 — .wm-hero__content  (text + breadcrumb)
-        2 — .wm-hero__badge    (95% stat card)
-    -->
     <div class="wm-hero__photo" aria-hidden="true">
-
       <!--
-        VIDEO: incinerator_equipment.mp4
-        • autoplay + muted + loop + playsinline = silent ambient behaviour
-          (autoplay is blocked by browsers unless muted)
-        • preload="none" defers byte-fetch; browser starts only after
-          the main-thread is idle — critical for LCP performance
-        • disablepictureinpicture + disableremoteplayback = clean UX;
-          this is a decorative background, not a content video
-        • The JS below respects prefers-reduced-motion by pausing the
-          video immediately if the user has that preference enabled
+        VIDEO SOURCE: media.githubusercontent.com
+        GitHub Pages serves assets via its CDN but does NOT set
+        Content-Type: video/mp4 for .mp4 files fetched with a
+        relative path — browsers silently refuse to play them.
+        media.githubusercontent.com is GitHub’s dedicated binary
+        CDN and correctly serves video/mp4, enabling autoplay.
       -->
       <video
         class="wm-hero__video"
@@ -199,16 +138,17 @@
         muted
         loop
         playsinline
-        preload="none"
+        preload="auto"
         disablepictureinpicture
         disableremoteplayback
         aria-hidden="true"
         tabindex="-1"
       >
-        <source src="../assets/incinerator_equipment.mp4" type="video/mp4" />
-        <!-- No <track> needed — this is decorative/background media only -->
+        <source
+          src="https://media.githubusercontent.com/media/perezdenmar/prymmgroup/main/assets/incinerator_equipment.mp4"
+          type="video/mp4"
+        />
       </video>
-
       <div class="wm-hero__overlay" aria-hidden="true"></div>
     </div>
 
@@ -235,7 +175,7 @@
     <div class="container wm-intro__inner">
       <div class="wm-intro__accent" aria-hidden="true"></div>
       <div class="wm-intro__text">
-        <span class="section-header__label">Industrial &amp; Trade &mdash; Featured Solution</span>
+        <span class="section-header__label">Industrial &amp; Trade — Featured Solution</span>
         <h2 class="wm-intro__title">KGV Series<br />Thermal Incinerators</h2>
         <p>As land scarcity intensifies and the Waste-to-Energy Act reshapes environmental policy, The Prymm Group introduces world-class Japanese thermal technology to resolve the mounting municipal and biomedical waste crisis. Every KGV unit is engineered for ultra-low emissions, high processing efficiency, and seamless regulatory compliance.</p>
       </div>
@@ -316,9 +256,9 @@
     <div class="container wm-download__inner">
       <div class="wm-download__rule" aria-hidden="true"></div>
       <div class="wm-download__text reveal">
-        <span class="section-header__label">KGV Series &mdash; Technical Documentation</span>
+        <span class="section-header__label">KGV Series — Technical Documentation</span>
         <h2 class="wm-download__title">Full Specifications.<br />One Document.</h2>
-        <p class="wm-download__sub">Get the complete KGV Series technical brochure &mdash; detailed specs, dimensional drawings, compliance data, and deployment guidelines for all four models.</p>
+        <p class="wm-download__sub">Get the complete KGV Series technical brochure — detailed specs, dimensional drawings, compliance data, and deployment guidelines for all four models.</p>
       </div>
       <div class="wm-download__action reveal">
         <a href="../assets/file/Waste_Management_KGVSeries.pdf" download="Waste_Management_KGVSeries.pdf" class="btn btn--primary wm-download__btn" aria-label="Download KGV Series Waste Management brochure PDF">
@@ -340,7 +280,7 @@
       <div class="wm-compliance__items">
         <div class="wm-compliance__item reveal"><div class="wm-compliance__icon wm-compliance__icon--red" aria-hidden="true">&#10004;</div><div><strong>Clean Air Compliance</strong><p>Ultra-low emissions exceed international and local clean air standards by design, not adjustment.</p></div></div>
         <div class="wm-compliance__item reveal"><div class="wm-compliance__icon wm-compliance__icon--yellow" aria-hidden="true">&#10004;</div><div><strong>Zero-Landfill Pathway</strong><p>Up to 95% volume reduction converts waste liability into recoverable ash residue and recoverable energy.</p></div></div>
-        <div class="wm-compliance__item reveal"><div class="wm-compliance__icon wm-compliance__icon--blue" aria-hidden="true">&#10004;</div><div><strong>Scalable Fleet</strong><p>Four models scale from 1,000 to 12,000 kg/day &mdash; right-sized for LGUs, hospitals, and large industrial operators.</p></div></div>
+        <div class="wm-compliance__item reveal"><div class="wm-compliance__icon wm-compliance__icon--blue" aria-hidden="true">&#10004;</div><div><strong>Scalable Fleet</strong><p>Four models scale from 1,000 to 12,000 kg/day — right-sized for LGUs, hospitals, and large industrial operators.</p></div></div>
       </div>
     </div>
   </section>
@@ -359,7 +299,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
-      <a href="/" class="footer__logo" aria-label="The Prymm Group &mdash; back to home">
+      <a href="/" class="footer__logo" aria-label="The Prymm Group — back to home">
         <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="footer__logo-img" width="48" height="48" loading="lazy" decoding="async" />
         <span class="footer__logo-text">PRYMM GROUP</span>
       </a>
@@ -369,23 +309,12 @@
   </footer>
 
   <script src="../main.js"></script>
-
   <script>
-    /*
-     * VIDEO AMBIENT BACKGROUND — reduced-motion guard
-     * Browsers that honour prefers-reduced-motion will still
-     * download + render the first frame of a muted autoplay video,
-     * but we pause it immediately so nothing moves on screen.
-     * The video poster (first frame) acts as a static image in this case.
-     */
     (function () {
-      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var mq  = window.matchMedia('(prefers-reduced-motion: reduce)');
       var vid = document.querySelector('.wm-hero__video');
       if (!vid) return;
-      if (mq.matches) {
-        vid.pause();
-        vid.currentTime = 0;
-      }
+      if (mq.matches) { vid.pause(); vid.currentTime = 0; }
       mq.addEventListener('change', function (e) {
         e.matches ? vid.pause() : vid.play();
       });
