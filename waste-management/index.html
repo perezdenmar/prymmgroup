@@ -43,6 +43,35 @@
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../waste-management.css" />
 
+  <style>
+    /* ── VIDEO HERO OVERRIDES ──────────────────────────
+       Replaces .wm-hero__img behaviour for <video>.
+       Scoped here to keep waste-management.css clean.
+    ──────────────────────────────────────────────── */
+    .wm-hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+      /* Match the original image colour grading exactly */
+      filter: saturate(0.9) brightness(0.65);
+      z-index: 0;
+      /* GPU-composited layer — avoids repaint on transform */
+      will-change: transform;
+    }
+
+    /* Pause video for users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .wm-hero__video { animation-play-state: paused; }
+    }
+
+    /* Fallback background while video loads */
+    .wm-hero__photo { background: #0a0a0a; }
+  </style>
+
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
@@ -143,19 +172,46 @@
 
   <!-- PAGE HERO -->
   <section class="wm-hero">
-    <div class="wm-hero__photo">
-      <img
-        src="../assets/images/incineration_machine.png"
-        alt="Prymm Group thermal incineration unit — KGV series"
-        class="wm-hero__img"
-        width="1920"
-        height="1080"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
+    <!--
+      .wm-hero__photo holds ALL background media.
+      Layer order (bottom → top):
+        0 — <video>   (ambient background)
+        1 — .wm-hero__overlay  (gradient darken)
+        2 — .wm-hero__content  (text + breadcrumb)
+        2 — .wm-hero__badge    (95% stat card)
+    -->
+    <div class="wm-hero__photo" aria-hidden="true">
+
+      <!--
+        VIDEO: incinerator_equipment.mp4
+        • autoplay + muted + loop + playsinline = silent ambient behaviour
+          (autoplay is blocked by browsers unless muted)
+        • preload="none" defers byte-fetch; browser starts only after
+          the main-thread is idle — critical for LCP performance
+        • disablepictureinpicture + disableremoteplayback = clean UX;
+          this is a decorative background, not a content video
+        • The JS below respects prefers-reduced-motion by pausing the
+          video immediately if the user has that preference enabled
+      -->
+      <video
+        class="wm-hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="none"
+        disablepictureinpicture
+        disableremoteplayback
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <source src="../assets/incinerator_equipment.mp4" type="video/mp4" />
+        <!-- No <track> needed — this is decorative/background media only -->
+      </video>
+
       <div class="wm-hero__overlay" aria-hidden="true"></div>
     </div>
+
     <div class="wm-hero__content">
       <p class="wm-hero__breadcrumb">
         <a href="/">Home</a>
@@ -167,6 +223,7 @@
       <h1 class="wm-hero__headline">Waste<br /><em>Management</em></h1>
       <p class="wm-hero__sub">Thermal Technology. Zero Landfill. World-class compliance.</p>
     </div>
+
     <div class="wm-hero__badge" aria-hidden="true">
       <span class="wm-hero__badge-num">95<sup>%</sup></span>
       <span class="wm-hero__badge-label">Waste<br />Volume Reduction</span>
@@ -312,5 +369,28 @@
   </footer>
 
   <script src="../main.js"></script>
+
+  <script>
+    /*
+     * VIDEO AMBIENT BACKGROUND — reduced-motion guard
+     * Browsers that honour prefers-reduced-motion will still
+     * download + render the first frame of a muted autoplay video,
+     * but we pause it immediately so nothing moves on screen.
+     * The video poster (first frame) acts as a static image in this case.
+     */
+    (function () {
+      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var vid = document.querySelector('.wm-hero__video');
+      if (!vid) return;
+      if (mq.matches) {
+        vid.pause();
+        vid.currentTime = 0;
+      }
+      mq.addEventListener('change', function (e) {
+        e.matches ? vid.pause() : vid.play();
+      });
+    })();
+  </script>
+
 </body>
 </html>
