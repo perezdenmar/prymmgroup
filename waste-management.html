@@ -43,6 +43,30 @@
   <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="waste-management.css" />
 
+  <style>
+    /* Video hero layering */
+    .wm-hero__photo { position: relative; overflow: hidden; }
+    .wm-hero__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .wm-hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .wm-hero__overlay { z-index: 2; }
+    .wm-hero__content { position: relative; z-index: 3; }
+    .wm-hero__badge   { position: absolute; z-index: 3; }
+  </style>
+
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
@@ -144,6 +168,7 @@
   <!-- PAGE HERO -->
   <section class="wm-hero">
     <div class="wm-hero__photo">
+      <!-- Fallback image shown while video loads or if autoplay is blocked -->
       <img
         src="assets/images/incineration_machine.png"
         alt="Prymm Group thermal incineration unit — KGV series"
@@ -154,6 +179,19 @@
         fetchpriority="high"
         decoding="async"
       />
+      <!-- Hero video: autoplay muted loop playsinline required for all browsers incl. iOS -->
+      <video
+        class="wm-hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+        poster="assets/images/incineration_machine.png"
+      >
+        <source src="assets/videos/kgv-hero.mp4" type="video/mp4" />
+      </video>
       <div class="wm-hero__overlay" aria-hidden="true"></div>
     </div>
     <div class="wm-hero__content">
