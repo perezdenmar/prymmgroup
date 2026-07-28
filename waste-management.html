@@ -144,7 +144,7 @@
   <!-- PAGE HERO -->
   <section class="wm-hero">
     <div class="wm-hero__photo">
-      <!-- Fallback image — shown if video cannot play -->
+      <!-- Fallback image — always visible until video plays -->
       <img
         src="assets/images/incineration_machine.png"
         alt="Prymm Group thermal incineration unit — KGV series"
@@ -155,7 +155,7 @@
         fetchpriority="high"
         decoding="async"
       />
-      <!-- Hero video -->
+      <!-- Hero video — starts hidden (opacity:0); JS adds .is-playing on canplay -->
       <video
         class="wm-hero__video"
         autoplay
@@ -326,5 +326,33 @@
   </footer>
 
   <script src="main.js"></script>
+  <script>
+    // Hero video: stay hidden until the browser confirms it can play.
+    // This guarantees the fallback image is always visible on slow connections,
+    // data-saver mode, or any device that blocks autoplay.
+    (function () {
+      var video = document.querySelector('.wm-hero__video');
+      if (!video) return;
+
+      function revealVideo() {
+        video.classList.add('is-playing');
+      }
+
+      // canplaythrough = enough data buffered to play without interruption
+      video.addEventListener('canplaythrough', revealVideo, { once: true });
+
+      // Fallback: if already ready (cached), fire immediately
+      if (video.readyState >= 4) {
+        revealVideo();
+      }
+
+      // If autoplay is blocked, video stays hidden — fallback image shows.
+      // Attempt play() explicitly; swallow the rejection silently.
+      var playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function () { /* autoplay blocked — fallback image stays */ });
+      }
+    })();
+  </script>
 </body>
 </html>
