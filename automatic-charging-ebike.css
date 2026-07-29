@@ -3,7 +3,7 @@
    Extends base.css; BEM prefix: eb-
 ===================================================== */
 
-/* ── HERO ──────────────────────────────────────── */
+/* —— HERO ———————————————————————————————————————————— */
 .eb-hero {
   position: relative;
   min-height: 70vh;
@@ -17,23 +17,20 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    linear-gradient(135deg, rgba(26,62,191,0.35) 0%, rgba(0,0,0,0.0) 60%),
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 40px,
-      rgba(255,255,255,0.018) 40px,
-      rgba(255,255,255,0.018) 41px
-    ),
-    var(--black);
+}
+.eb-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 .eb-hero__photo-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to right, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.15) 100%),
-    linear-gradient(to top,   rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.00) 40%);
+    linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.15) 100%),
+    linear-gradient(to top,   rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.00) 45%);
 }
 .eb-hero__content {
   position: relative;
@@ -119,7 +116,7 @@
   line-height: 1.4;
 }
 
-/* ── INTRO ──────────────────────────────────────── */
+/* —— INTRO ———————————————————————————————————————————— */
 .eb-intro {
   background: var(--white);
   padding: 80px 0;
@@ -189,7 +186,7 @@
   margin-top: 2px;
 }
 
-/* ── HOW IT WORKS ───────────────────────────────── */
+/* —— HOW IT WORKS ———————————————————————————————————— */
 .eb-how {
   background: var(--black);
   padding: 100px 0 120px;
@@ -246,7 +243,7 @@
   color: rgba(247,245,240,0.70);
 }
 
-/* ── PATENT & COMPLIANCE ────────────────────────── */
+/* —— PATENT & COMPLIANCE ———————————————————————————— */
 .eb-patent {
   background: var(--white);
   padding: 100px 0;
@@ -306,7 +303,7 @@
   color: var(--grey-2);
 }
 
-/* ── CTA BAND ──────────────────────────────────── */
+/* —— CTA BAND ———————————————————————————————————————— */
 .eb-cta {
   background: var(--blue);
   padding: 80px 0;
@@ -344,7 +341,7 @@
   border-color: var(--black);
 }
 
-/* ── RESPONSIVE ─────────────────────────────────── */
+/* —— RESPONSIVE ————————————————————————————————————— */
 @media (max-width: 1000px) {
   .eb-how__grid { grid-template-columns: 1fr 1fr; }
   .eb-how-card:nth-child(2) { border-right: none; }
