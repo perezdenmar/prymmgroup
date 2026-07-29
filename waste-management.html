@@ -144,18 +144,6 @@
   <!-- PAGE HERO -->
   <section class="wm-hero">
     <div class="wm-hero__photo">
-      <!-- Fallback image — always visible until video plays -->
-      <img
-        src="assets/images/incineration_machine.png"
-        alt="Prymm Group thermal incineration unit — KGV series"
-        class="wm-hero__img"
-        width="1920"
-        height="1080"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-      <!-- Hero video — starts hidden (opacity:0); JS adds .is-playing on canplay -->
       <video
         class="wm-hero__video"
         autoplay
@@ -164,7 +152,6 @@
         playsinline
         preload="auto"
         aria-hidden="true"
-        poster="assets/images/incineration_machine.png"
       >
         <source src="assets/Thermal Equipment.mp4" type="video/mp4" />
       </video>
@@ -326,18 +313,5 @@
   </footer>
 
   <script src="main.js"></script>
-  <script>
-    (function () {
-      var video = document.querySelector('.wm-hero__video');
-      if (!video) return;
-      function revealVideo() { video.classList.add('is-playing'); }
-      video.addEventListener('canplaythrough', revealVideo, { once: true });
-      if (video.readyState >= 4) { revealVideo(); }
-      var playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(function () { /* autoplay blocked — fallback image stays */ });
-      }
-    })();
-  </script>
 </body>
 </html>
