@@ -1,0 +1,378 @@
+/* =====================================================
+   AUTOMATIC CHARGING E-BIKE PAGE — automatic-charging-ebike.css
+   Extends base.css; BEM prefix: eb-
+===================================================== */
+
+/* ── HERO ──────────────────────────────────────── */
+.eb-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: var(--nav-h);
+  overflow: hidden;
+  background: var(--black);
+}
+.eb-hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(135deg, rgba(26,62,191,0.35) 0%, rgba(0,0,0,0.0) 60%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.018) 40px,
+      rgba(255,255,255,0.018) 41px
+    ),
+    var(--black);
+}
+.eb-hero__photo-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.15) 100%),
+    linear-gradient(to top,   rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.00) 40%);
+}
+.eb-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 60px 40px 56px;
+  max-width: 700px;
+}
+.eb-hero__breadcrumb {
+  font-family: var(--ff-head);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.45);
+  margin-bottom: 12px;
+}
+.eb-hero__breadcrumb a {
+  color: rgba(247,245,240,0.45);
+  transition: color 0.15s;
+}
+.eb-hero__breadcrumb a:hover { color: var(--yellow); }
+.eb-hero__tag {
+  font-family: var(--ff-head);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 16px;
+  display: block;
+}
+.eb-hero__headline {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow: 0 2px 32px rgba(0,0,0,0.9);
+  margin-bottom: 20px;
+}
+.eb-hero__headline em {
+  font-style: normal;
+  color: var(--blue);
+}
+.eb-hero__sub {
+  font-family: var(--ff-head);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.65);
+}
+.eb-hero__badge {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 2;
+  background: var(--blue);
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 120px;
+}
+.eb-hero__badge-num {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--white);
+}
+.eb-hero__badge-label {
+  font-family: var(--ff-head);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.80);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ── INTRO ──────────────────────────────────────── */
+.eb-intro {
+  background: var(--white);
+  padding: 80px 0;
+  border-bottom: 3px solid var(--black);
+}
+.eb-intro__inner {
+  display: grid;
+  grid-template-columns: 6px 1fr auto;
+  gap: 40px;
+  align-items: start;
+}
+.eb-intro__accent {
+  width: 6px;
+  height: 100%;
+  min-height: 80px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+.eb-intro__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: var(--black);
+}
+.eb-intro__text p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--grey-2);
+  max-width: 560px;
+  margin-bottom: 12px;
+}
+.eb-intro__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex-shrink: 0;
+  min-width: 180px;
+  border-left: 3px solid var(--black);
+  padding-left: 32px;
+}
+.eb-intro__stat-num {
+  display: block;
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--black);
+}
+.eb-intro__stat-num sub, .eb-intro__stat-num sup {
+  font-size: 0.9rem;
+  font-weight: 700;
+  vertical-align: baseline;
+  margin-left: 2px;
+  color: var(--grey-3);
+}
+.eb-intro__stat-label {
+  display: block;
+  font-family: var(--ff-head);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey-3);
+  margin-top: 2px;
+}
+
+/* ── HOW IT WORKS ───────────────────────────────── */
+.eb-how {
+  background: var(--black);
+  padding: 100px 0 120px;
+}
+.eb-how__header .section-header__label { color: var(--yellow); opacity: 0.7; }
+.eb-how__header .section-header__title { color: var(--white); }
+.eb-how__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 3px solid var(--grey-2);
+  margin-top: 64px;
+}
+.eb-how-card {
+  padding: 36px 28px;
+  border-right: 1px solid var(--grey-2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.eb-how-card:last-child { border-right: none; }
+.eb-how-card__index {
+  font-family: var(--ff-head);
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: var(--grey-3);
+}
+.eb-how-card__icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.eb-how-card__icon--blue   { background: var(--blue); }
+.eb-how-card__icon--yellow { background: var(--yellow); color: var(--black); }
+.eb-how-card__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.15;
+}
+.eb-how-card__desc {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(247,245,240,0.70);
+}
+
+/* ── PATENT & COMPLIANCE ────────────────────────── */
+.eb-patent {
+  background: var(--white);
+  padding: 100px 0;
+  border-top: 6px solid var(--blue);
+}
+.eb-patent__inner {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+.eb-patent__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.eb-patent__block { width: 8px; height: 60px; }
+.eb-patent__block--b { background: var(--blue); }
+.eb-patent__block--y { background: var(--yellow); }
+.eb-patent__block--r { background: var(--red); }
+.eb-patent__items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  flex: 1;
+}
+.eb-patent__item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.eb-patent__icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.eb-patent__icon--blue   { background: var(--blue); }
+.eb-patent__icon--yellow { background: var(--yellow); color: var(--black); }
+.eb-patent__item strong {
+  display: block;
+  font-family: var(--ff-head);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+.eb-patent__item p {
+  font-size: 0.88rem;
+  line-height: 1.68;
+  color: var(--grey-2);
+}
+
+/* ── CTA BAND ──────────────────────────────────── */
+.eb-cta {
+  background: var(--blue);
+  padding: 80px 0;
+}
+.eb-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.eb-cta__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.eb-cta__sub {
+  font-size: 0.95rem;
+  color: rgba(247,245,240,0.80);
+  max-width: 580px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.eb-cta .btn--primary {
+  background: var(--white);
+  color: var(--blue);
+  border-color: var(--white);
+}
+.eb-cta .btn--primary:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 1000px) {
+  .eb-how__grid { grid-template-columns: 1fr 1fr; }
+  .eb-how-card:nth-child(2) { border-right: none; }
+  .eb-how-card:nth-child(1),
+  .eb-how-card:nth-child(2) { border-bottom: 1px solid var(--grey-2); }
+  .eb-patent__items { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+  .eb-intro__inner { grid-template-columns: 6px 1fr; }
+  .eb-intro__stats {
+    grid-column: 2;
+    flex-direction: row;
+    border-left: none;
+    border-top: 3px solid var(--black);
+    padding-left: 0;
+    padding-top: 24px;
+  }
+  .eb-patent__inner { flex-direction: column; }
+  .eb-patent__blocks { flex-direction: row; }
+  .eb-patent__block { width: 60px; height: 8px; }
+  .eb-patent__items { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .eb-hero__badge { right: 20px; bottom: 20px; }
+  .eb-hero__content { padding: 40px 20px 40px; }
+  .eb-intro__stats { flex-direction: column; }
+  .eb-cta__inner { padding: 0 20px; }
+  .eb-how__grid { grid-template-columns: 1fr; border: none; gap: 2px; }
+  .eb-how-card { border-right: none; border-bottom: 1px solid var(--grey-2); }
+  .eb-how-card:last-child { border-bottom: none; }
+}

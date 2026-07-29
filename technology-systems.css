@@ -1,0 +1,313 @@
+/* =====================================================
+   TECHNOLOGY & SYSTEMS HUB — technology-systems.css
+   Extends base.css; BEM prefix: ts-
+===================================================== */
+
+/* ── HERO ──────────────────────────────────────── */
+.ts-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: var(--nav-h);
+  overflow: hidden;
+  background: var(--black);
+}
+.ts-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 80px,
+      rgba(26,62,191,0.06) 80px,
+      rgba(26,62,191,0.06) 81px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 80px,
+      rgba(26,62,191,0.06) 80px,
+      rgba(26,62,191,0.06) 81px
+    ),
+    linear-gradient(135deg, rgba(26,62,191,0.25) 0%, var(--black) 70%);
+  z-index: 0;
+}
+.ts-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 60px 40px 56px;
+  max-width: 700px;
+}
+.ts-hero__breadcrumb {
+  font-family: var(--ff-head);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.45);
+  margin-bottom: 20px;
+}
+.ts-hero__breadcrumb a {
+  color: rgba(247,245,240,0.45);
+  transition: color 0.15s;
+}
+.ts-hero__breadcrumb a:hover { color: var(--yellow); }
+.ts-hero__headline {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow: 0 2px 32px rgba(0,0,0,0.9);
+  margin-bottom: 20px;
+}
+.ts-hero__headline em {
+  font-style: normal;
+  color: var(--blue);
+}
+.ts-hero__sub {
+  font-family: var(--ff-head);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.60);
+}
+.ts-hero__badge {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 1;
+  background: var(--blue);
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 100px;
+}
+.ts-hero__badge-index {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--white);
+}
+.ts-hero__badge-label {
+  font-family: var(--ff-head);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.75);
+}
+
+/* ── INTRO ──────────────────────────────────────── */
+.ts-intro {
+  background: var(--white);
+  padding: 72px 0;
+  border-bottom: 3px solid var(--black);
+}
+.ts-intro__inner {
+  display: grid;
+  grid-template-columns: 6px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.ts-intro__accent {
+  width: 6px;
+  min-height: 80px;
+  height: 100%;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+.ts-intro__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: var(--black);
+}
+.ts-intro__text p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--grey-2);
+  max-width: 680px;
+}
+
+/* ── PRODUCTS GRID ──────────────────────────────── */
+.ts-products {
+  background: var(--black);
+  padding: 100px 0 120px;
+}
+.ts-products__header .section-header__label { color: var(--yellow); opacity: 0.7; }
+.ts-products__header .section-header__title { color: var(--white); }
+.ts-products__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin-top: 64px;
+}
+
+/* Product Card */
+.ts-product-card {
+  position: relative;
+  background: var(--grey-1);
+  overflow: hidden;
+}
+.ts-product-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+.ts-product-card__photo {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+.ts-product-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(0.85) brightness(0.7);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.ts-product-card__link:hover .ts-product-card__photo img {
+  transform: scale(1.04);
+  filter: saturate(1) brightness(0.8);
+}
+.ts-product-card__photo--dark {
+  background: var(--black);
+}
+.ts-product-card__photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(26,62,191,0.4) 0%, var(--black) 100%);
+}
+.ts-product-card__photo-icon {
+  font-size: 4rem;
+  color: rgba(247,245,240,0.15);
+}
+.ts-product-card__photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.0) 60%);
+}
+.ts-product-card__body {
+  padding: 28px 32px 36px;
+  border-top: 3px solid var(--grey-2);
+  position: relative;
+}
+.ts-product-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.ts-product-card__tag {
+  font-family: var(--ff-head);
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+}
+.ts-product-card__tag--blue   { background: var(--blue);   color: var(--white); }
+.ts-product-card__tag--yellow { background: var(--yellow); color: var(--black); }
+.ts-product-card__index {
+  font-family: var(--ff-head);
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: var(--grey-3);
+  margin-left: auto;
+}
+.ts-product-card__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1.0;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.ts-product-card__desc {
+  font-size: 0.875rem;
+  line-height: 1.68;
+  color: rgba(247,245,240,0.65);
+  max-width: 420px;
+  margin-bottom: 20px;
+}
+.ts-product-card__arrow {
+  font-size: 1.1rem;
+  color: var(--yellow);
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+.ts-product-card__link:hover .ts-product-card__arrow {
+  transform: translateX(6px);
+}
+
+/* ── CTA BAND ──────────────────────────────────── */
+.ts-cta {
+  background: var(--blue);
+  padding: 80px 0;
+}
+.ts-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.ts-cta__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.ts-cta__sub {
+  font-size: 0.95rem;
+  color: rgba(247,245,240,0.80);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.ts-cta .btn--primary {
+  background: var(--white);
+  color: var(--blue);
+  border-color: var(--white);
+}
+.ts-cta .btn--primary:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 860px) {
+  .ts-products__grid { grid-template-columns: 1fr; }
+  .ts-intro__inner { gap: 24px; }
+}
+@media (max-width: 600px) {
+  .ts-hero__badge { right: 20px; bottom: 20px; }
+  .ts-hero__content { padding: 40px 20px 40px; }
+  .ts-product-card__body { padding: 24px 20px 28px; }
+  .ts-cta__inner { padding: 0 20px; }
+}
