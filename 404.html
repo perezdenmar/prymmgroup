@@ -174,11 +174,30 @@
       color: rgba(240,240,240,0.3);
     }
   </style>
+
+  <script>
+    // Smart redirect: map known clean URL paths to their folder index.html
+    (function () {
+      var routes = {
+        '/technology-systems':          '/technology-systems/index.html',
+        '/automatic-charging-ebike':    '/automatic-charging-ebike/index.html',
+        '/ev-charging-station':         '/ev-charging-station/index.html',
+        '/waste-management':            '/waste-management/index.html',
+        '/about':                       '/about/index.html',
+        '/appointments':                '/appointments/index.html',
+        '/technical-skills-institution':'/technical-skills-institution/index.html'
+      };
+      var path = window.location.pathname.replace(/\/+$/, '');
+      if (routes[path]) {
+        window.location.replace(routes[path]);
+      }
+    })();
+  </script>
 </head>
 <body>
 
   <nav class="nav-404">
-    <a href="index.html" class="nav-404__logo" aria-label="The Prymm Group — home">
+    <a href="/" class="nav-404__logo" aria-label="The Prymm Group — home">
       <img src="assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav-404__logo-img" width="32" height="32" loading="eager" decoding="sync" />
       <span class="nav-404__logo-text">PRYMM GROUP</span>
     </a>
@@ -196,15 +215,17 @@
       <h1 class="err-title">Page Not Found</h1>
       <p class="err-desc">The page you&rsquo;re looking for doesn&rsquo;t exist or may have been moved. Let&rsquo;s get you back on track.</p>
       <div class="err-actions">
-        <a href="index.html" class="btn-primary-404">Go Home &rarr;</a>
-        <a href="appointments.html" class="btn-ghost-404">Book a Meeting</a>
+        <a href="/" class="btn-primary-404">Go Home &rarr;</a>
+        <a href="/appointments" class="btn-ghost-404">Book a Meeting</a>
       </div>
       <ul class="err-links" aria-label="Quick links">
-        <li><a href="about.html">About</a></li>
-        <li><a href="waste-management.html">Waste Management</a></li>
-        <li><a href="ev-charging-station.html">EV Charging</a></li>
-        <li><a href="technical-skills-institution.html">TSI</a></li>
-        <li><a href="appointments.html">Appointments</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/waste-management">Waste Management</a></li>
+        <li><a href="/ev-charging-station">EV Charging</a></li>
+        <li><a href="/technical-skills-institution">TSI</a></li>
+        <li><a href="/appointments">Appointments</a></li>
+        <li><a href="/technology-systems">Technology &amp; Systems</a></li>
+        <li><a href="/automatic-charging-ebike">e-Bike</a></li>
       </ul>
     </div>
   </main>
