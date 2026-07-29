@@ -166,7 +166,7 @@
         aria-hidden="true"
         poster="assets/images/incineration_machine.png"
       >
-        <source src="assets/incinerator_equipment.mp4" type="video/mp4" />
+        <source src="assets/Thermal Equipment.mp4" type="video/mp4" />
       </video>
       <div class="wm-hero__overlay" aria-hidden="true"></div>
     </div>
@@ -327,27 +327,12 @@
 
   <script src="main.js"></script>
   <script>
-    // Hero video: stay hidden until the browser confirms it can play.
-    // This guarantees the fallback image is always visible on slow connections,
-    // data-saver mode, or any device that blocks autoplay.
     (function () {
       var video = document.querySelector('.wm-hero__video');
       if (!video) return;
-
-      function revealVideo() {
-        video.classList.add('is-playing');
-      }
-
-      // canplaythrough = enough data buffered to play without interruption
+      function revealVideo() { video.classList.add('is-playing'); }
       video.addEventListener('canplaythrough', revealVideo, { once: true });
-
-      // Fallback: if already ready (cached), fire immediately
-      if (video.readyState >= 4) {
-        revealVideo();
-      }
-
-      // If autoplay is blocked, video stays hidden — fallback image shows.
-      // Attempt play() explicitly; swallow the rejection silently.
+      if (video.readyState >= 4) { revealVideo(); }
       var playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch(function () { /* autoplay blocked — fallback image stays */ });
