@@ -355,6 +355,70 @@
   color: rgba(247,245,240,0.55);
 }
 
+/* ---- OUR NETWORK BAND ---- */
+.about-network {
+  background: #0d0d0d;
+  padding: clamp(56px,7vw,96px) 0;
+  border-top: 1px solid rgba(247,245,240,0.06);
+}
+.about-network__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px,5vw,56px);
+}
+.about-network__header {
+  text-align: center;
+}
+.about-network__title {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.8rem,3.5vw,2.8rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 10px 0 14px;
+  letter-spacing: -0.01em;
+}
+.about-network__sub {
+  font-size: clamp(0.8rem,1.8vw,0.92rem);
+  line-height: 1.65;
+  color: rgba(247,245,240,0.40);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+/* Logo grid */
+.about-network__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(28px,4vw,56px) clamp(32px,5vw,72px);
+}
+.about-network__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-network__item img {
+  display: block;
+  max-width: 140px;
+  max-height: 64px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* White silhouette at low opacity — blends naturally on dark bg */
+  filter: brightness(0) invert(1);
+  opacity: 0.42;
+  transition: opacity 240ms ease, filter 240ms ease;
+}
+.about-network__item img:hover {
+  opacity: 0.82;
+}
+
 /* =====================================================
    RESPONSIVE
 ===================================================== */
@@ -366,6 +430,7 @@
   .about-div-card { border-right: none; border-bottom: 3px solid var(--black); }
   .about-div-card:last-child { border-bottom: none; }
   .about-philosophy__pillars { grid-template-columns: 1fr; gap: 28px; }
+  .about-network__grid { gap: 24px 40px; }
 }
 
 @media (max-width: 600px) {
@@ -373,6 +438,7 @@
   .about-intro__inner { flex-direction: column; gap: 20px; }
   .about-intro__accent { width: 40px; height: 6px; }
   .about-story__founded { top: -12px; right: -8px; }
+  .about-network__item img { max-width: 110px; max-height: 52px; }
 }
 
 @media (max-width: 380px) {
