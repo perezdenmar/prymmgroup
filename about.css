@@ -410,15 +410,18 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  /* Greyscale + low opacity at rest */
-  filter: brightness(0) invert(1) grayscale(1);
-  opacity: 0.38;
-  transition: opacity 320ms ease, filter 320ms ease;
+  /*
+   * At rest: desaturated + dimmed so logos recede on the dark bg.
+   * On hover: full natural colour revealed — works regardless of
+   * whether the PNG has a transparent or opaque background.
+   */
+  filter: grayscale(1);
+  opacity: 0.40;
+  transition: filter 320ms ease, opacity 320ms ease;
   cursor: default;
 }
 .about-network__item img:hover {
-  /* Full natural colour on hover */
-  filter: none;
+  filter: grayscale(0);
   opacity: 1;
 }
 
