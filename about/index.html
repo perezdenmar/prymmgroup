@@ -244,66 +244,45 @@
         <ul class="about-network__grid reveal" aria-label="Partner and affiliate logos">
 
           <li class="about-network__item">
-            <img
-              src="../assets/images/prymm-enterprises.png"
-              alt="Prymm Enterprises"
-              width="160" height="80"
-              loading="lazy" decoding="async"
-            />
+            <a href="https://prymmenterprises.com" target="_blank" rel="noopener noreferrer" aria-label="Prymm Enterprises (opens in new tab)">
+              <img src="../assets/images/prymm-enterprises.png" alt="Prymm Enterprises" width="160" height="80" loading="lazy" decoding="async" />
+            </a>
           </li>
 
           <li class="about-network__item">
-            <img
-              src="../assets/images/equip.png"
-              alt="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc."
-              width="160" height="80"
-              loading="lazy" decoding="async"
-            />
+            <a href="https://equipinstitute.ph" target="_blank" rel="noopener noreferrer" aria-label="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc. (opens in new tab)">
+              <img src="../assets/images/equip.png" alt="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc." width="160" height="80" loading="lazy" decoding="async" />
+            </a>
           </li>
 
           <li class="about-network__item">
-            <img
-              src="../assets/images/gets.png"
-              alt="GETS &mdash; Global Excellence Technical School Inc."
-              width="160" height="80"
-              loading="lazy" decoding="async"
-            />
+            <a href="https://gets.edu.ph" target="_blank" rel="noopener noreferrer" aria-label="GETS &mdash; Global Excellence Technical School Inc. (opens in new tab)">
+              <img src="../assets/images/gets.png" alt="GETS &mdash; Global Excellence Technical School Inc." width="160" height="80" loading="lazy" decoding="async" />
+            </a>
           </li>
 
           <li class="about-network__item">
-            <img
-              src="../assets/images/gepsearch.png"
-              alt="GEPSearch"
-              width="160" height="80"
-              loading="lazy" decoding="async"
-            />
+            <a href="https://www.gepsearch.pro" target="_blank" rel="noopener noreferrer" aria-label="GEPSearch (opens in new tab)">
+              <img src="../assets/images/gepsearch.png" alt="GEPSearch" width="160" height="80" loading="lazy" decoding="async" />
+            </a>
           </li>
 
           <li class="about-network__item">
-            <img
-              src="../assets/images/dp-fabrication.png"
-              alt="DP Fabrication and Machineries"
-              width="160" height="80"
-              loading="lazy" decoding="async"
-            />
+            <a href="https://www.dpmachinery.com.ph" target="_blank" rel="noopener noreferrer" aria-label="DP Fabrication and Machineries (opens in new tab)">
+              <img src="../assets/images/dp-fabrication.png" alt="DP Fabrication and Machineries" width="160" height="80" loading="lazy" decoding="async" />
+            </a>
           </li>
 
           <li class="about-network__item">
-            <img
-              src="../assets/images/tulai-foundation.png"
-              alt="Tulai Foundation"
-              width="160" height="80"
-              loading="lazy" decoding="async"
-            />
+            <a href="https://tulaifoundation.org" target="_blank" rel="noopener noreferrer" aria-label="Tulai Foundation (opens in new tab)">
+              <img src="../assets/images/tulai-foundation.png" alt="Tulai Foundation" width="160" height="80" loading="lazy" decoding="async" />
+            </a>
           </li>
 
           <li class="about-network__item">
-            <img
-              src="../assets/images/seamphony.png"
-              alt="The Seamphony Seafood and Grill"
-              width="160" height="80"
-              loading="lazy" decoding="async"
-            />
+            <a href="https://theseamphony.com" target="_blank" rel="noopener noreferrer" aria-label="The Seamphony Seafood and Grill (opens in new tab)">
+              <img src="../assets/images/seamphony.png" alt="The Seamphony Seafood and Grill" width="160" height="80" loading="lazy" decoding="async" />
+            </a>
           </li>
 
         </ul>
@@ -320,10 +299,11 @@
         <span class="footer__logo-text">PRYMM GROUP</span>
       </a>
       <p class="footer__tagline">Sustainable Solutions. Lasting Relationships.</p>
-      <p class="footer__legal">&copy; 2026 The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
+      <p class="footer__legal">&copy; <span id="footer-year"></span> The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
     </div>
   </footer>
 
   <script src="../main.js"></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
