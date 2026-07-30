@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v10 — Contact Form CORS Fix
+   Interactions v11 — Full Reveal Selectors
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
    ─ Active nav indicator on sub-pages
@@ -9,7 +9,7 @@
    ─ Backdrop tap-to-close
    ─ Escape key close
    ─ aria-expanded + aria-label on hamburger
-   ─ Snap reveal (IntersectionObserver)
+   ─ Snap reveal (IntersectionObserver) — all pages
    ─ Staggered division cards + benefit items
    ─ Stat counters (eased, reduced-motion safe)
    ─ Division touch feedback
@@ -171,15 +171,27 @@
   }
 
   /* ─────────────────────────────────────────────
-     4. SNAP REVEAL
+     4. SNAP REVEAL — all pages
   ───────────────────────────────────────────── */
   var revealTargets = [
+    /* — Homepage — */
     '.mission__quote', '.section-header', '.division', '.benefit',
     '.product__text', '.product__benefits', '.contact__text', '.contact__details',
     '.manifesto__text',
+    /* — Waste Management — */
     '.wm-intro__text', '.wm-intro__stats', '.wm-compliance__item',
+    /* — EV Charging Station — */
     '.ev-accred__text', '.ev-accred__cert-card', '.ev-manifesto__text',
+    '.ev-perm-card', '.ev-cta__title',
+    /* — Technical Skills Institution — */
     '.tsi-overview__text', '.tsi-overview__stats', '.tsi-manifesto__text',
+    /* — Technology & Systems — */
+    '.ts-intro__text', '.ts-product-card',
+    /* — Automatic Charging e-Bike — */
+    '.eb-intro__text', '.eb-intro__stats', '.eb-how-card',
+    '.eb-patent__item', '.eb-cta__title',
+    /* — About — */
+    '.about-intro__text', '.about-values__item', '.about-team__member',
   ];
 
   revealTargets.forEach(function (selector) {
@@ -212,6 +224,15 @@
   });
   document.querySelectorAll('.benefit').forEach(function (el, i) {
     el.style.transitionDelay = (i * 55) + 'ms';
+  });
+  document.querySelectorAll('.eb-how-card').forEach(function (el, i) {
+    el.style.transitionDelay = (i * 70) + 'ms';
+  });
+  document.querySelectorAll('.ts-product-card').forEach(function (el, i) {
+    el.style.transitionDelay = (i * 70) + 'ms';
+  });
+  document.querySelectorAll('.ev-perm-card').forEach(function (el, i) {
+    el.style.transitionDelay = (i * 70) + 'ms';
   });
 
   /* ─────────────────────────────────────────────
@@ -355,10 +376,10 @@
       }
       el.value = value;
     }
-    ensureHidden('_captcha',  'false');   /* skip reCAPTCHA redirect */
-    ensureHidden('_template', 'table');   /* clean email layout */
+    ensureHidden('_captcha',  'false');
+    ensureHidden('_template', 'table');
     ensureHidden('_subject',  'New Enquiry — The Prymm Group');
-    ensureHidden('_next',     'about:blank'); /* load blank into iframe after submit */
+    ensureHidden('_next',     'https://prymmgroup.com/');
 
     /* ── Field validation helpers ── */
     function showFieldError(input, msg) {
@@ -405,7 +426,6 @@
 
     /* Submit handler */
     contactForm.addEventListener('submit', function(e) {
-      /* Validate first — if invalid, stop here (normal form submit is prevented by invalid state) */
       var fields = Array.from(contactForm.querySelectorAll(
         'input:not([type="hidden"]):not([name="_honey"]), textarea'
       ));
@@ -415,15 +435,12 @@
         return;
       }
 
-      /* Valid — let the form POST naturally to the hidden iframe */
       var btn = contactForm.querySelector('button[type="submit"]');
       var origLabel = btn.innerHTML;
       btn.disabled = true;
       btn.innerHTML = 'Sending&#8230;';
       if (statusEl) { statusEl.textContent = ''; statusEl.className = 'contact__form-status'; }
 
-      /* After 2 s assume FormSubmit received it (iframe load fires, but we
-         can't read cross-origin content — so we use a timer as the signal) */
       var confirmed = false;
 
       function onSuccess() {
@@ -438,14 +455,8 @@
         btn.innerHTML = origLabel;
       }
 
-      /* iframe load = FormSubmit responded (success or their error page) */
       iframe.onload = function() { onSuccess(); };
-
-      /* Fallback timer — if onload doesn't fire within 8 s, still show success
-         (FormSubmit almost always processes within 2 s) */
       setTimeout(onSuccess, 8000);
-
-      /* Do NOT call e.preventDefault() — allow the real POST to proceed */
     });
   }
 
