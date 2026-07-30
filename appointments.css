@@ -321,6 +321,9 @@
   padding: 64px 40px;
   gap: 20px;
 }
+/* Ensure HTML hidden attribute is respected even when display:flex is set above */
+.apt-success[hidden] { display: none !important; }
+
 .apt-success__icon svg {
   animation: apt-check-pop 0.4s cubic-bezier(0.16,1,0.3,1) both;
 }
