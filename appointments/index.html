@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-PH">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +22,22 @@
   <meta property="og:description" content="Request a 1-hour online consultation with The Prymm Group. Subject to availability and approval." />
   <meta property="og:url"         content="https://prymmgroup.com/appointments" />
   <meta property="og:image"       content="https://prymmgroup.com/assets/prymm-group-logo.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Book an Appointment — The Prymm Group",
+    "url": "https://prymmgroup.com/appointments",
+    "description": "Request a 1-hour Google Meet consultation with The Prymm Group.",
+    "provider": {
+      "@type": "Organization",
+      "name": "The Prymm Group LLC",
+      "url": "https://prymmgroup.com"
+    }
+  }
+  </script>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -50,16 +66,10 @@
       text-align: center;
       flex-wrap: wrap;
     }
-    .tz-banner__icon { font-size: 1rem; flex-shrink: 0; }
+    .tz-banner__icon  { font-size: 1rem; flex-shrink: 0; }
     .tz-banner__label { color: #F7B731; font-weight: 700; }
-    .tz-banner__local {
-      margin-left: 0.25rem;
-      color: rgba(240,240,240,0.5);
-      font-weight: 400;
-    }
-    @media (max-width: 480px) {
-      .tz-banner { font-size: 0.78rem; padding: 0.55rem 1rem; }
-    }
+    .tz-banner__local { margin-left: 0.25rem; color: rgba(240,240,240,0.5); font-weight: 400; }
+    @media (max-width: 480px) { .tz-banner { font-size: 0.78rem; padding: 0.55rem 1rem; } }
   </style>
 </head>
 <body data-page="appointments">
@@ -75,7 +85,7 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <a href="../" class="nav__logo" aria-label="The Prymm Group — home">
+    <a href="/" class="nav__logo" aria-label="The Prymm Group — home">
       <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="sync" />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
@@ -156,20 +166,48 @@
         </div>
       </div>
 
-      <!-- FORM -->
+      <!-- FORM WRAPPER -->
       <div class="apt-form-wrap reveal">
+
+        <!-- SUCCESS STATE -->
         <div class="apt-success" id="apt-success" aria-live="polite" hidden>
           <div class="apt-success__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
-              <circle cx="24" cy="24" r="22" stroke="#D62828" stroke-width="3"/>
-              <path d="M13 24.5L20.5 32L35 17" stroke="#D62828" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+              <circle cx="24" cy="24" r="22" stroke="#D62828" stroke-width="2.5"/>
+              <path d="M13 24.5L20.5 32L35 17" stroke="#D62828" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <h3 class="apt-success__title">Request Submitted</h3>
-          <p class="apt-success__msg">Thank you! Your appointment request has been received. Check your inbox for an acknowledgment email &mdash; our team will follow up within 1&ndash;2 business days.</p>
-          <a href="../appointments/" class="btn btn--primary">Submit Another Request</a>
+          <h3 class="apt-success__title">Request Submitted!</h3>
+          <p class="apt-success__msg">Your appointment request has been received. Check your inbox for an acknowledgment email &mdash; our team will follow up within 1&ndash;2 business days.</p>
+
+          <!-- Booking summary card -->
+          <div class="apt-summary" role="region" aria-label="Booking summary">
+            <p class="apt-summary__heading">Your Booking Details</p>
+            <div class="apt-summary__row">
+              <span class="apt-summary__label">Name</span>
+              <span class="apt-summary__value" id="summary-name">&mdash;</span>
+            </div>
+            <div class="apt-summary__row">
+              <span class="apt-summary__label">Preferred Date</span>
+              <span class="apt-summary__value" id="summary-date">&mdash;</span>
+            </div>
+            <div class="apt-summary__row">
+              <span class="apt-summary__label">Preferred Time</span>
+              <span class="apt-summary__value" id="summary-time">&mdash;</span>
+            </div>
+            <div class="apt-summary__row">
+              <span class="apt-summary__label">Division</span>
+              <span class="apt-summary__value" id="summary-division">&mdash;</span>
+            </div>
+          </div>
+
+          <div class="apt-success__actions">
+            <button class="btn btn--outline" id="apt-reset">Submit Another Request</button>
+            <a href="/" class="btn btn--primary">Back to Homepage</a>
+          </div>
         </div>
 
+        <!-- FORM -->
         <form
           class="apt-form"
           id="apt-form"
@@ -182,8 +220,7 @@
           <input type="hidden" name="_autoresponse" value="Thank you for requesting a meeting with The Prymm Group. Your request has been received and is pending review. We will get back to you within 1&#8211;2 business days with a Google Meet invite if approved. &#8212; The Prymm Group Team" />
           <input type="hidden" name="_template"     value="table" />
           <input type="hidden" name="_captcha"      value="false" />
-          <input type="hidden" name="_next"         value="https://prymmgroup.com/appointments#booking" />
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="text"   name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
           <div class="apt-form__row apt-form__row--2">
             <div class="apt-form__field">
@@ -247,7 +284,7 @@
 
           <div class="apt-form__field">
             <label class="apt-form__label" for="apt-topic">Meeting Topic / Agenda <span class="apt-form__req" aria-hidden="true">*</span></label>
-            <textarea class="apt-form__input apt-form__textarea" id="apt-topic" name="Meeting Topic" required maxlength="500" rows="5" placeholder="Briefly describe what you'd like to discuss (max 500 characters)&hellip;"></textarea>
+            <textarea class="apt-form__input apt-form__textarea" id="apt-topic" name="Meeting Topic" required maxlength="500" rows="5" placeholder="Briefly describe what you’d like to discuss (max 500 characters)…"></textarea>
             <div class="apt-form__char-wrap"><span class="apt-form__char-count" id="char-count">0</span> / 500</div>
             <span class="apt-form__error" id="err-topic" role="alert"></span>
           </div>
@@ -259,8 +296,8 @@
             </button>
           </div>
         </form>
-      </div>
 
+      </div>
     </div>
   </section>
 
@@ -303,15 +340,16 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
-      <a href="../" class="footer__logo" aria-label="The Prymm Group &mdash; back to home">
+      <a href="/" class="footer__logo" aria-label="The Prymm Group — back to home">
         <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="footer__logo-img" width="48" height="48" loading="lazy" decoding="async" />
         <span class="footer__logo-text">PRYMM GROUP</span>
       </a>
       <p class="footer__tagline">Sustainable Solutions. Lasting Relationships.</p>
-      <p class="footer__legal">&copy; 2026 The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
+      <p class="footer__legal">&copy; <span id="footer-year">2026</span> The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
     </div>
   </footer>
 
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
   <script src="../main.js"></script>
   <script src="../appointments.js"></script>
 
@@ -323,7 +361,7 @@
         var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
         var offsetMin = -new Date().getTimezoneOffset();
         var sign = offsetMin >= 0 ? '+' : '-';
-        var abs = Math.abs(offsetMin);
+        var abs  = Math.abs(offsetMin);
         var h = Math.floor(abs / 60);
         var m = abs % 60;
         var offsetStr = 'UTC' + sign + h + (m ? ':' + String(m).padStart(2, '0') : '');
