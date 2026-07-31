@@ -1,6 +1,6 @@
 /* =====================================================
    PRYMM GROUP — INDEX PAGE STYLES
-   Style System v11 — Phase 4 UX Polish
+   Style System v12 — will-change on parallax blocks
 
    Shared system (tokens, reset, nav, footer,
    buttons, reveal, animations, responsive base)
@@ -34,9 +34,10 @@
 }
 .hero__grid-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .hero__block { position: absolute; border-radius: 0; }
-.hero__block--red    { width: 320px; height: 320px; top: var(--nav-h); right: 0; background: var(--red); opacity: 0.55; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.1s; }
-.hero__block--yellow { width: 160px; height: 160px; top: calc(var(--nav-h) + 320px); right: 0; background: var(--yellow); opacity: 0.70; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.2s; }
-.hero__block--blue   { width: 80px; height: 80px; top: calc(var(--nav-h) + 480px); right: 160px; background: var(--blue); opacity: 0.80; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.25s; }
+/* Promote parallax blocks to their own compositor layer to avoid layout repaints */
+.hero__block--red    { width: 320px; height: 320px; top: var(--nav-h); right: 0; background: var(--red); opacity: 0.55; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.1s; will-change: transform; }
+.hero__block--yellow { width: 160px; height: 160px; top: calc(var(--nav-h) + 320px); right: 0; background: var(--yellow); opacity: 0.70; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.2s; will-change: transform; }
+.hero__block--blue   { width: 80px; height: 80px; top: calc(var(--nav-h) + 480px); right: 160px; background: var(--blue); opacity: 0.80; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.25s; will-change: transform; }
 .hero__rule--h { position: absolute; left: 0; right: 0; top: calc(var(--nav-h) + 320px); height: 2px; background: rgba(255,255,255,0.05); }
 .hero__rule--v { position: absolute; top: var(--nav-h); bottom: 0; right: 320px; width: 2px; background: rgba(255,255,255,0.05); }
 .hero__content { position: relative; z-index: 2; padding: clamp(40px, 8vw, 100px) clamp(20px, 4vw, 40px) 60px; max-width: 680px; }

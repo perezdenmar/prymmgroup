@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v11 — Full Reveal Selectors
+   Interactions v12 — data-count stat refactor
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
    ─ Active nav indicator on sub-pages
@@ -11,7 +11,7 @@
    ─ aria-expanded + aria-label on hamburger
    ─ Snap reveal (IntersectionObserver) — all pages
    ─ Staggered division cards + benefit items
-   ─ Stat counters (eased, reduced-motion safe)
+   ─ Stat counters (eased, reduced-motion safe, data-count driven)
    ─ Division touch feedback
    ─ Bauhaus block parallax (hero-visibility guard)
    ─ Contact form: hidden iframe POST (no CORS, no activation)
@@ -236,7 +236,8 @@
   });
 
   /* ─────────────────────────────────────────────
-     6. STAT COUNTERS
+     6. STAT COUNTERS — reads data-count from HTML
+        (values are no longer hardcoded here)
   ───────────────────────────────────────────── */
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
@@ -260,24 +261,29 @@
     function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        var nums    = entry.target.querySelectorAll('.hero__stat-num');
-        var targets = [3, 95, 0];
-        nums.forEach(function (el, i) {
+
+        /* Read target values from data-count attributes on each .hero__stat-num */
+        var nums = Array.from(entry.target.querySelectorAll('.hero__stat-num[data-count]'));
+        nums.forEach(function (el) {
+          var target = parseInt(el.getAttribute('data-count'), 10);
+          if (isNaN(target)) return;
           var sup = el.querySelector('sup');
           if (sup) {
+            /* Preserve the <sup> suffix after the counter finishes */
             if (!prefersReduced) {
               var supText = sup.textContent;
               setTimeout(function () {
-                el.textContent = targets[i];
+                el.textContent = target;
                 var newSup = document.createElement('sup');
                 newSup.textContent = supText;
                 el.appendChild(newSup);
               }, 700);
             }
           } else {
-            animateCounter(el, targets[i], 700);
+            animateCounter(el, target, 700);
           }
         });
+
         statsObserver.unobserve(entry.target);
       });
     },
