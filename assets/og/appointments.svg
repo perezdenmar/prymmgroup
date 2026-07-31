@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0D0D0D"/>
+  <!-- Blue left stripe -->
+  <rect x="0" y="0" width="18" height="630" fill="#1A3EBF"/>
+  <!-- Yellow top band -->
+  <rect x="18" y="0" width="1182" height="8" fill="#F5C400"/>
+  <!-- Calendar-ish geometric -->
+  <rect x="780" y="60" width="360" height="360" rx="4" fill="#1A3EBF" opacity="0.12"/>
+  <rect x="820" y="100" width="280" height="40" fill="#1A3EBF" opacity="0.30"/>
+  <rect x="820" y="160" width="60" height="60" fill="#D62828" opacity="0.70"/>
+  <rect x="900" y="160" width="60" height="60" fill="#1A3EBF" opacity="0.40"/>
+  <rect x="980" y="160" width="60" height="60" fill="#1A3EBF" opacity="0.40"/>
+  <rect x="820" y="240" width="60" height="60" fill="#1A3EBF" opacity="0.40"/>
+  <rect x="900" y="240" width="60" height="60" fill="#F5C400" opacity="0.50"/>
+  <rect x="980" y="240" width="60" height="60" fill="#1A3EBF" opacity="0.40"/>
+  <!-- Eyebrow -->
+  <text x="80" y="108" font-family="Arial Narrow, Arial, sans-serif" font-weight="700" font-size="18" letter-spacing="8" fill="#888888">THE PRYMM GROUP</text>
+  <rect x="80" y="130" width="60" height="3" fill="#1A3EBF"/>
+  <!-- Headline -->
+  <text x="80" y="290" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="90" letter-spacing="-2" fill="#F7F5F0">BOOK AN</text>
+  <text x="80" y="400" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="90" letter-spacing="-2" fill="#1A3EBF">APPOINTMENT</text>
+  <!-- Tagline -->
+  <text x="80" y="480" font-family="Arial, sans-serif" font-size="22" fill="#888888">1-hour Google Meet · Mon, Tue &amp; Fri · Philippine Standard Time</text>
+  <!-- Bottom bar -->
+  <rect x="0" y="622" width="1200" height="8" fill="#1A3EBF"/>
+</svg>

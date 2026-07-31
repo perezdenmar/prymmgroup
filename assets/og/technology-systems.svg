@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0D0D0D"/>
+  <!-- Blue left stripe -->
+  <rect x="0" y="0" width="18" height="630" fill="#1A3EBF"/>
+  <!-- Blue top band -->
+  <rect x="18" y="0" width="1182" height="8" fill="#1A3EBF"/>
+  <!-- Circuit/tech abstract -->
+  <rect x="820" y="120" width="340" height="2" fill="#1A3EBF" opacity="0.40"/>
+  <rect x="820" y="220" width="340" height="2" fill="#1A3EBF" opacity="0.40"/>
+  <rect x="820" y="320" width="340" height="2" fill="#1A3EBF" opacity="0.40"/>
+  <rect x="820" y="420" width="340" height="2" fill="#1A3EBF" opacity="0.40"/>
+  <rect x="900" y="80" width="2" height="400" fill="#1A3EBF" opacity="0.30"/>
+  <rect x="1000" y="80" width="2" height="400" fill="#1A3EBF" opacity="0.30"/>
+  <rect x="1100" y="80" width="2" height="400" fill="#1A3EBF" opacity="0.30"/>
+  <circle cx="900" cy="120" r="10" fill="#F5C400" opacity="0.70"/>
+  <circle cx="1000" cy="220" r="10" fill="#D62828" opacity="0.70"/>
+  <circle cx="1100" cy="320" r="10" fill="#1A3EBF" opacity="0.90"/>
+  <circle cx="900" cy="420" r="10" fill="#F5C400" opacity="0.70"/>
+  <!-- Eyebrow -->
+  <text x="80" y="108" font-family="Arial Narrow, Arial, sans-serif" font-weight="700" font-size="18" letter-spacing="8" fill="#888888">PRYMM GROUP — DIVISION</text>
+  <rect x="80" y="130" width="60" height="3" fill="#1A3EBF"/>
+  <!-- Headline -->
+  <text x="80" y="290" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="80" letter-spacing="-1" fill="#F7F5F0">TECHNOLOGY</text>
+  <text x="80" y="390" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="80" letter-spacing="-1" fill="#1A3EBF">SYSTEMS</text>
+  <!-- Tagline -->
+  <text x="80" y="470" font-family="Arial, sans-serif" font-size="22" fill="#888888">CCTV, access control &amp; building management systems</text>
+  <!-- Bottom bar -->
+  <rect x="0" y="622" width="1200" height="8" fill="#1A3EBF"/>
+</svg>

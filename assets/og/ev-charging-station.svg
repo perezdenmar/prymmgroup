@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0D0D0D"/>
+  <!-- Blue left stripe -->
+  <rect x="0" y="0" width="18" height="630" fill="#1A3EBF"/>
+  <!-- Blue top band -->
+  <rect x="18" y="0" width="1182" height="8" fill="#1A3EBF"/>
+  <!-- Lightning bolt abstract -->
+  <polygon points="960,60 880,320 960,320 880,570 1080,260 980,260 1060,60" fill="#1A3EBF" opacity="0.20"/>
+  <polygon points="980,80 910,300 980,300 910,530 1080,270 990,270 1060,80" fill="#F5C400" opacity="0.18"/>
+  <!-- Accent dot -->
+  <circle cx="1100" cy="100" r="40" fill="#1A3EBF" opacity="0.40"/>
+  <!-- Eyebrow -->
+  <text x="80" y="108" font-family="Arial Narrow, Arial, sans-serif" font-weight="700" font-size="18" letter-spacing="8" fill="#888888">PRYMM GROUP — DIVISION</text>
+  <rect x="80" y="130" width="60" height="3" fill="#1A3EBF"/>
+  <!-- Headline -->
+  <text x="80" y="290" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="80" letter-spacing="-1" fill="#F7F5F0">EV CHARGING</text>
+  <text x="80" y="390" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="80" letter-spacing="-1" fill="#1A3EBF">STATION</text>
+  <!-- Tagline -->
+  <text x="80" y="470" font-family="Arial, sans-serif" font-size="22" fill="#888888">Smart EV infrastructure for the Philippines</text>
+  <!-- Bottom bar -->
+  <rect x="0" y="622" width="1200" height="8" fill="#1A3EBF"/>
+</svg>

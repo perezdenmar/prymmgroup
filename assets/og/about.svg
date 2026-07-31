@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0D0D0D"/>
+  <!-- Yellow left stripe -->
+  <rect x="0" y="0" width="18" height="630" fill="#F5C400"/>
+  <!-- Red top band -->
+  <rect x="18" y="0" width="1182" height="8" fill="#D62828"/>
+  <!-- Diagonal accent blocks -->
+  <rect x="820" y="0" width="380" height="320" fill="#F5C400" opacity="0.07"/>
+  <rect x="900" y="80" width="260" height="200" fill="#F5C400" opacity="0.10"/>
+  <rect x="1080" y="0" width="120" height="120" fill="#F5C400" opacity="0.28"/>
+  <!-- Red bar accent -->
+  <rect x="80" y="130" width="60" height="3" fill="#F5C400"/>
+  <!-- Eyebrow -->
+  <text x="80" y="108" font-family="Arial Narrow, Arial, sans-serif" font-weight="700" font-size="18" letter-spacing="8" fill="#888888" text-anchor="start">THE PRYMM GROUP</text>
+  <!-- Headline -->
+  <text x="80" y="280" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="110" letter-spacing="-2" fill="#F7F5F0">ABOUT</text>
+  <text x="80" y="400" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="110" letter-spacing="-2" fill="#F5C400">US</text>
+  <!-- Tagline -->
+  <text x="80" y="490" font-family="Arial, sans-serif" font-size="24" fill="#888888">Built on engineering. Driven by purpose.</text>
+  <!-- Bottom bar -->
+  <rect x="0" y="622" width="1200" height="8" fill="#F5C400"/>
+</svg>
