@@ -50,14 +50,16 @@
       <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="sync" />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
-    <ul class="nav__links" id="nav-links-about">
+    <!-- FIX: id changed from nav-links-about to nav-links to match main.js focus trap -->
+    <ul class="nav__links" id="nav-links" role="list">
       <li><a href="/#divisions">Divisions</a></li>
       <li><a href="/#product">Technology</a></li>
       <li><a href="/about" aria-current="page">About</a></li>
       <li><a href="/appointments">Appointments</a></li>
       <li><a href="/#contact" class="nav__cta">Contact</a></li>
     </ul>
-    <button class="nav__hamburger" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links-about">
+    <!-- FIX: aria-controls updated to match the new ul id -->
+    <button class="nav__hamburger" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
   </nav>

@@ -68,7 +68,10 @@
       "email": "info@prymmgroup.com",
       "contactType": "customer service"
     },
-    "sameAs": []
+    "sameAs": [
+      "https://www.linkedin.com/company/prymmgroup",
+      "https://www.facebook.com/prymmgroup"
+    ]
   }
   </script>
 </head>
@@ -79,7 +82,8 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <a href="#hero" class="nav__logo" aria-label="The Prymm Group &mdash; home">
+    <!-- FIX: href changed from #hero to / so logo works correctly on all pages -->
+    <a href="/" class="nav__logo" aria-label="The Prymm Group &mdash; home">
       <img
         src="assets/prymm-group-logo.png"
         alt="Prymm Group logo &mdash; interlocking G and P in red and blue"
@@ -91,7 +95,7 @@
       />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
-    <ul class="nav__links" id="nav-links">
+    <ul class="nav__links" id="nav-links" role="list">
       <li><a href="#divisions">Divisions</a></li>
       <li><a href="#product">Technology</a></li>
       <li><a href="/about">About</a></li>
@@ -141,17 +145,17 @@
     </div>
     <div class="hero__stat-strip">
       <div class="hero__stat">
-        <span class="hero__stat-num">3</span>
+        <span class="hero__stat-num" data-count="3">3</span>
         <span class="hero__stat-label">Core Divisions</span>
       </div>
       <div class="hero__stat-divider" aria-hidden="true"></div>
       <div class="hero__stat">
-        <span class="hero__stat-num">95<sup>%</sup></span>
+        <span class="hero__stat-num" data-count="95">95<sup>%</sup></span>
         <span class="hero__stat-label">Waste Volume Reduction</span>
       </div>
       <div class="hero__stat-divider" aria-hidden="true"></div>
       <div class="hero__stat">
-        <span class="hero__stat-num">0<sup>%</sup></span>
+        <span class="hero__stat-num" data-count="0">0<sup>%</sup></span>
         <span class="hero__stat-label">Waste to Landfill</span>
       </div>
     </div>
@@ -306,7 +310,7 @@
     </div>
   </section>
 
-  <section class="manifesto">
+  <section class="manifesto" id="manifesto">
     <div class="manifesto__inner">
       <div class="manifesto__blocks" aria-hidden="true">
         <div class="manifesto__block manifesto__block--r"></div>
@@ -352,9 +356,18 @@
           <span class="contact__item-value">Wilmington, Delaware, USA</span>
         </div>
 
-        <form class="contact__form" id="contact-form" novalidate>
+        <!-- FIX: action & method added directly in HTML as fallback if JS fails -->
+        <form
+          class="contact__form"
+          id="contact-form"
+          action="https://formsubmit.co/info@prymmgroup.com"
+          method="POST"
+          novalidate
+        >
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
           <input type="hidden" name="_subject" value="New Enquiry &mdash; The Prymm Group" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
           <div class="contact__field">
             <label for="cf-name">Name</label>
             <input id="cf-name" name="name" type="text" placeholder="Your name" required autocomplete="name" />
@@ -370,6 +383,12 @@
           <button type="submit" class="btn btn--primary">Send Message &rarr;</button>
           <p class="contact__form-status" aria-live="polite"></p>
         </form>
+        <!-- FIX: noscript fallback for users with JavaScript disabled -->
+        <noscript>
+          <p style="margin-top:1rem;color:rgba(247,245,240,0.6);font-size:0.875rem;">
+            Please email us directly at <a href="mailto:info@prymmgroup.com" style="color:inherit;">info@prymmgroup.com</a> or call <a href="tel:+19095626640" style="color:inherit;">+1 909 562 6640</a>.
+          </p>
+        </noscript>
       </div>
     </div>
   </section>
@@ -379,7 +398,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
-      <a href="#hero" class="footer__logo" aria-label="The Prymm Group &mdash; back to top">
+      <a href="/" class="footer__logo" aria-label="The Prymm Group &mdash; back to top">
         <img
           src="assets/prymm-group-logo.png"
           alt="Prymm Group logo"
@@ -392,10 +411,12 @@
         <span class="footer__logo-text">PRYMM GROUP</span>
       </a>
       <p class="footer__tagline">Sustainable Solutions. Lasting Relationships.</p>
-      <p class="footer__legal">&copy; 2026 The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
+      <!-- FIX: dynamic year replaces hardcoded 2026 -->
+      <p class="footer__legal">&copy; <span id="footer-year"></span> The Prymm Group LLC. All rights reserved. Wilmington, Delaware, USA.</p>
     </div>
   </footer>
 
   <script src="main.js"></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
