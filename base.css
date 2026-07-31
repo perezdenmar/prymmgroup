@@ -28,6 +28,172 @@
   --t-fast:  150ms;
   --t-base:  200ms;
   --t-slow:  300ms;
+
+  /* ── Semantic surface tokens (light default) ── */
+  --surface-page:   var(--white);       /* body background on light pages  */
+  --surface-text:   var(--black);       /* primary body text                */
+  --surface-muted:  #444;               /* secondary body text              */
+  --surface-border: rgba(0,0,0,0.10);   /* subtle dividers on light bg      */
+  --surface-card:   #fff;              /* elevated card background          */
+  --surface-card-border: rgba(0,0,0,0.08);
+}
+
+/* ─── DARK MODE — OS preference ──────────────────── */
+/*
+   The site is intentionally dark-first: nav, footer, hero, and all
+   Bauhaus sections are already near-black. Only the "white" light-surface
+   sections (Divisions grid, product spotlight text area, form wrappers,
+   appointment steps, etc.) need adaptation for users whose OS is set to
+   dark mode — otherwise those sections blast a harsh white against an
+   otherwise dark-dominant page.
+
+   Strategy:
+   • Remap --surface-* tokens only (page bg, text, card, border).
+   • Leave --black / --white / --red / --yellow / --blue untouched so every
+     dark section continues to use its own hardcoded dark values correctly.
+   • Slightly warm the page background (#111) rather than pure black so it
+     harmonises with the existing #0D0D0D sections without looking identical.
+*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-page:        #111111;      /* warm-dark body bg (vs white)    */
+    --surface-text:        #E8E6E0;      /* soft off-white body text         */
+    --surface-muted:       #9A9790;      /* muted secondary text             */
+    --surface-border:      rgba(255,255,255,0.09);
+    --surface-card:        #1A1A1A;      /* elevated card bg                 */
+    --surface-card-border: rgba(255,255,255,0.07);
+  }
+
+  /* Body base */
+  body {
+    background: var(--surface-page);
+    color: var(--surface-text);
+  }
+
+  /* Divisions section — the main "white" island on the homepage */
+  .divisions {
+    background: var(--surface-page) !important;
+  }
+  .divisions__grid {
+    border-color: rgba(255,255,255,0.12) !important;
+  }
+  .division {
+    border-right-color: rgba(255,255,255,0.12) !important;
+    border-bottom-color: rgba(255,255,255,0.12) !important;
+  }
+  .section-header__title {
+    color: var(--surface-text);
+  }
+
+  /* Section labels */
+  .section-header__label {
+    color: var(--surface-muted);
+  }
+
+  /* Scroll progress bar — soften glow on dark bg */
+  #scroll-progress {
+    box-shadow: 0 0 6px rgba(245, 196, 0, 0.35);
+  }
+
+  /* Appointment steps section (white bg on default) */
+  .apt-steps {
+    background: var(--surface-page) !important;
+  }
+  .apt-step {
+    border-color: var(--surface-border) !important;
+    color: var(--surface-text);
+  }
+  .apt-step__desc {
+    color: var(--surface-muted);
+  }
+
+  /* Appointment form section */
+  .apt-form-section {
+    background: #0f0f0f !important;
+  }
+  .apt-form__input,
+  .apt-form__select,
+  .apt-form__textarea {
+    background: #1e1e1e !important;
+    border-color: rgba(255,255,255,0.14) !important;
+    color: var(--surface-text) !important;
+  }
+  .apt-form__input::placeholder,
+  .apt-form__textarea::placeholder {
+    color: rgba(232,230,224,0.30) !important;
+  }
+  .apt-form__input:focus,
+  .apt-form__select:focus,
+  .apt-form__textarea:focus {
+    border-color: var(--yellow) !important;
+  }
+  .apt-form-info__title,
+  .apt-form-info__desc,
+  .apt-availability__label {
+    color: var(--surface-text);
+  }
+  .apt-availability__list li,
+  .apt-availability__note {
+    color: var(--surface-muted);
+  }
+  .apt-form-wrap {
+    background: var(--surface-card) !important;
+    border-color: var(--surface-card-border) !important;
+  }
+  .apt-summary {
+    background: #222 !important;
+    border-color: rgba(255,255,255,0.08) !important;
+  }
+  .apt-summary__label { color: var(--surface-muted); }
+  .apt-summary__value { color: var(--surface-text); }
+  .apt-success {
+    background: var(--surface-card) !important;
+    border-color: var(--surface-card-border) !important;
+  }
+  .apt-success__msg,
+  .apt-success__title { color: var(--surface-text); }
+
+  /* Manifesto band — adapts if page bg shows through */
+  .manifesto {
+    background: var(--black) !important;
+    border-top-color:    rgba(255,255,255,0.08) !important;
+    border-bottom-color: rgba(255,255,255,0.08) !important;
+  }
+
+  /* About page light sections */
+  .about-intro,
+  .about-values {
+    background: var(--surface-page) !important;
+    color: var(--surface-text);
+  }
+  .about-values__item {
+    border-color: var(--surface-border) !important;
+  }
+  .about-values__title,
+  .about-intro__heading {
+    color: var(--surface-text);
+  }
+  .about-intro__lead,
+  .about-values__desc {
+    color: var(--surface-muted);
+  }
+
+  /* TSI / EV / WM / e-Bike pages — white island sections */
+  .wm-compliance,
+  .ev-accred,
+  .tsi-overview,
+  .ts-intro,
+  .eb-intro {
+    background: var(--surface-page) !important;
+    color: var(--surface-text);
+  }
+
+  /* Skip link contrast on dark bg */
+  .skip-link {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
 }
 
 /* ─── RESET ──────────────────────────────────────── */
