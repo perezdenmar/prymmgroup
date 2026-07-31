@@ -97,16 +97,18 @@
     </section>
 
     <!-- INTRO BAND -->
+    <!-- Fix #6: blockquote now wraps text in <p> for correct screen-reader semantics -->
     <section class="about-intro">
       <div class="about-intro__inner">
         <div class="about-intro__accent" aria-hidden="true"></div>
         <blockquote class="about-intro__quote">
-          We exist to build the capacity for tomorrow &mdash; integrating physical infrastructure, digital systems, and human capital into one unified enterprise.
+          <p>We exist to build the capacity for tomorrow &mdash; integrating physical infrastructure, digital systems, and human capital into one unified enterprise.</p>
         </blockquote>
       </div>
     </section>
 
     <!-- STORY -->
+    <!-- Fix #1: removed order:-1 from .about-story__visual in CSS so photo follows heading on mobile -->
     <section class="about-story">
       <div class="container about-story__inner">
         <div class="about-story__text">
@@ -219,6 +221,7 @@
     </section>
 
     <!-- NETWORK -->
+    <!-- Fix #3: added class="about-network__logo" to all partner imgs for broken-image fallback styling -->
     <section class="about-network" id="network" aria-labelledby="network-heading">
       <div class="container about-network__inner">
         <header class="about-network__header reveal">
@@ -227,13 +230,13 @@
           <p class="about-network__sub">The organisations and enterprises that share our commitment to sustainable progress and lasting relationships.</p>
         </header>
         <ul class="about-network__grid reveal" aria-label="Partner and affiliate logos">
-          <li class="about-network__item"><img src="../assets/images/prymm-enterprises.png" alt="Prymm Enterprises" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/equip.png" alt="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc." width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/gets.png" alt="GETS &mdash; Global Excellence Technical School Inc." width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/gepsearch.png" alt="GEPSearch" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/dp-fabrication.png" alt="DP Fabrication and Machineries" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/tulai-foundation.png" alt="Tulai Foundation" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/seamphony.png" alt="The Seamphony Seafood and Grill" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/prymm-enterprises.png" alt="Prymm Enterprises" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/equip.png" alt="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc." class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/gets.png" alt="GETS &mdash; Global Excellence Technical School Inc." class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/gepsearch.png" alt="GEPSearch" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/dp-fabrication.png" alt="DP Fabrication and Machineries" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/tulai-foundation.png" alt="Tulai Foundation" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/seamphony.png" alt="The Seamphony Seafood and Grill" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
         </ul>
       </div>
     </section>

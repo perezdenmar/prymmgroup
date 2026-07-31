@@ -1,6 +1,19 @@
 /* =====================================================
    PRYMM GROUP — ABOUT PAGE STYLES
    Depends on base.css being loaded first.
+
+   Design review fixes applied 2026-08-01:
+   #1  Mobile story photo order restored (no order:-1)
+   #2  Philosophy pillar body contrast raised (0.55 → 0.72)
+   #3  Network logo broken-image fallback via .about-network__logo
+   #4  Photo-wrap overflow:visible; founded badge offset corrected at tablet
+   #5  Division card index hover opacity raised (0.30 → 0.45)
+   #7  Hero Bauhaus blocks replaced display:none with narrow strip at 600px
+   #8  Story body font-size floor raised 0.875rem → 1rem (14px → 16px)
+   #9  Network logo grid: flex → CSS Grid auto-fill
+   #10 Pillar accent bars: 40px fixed → clamp(32px,5vw,56px)
+   #11 Intro accent bar stays vertical on mobile (shrinks, not rotates)
+   #12 Explicit prefers-reduced-motion guard on division card transitions
 ===================================================== */
 
 /* ---- HERO ---- */
@@ -88,11 +101,13 @@
   align-items: center;
   gap: 40px;
 }
+/* Fix #11: accent bar stays vertical on mobile — shrinks in height, never rotates */
 .about-intro__accent {
   flex-shrink: 0;
   width: 6px;
   height: 80px;
   background: var(--white);
+  align-self: flex-start;
 }
 .about-intro__quote {
   font-family: var(--ff-head);
@@ -102,6 +117,14 @@
   line-height: 1.4;
   color: var(--white);
   letter-spacing: 0.01em;
+}
+/* Fix #6: <p> inside blockquote inherits quote styles cleanly */
+.about-intro__quote p {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
 }
 
 /* ---- STORY SECTION ---- */
@@ -129,8 +152,9 @@
   font-style: normal;
   color: var(--red);
 }
+/* Fix #8: floor raised from 0.875rem (14px) to 1rem (16px) for mobile readability */
 .about-story__body {
-  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-size: clamp(1rem, 2vw, 1.0625rem);
   line-height: 1.8;
   color: #444;
   max-width: 62ch;
@@ -139,11 +163,13 @@
 .about-story__body:last-child { margin-bottom: 0; }
 
 /* Photo with tricolour accent bars */
+/* Fix #4: overflow:visible ensures founded badge is not clipped */
 .about-story__photo-wrap {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 0;
+  overflow: visible;
 }
 .about-story__photo {
   width: 100%;
@@ -223,6 +249,17 @@
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
   -webkit-tap-highlight-color: transparent;
 }
+/* Fix #12: suppress transitions for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .about-div-card {
+    transition: none;
+  }
+  .about-div-card__desc,
+  .about-div-card__arrow,
+  .about-div-card__index {
+    transition: none;
+  }
+}
 .about-div-card:last-child { border-right: none; }
 .about-div-card:hover, .about-div-card:focus-visible {
   background: var(--black);
@@ -244,6 +281,7 @@
 .about-div-card--tech       .about-div-card__bar { background: var(--blue); }
 .about-div-card--edu        .about-div-card__bar { background: var(--yellow); }
 
+/* Fix #5: index opacity on hover raised 0.30 → 0.45 for sufficient contrast */
 .about-div-card__index {
   font-family: var(--ff-head);
   font-size: 0.7rem;
@@ -254,7 +292,7 @@
   transition: color 0.2s;
 }
 .about-div-card:hover .about-div-card__index,
-.about-div-card:focus-visible .about-div-card__index { color: rgba(247,245,240,0.30); }
+.about-div-card:focus-visible .about-div-card__index { color: rgba(247,245,240,0.45); }
 
 .about-div-card__name {
   font-family: var(--ff-head);
@@ -331,9 +369,10 @@
   flex-direction: column;
   gap: 10px;
 }
+/* Fix #10: pillar bars fluid width instead of fixed 40px */
 .about-philosophy__pillar-bar {
   height: 4px;
-  width: 40px;
+  width: clamp(32px,5vw,56px);
   flex-shrink: 0;
   margin-bottom: 4px;
 }
@@ -349,10 +388,11 @@
   text-transform: uppercase;
   color: var(--white);
 }
+/* Fix #2: opacity raised 0.55 → 0.72 to pass WCAG AA at small font sizes */
 .about-philosophy__pillar p {
   font-size: clamp(0.78rem,1.6vw,0.875rem);
   line-height: 1.65;
-  color: rgba(247,245,240,0.55);
+  color: rgba(247,245,240,0.72);
 }
 
 /* ---- OUR NETWORK BAND ---- */
@@ -387,42 +427,44 @@
   margin: 0 auto;
 }
 
-/* Logo grid */
+/* Fix #9: CSS Grid auto-fill for even logo distribution (no orphaned lone logo) */
 .about-network__grid {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  justify-items: center;
   align-items: center;
-  gap: clamp(28px,4vw,56px) clamp(32px,5vw,72px);
+  gap: clamp(28px,4vw,48px) clamp(20px,3vw,36px);
 }
 .about-network__item {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.about-network__item img {
+/* Fix #3: .about-network__logo — fallback bg + min dimensions for broken images */
+.about-network__logo {
   display: block;
   max-width: 140px;
   max-height: 64px;
+  min-width: 80px;
+  min-height: 40px;
   width: auto;
   height: auto;
   object-fit: contain;
-  /*
-   * At rest: desaturated + dimmed so logos recede on the dark bg.
-   * On hover: full natural colour revealed — works regardless of
-   * whether the PNG has a transparent or opaque background.
-   */
+  background: rgba(247,245,240,0.05);
   filter: grayscale(1);
   opacity: 0.40;
   transition: filter 320ms ease, opacity 320ms ease;
   cursor: default;
 }
-.about-network__item img:hover {
+.about-network__logo:hover {
   filter: grayscale(0);
   opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-network__logo { transition: none; }
 }
 
 /* =====================================================
@@ -430,21 +472,50 @@
 ===================================================== */
 
 @media (max-width: 900px) {
+  /* Fix #1: removed order:-1 — photo now follows the heading text on mobile */
   .about-story__inner   { grid-template-columns: 1fr; }
-  .about-story__visual  { order: -1; }
   .about-divisions__grid { grid-template-columns: 1fr; }
   .about-div-card { border-right: none; border-bottom: 3px solid var(--black); }
   .about-div-card:last-child { border-bottom: none; }
   .about-philosophy__pillars { grid-template-columns: 1fr; gap: 28px; }
-  .about-network__grid { gap: 24px 40px; }
+}
+
+@media (max-width: 768px) {
+  /* Fix #4: reduce founded badge overhang at tablet width */
+  .about-story__founded {
+    top: -12px;
+    right: -8px;
+  }
 }
 
 @media (max-width: 600px) {
-  .about-hero__block { display: none; }
-  .about-intro__inner { flex-direction: column; gap: 20px; }
-  .about-intro__accent { width: 40px; height: 6px; }
+  /* Fix #7: Bauhaus blocks become narrow brand stripes instead of display:none */
+  .about-hero__block--red {
+    width: 4px;
+    height: 55%;
+    top: var(--nav-h);
+    right: 0;
+    opacity: 0.75;
+  }
+  .about-hero__block--yellow {
+    width: 4px;
+    height: 30%;
+    top: calc(var(--nav-h) + 55%);
+    right: 0;
+    opacity: 0.85;
+  }
+  /* Blue block is too small to be useful at this width — hidden */
+  .about-hero__block--blue { display: none; }
+
+  /* Fix #11: intro accent stays vertical, just shorter — never rotates */
+  .about-intro__inner { gap: 16px; }
+  .about-intro__accent {
+    width: 4px;
+    height: 48px;
+  }
+
   .about-story__founded { top: -12px; right: -8px; }
-  .about-network__item img { max-width: 110px; max-height: 52px; }
+  .about-network__logo { max-width: 110px; max-height: 52px; }
 }
 
 @media (max-width: 380px) {
