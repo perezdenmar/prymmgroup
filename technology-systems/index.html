@@ -24,6 +24,40 @@
 
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../technology-systems.css" />
+
+  <!-- INTRO SECTION: inline override — white text, beats JS reveal & external CSS -->
+  <style>
+    .ts-intro {
+      background: #111111 !important;
+    }
+    .ts-intro .ts-intro__title,
+    .ts-intro h2.ts-intro__title {
+      color: #ffffff !important;
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    .ts-intro .ts-intro__text p {
+      color: rgba(247, 245, 240, 0.75) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .ts-intro .section-header__label {
+      color: #4fc3f7 !important;
+      opacity: 1 !important;
+    }
+    .ts-intro .ts-intro__accent {
+      background: #4fc3f7 !important;
+    }
+    /* Ensure any reveal children in intro are visible */
+    .ts-intro .reveal,
+    .ts-intro [class*="reveal"] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      visibility: visible !important;
+    }
+  </style>
 </head>
 <body data-page="technology-systems">
 
@@ -73,8 +107,8 @@
       <div class="ts-intro__accent" aria-hidden="true"></div>
       <div class="ts-intro__text">
         <span class="section-header__label">Division 02 &mdash; Technology &amp; Systems</span>
-        <h2 class="ts-intro__title">Building the Intelligent<br />Networks of Tomorrow</h2>
-        <p>Division 02 develops and deploys digital platforms and systems that orchestrate modern operations &mdash; from grid-integrated EV charging infrastructure to autonomous energy generation in micro-mobility. We source, adapt, and deploy proven technologies that solve real infrastructure gaps at scale.</p>
+        <h2 class="ts-intro__title" style="color:#ffffff;opacity:1;transform:none;visibility:visible;">Building the Intelligent<br />Networks of Tomorrow</h2>
+        <p style="color:rgba(247,245,240,0.75);opacity:1;visibility:visible;">Division 02 develops and deploys digital platforms and systems that orchestrate modern operations &mdash; from grid-integrated EV charging infrastructure to autonomous energy generation in micro-mobility. We source, adapt, and deploy proven technologies that solve real infrastructure gaps at scale.</p>
       </div>
     </div>
   </section>
