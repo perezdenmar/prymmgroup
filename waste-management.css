@@ -3,7 +3,7 @@
    Extends style.css; never overrides global tokens
 ===================================================== */
 
-/* ── HERO ──────────────────────────────────────── */
+/* ── HERO ───────────────────────────────────────── */
 .wm-hero {
   position: relative;
   min-height: 70vh;
@@ -117,7 +117,7 @@
   line-height: 1.4;
 }
 
-/* ── INTRO ──────────────────────────────────────── */
+/* ── INTRO ────────────────────────────────────────── */
 .wm-intro {
   background: var(--white);
   padding: 80px 0;
@@ -186,7 +186,7 @@
   margin-top: 2px;
 }
 
-/* ── COMPARISON TABLE ───────────────────────────── */
+/* ── COMPARISON TABLE ────────────────────────────── */
 .wm-compare {
   background: var(--black);
   padding: 100px 0 120px;
@@ -297,7 +297,7 @@
 }
 .wm-table tbody td:last-child { border-right: none; }
 
-/* Sticky spec column for mobile readability */
+/* Sticky spec column — keeps row labels visible during horizontal scroll */
 .wm-table__spec {
   font-family: var(--ff-head);
   font-size: 0.78rem;
@@ -366,9 +366,10 @@ thead th:last-child {
   background: var(--grey-1);
   border-top: 3px solid var(--grey-2);
 }
+/* Increased from 10px -> 12px to meet 44px WCAG tap target minimum */
 .wm-table__btn {
   font-size: 0.75rem;
-  padding: 10px 22px;
+  padding: 12px 22px;
   white-space: nowrap;
 }
 
@@ -452,7 +453,7 @@ thead th:last-child {
   color: var(--grey-3);
 }
 
-/* ── COMPLIANCE BAND ───────────────────────────── */
+/* ── COMPLIANCE BAND ────────────────────────────── */
 .wm-compliance {
   background: var(--white);
   padding: 100px 0;
@@ -548,7 +549,7 @@ thead th:last-child {
   border-color: var(--black);
 }
 
-/* ── RESPONSIVE ─────────────────────────────────────── */
+/* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 1000px) {
   .wm-compliance__items { grid-template-columns: 1fr 1fr; }
 }
@@ -583,6 +584,8 @@ thead th:last-child {
   .wm-cta__inner { padding: 0 20px; }
   .wm-download__action { flex-direction: column; align-items: flex-start; }
   .wm-download__btn { width: 100%; text-align: center; }
-  /* On small screens, release sticky spec column to avoid too-narrow layout */
-  .wm-table__spec { position: static; }
+  /* Narrow the spec column on small screens to give data columns more room.
+     Sticky positioning is intentionally kept (NOT released) so row labels
+     remain visible when the user scrolls the table horizontally. */
+  .wm-table__spec-col { width: 18%; }
 }
