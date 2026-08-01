@@ -39,6 +39,28 @@
 
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../about.css" />
+
+  <!-- DIVISIONS SECTION: inline override — black text, beats JS reveal & external CSS -->
+  <style>
+    .about-divisions .section-header__label {
+      color: #111111 !important;
+      opacity: 1 !important;
+    }
+    .about-divisions .section-header__title,
+    .about-divisions h2.section-header__title {
+      color: #111111 !important;
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    .about-divisions .section-header.reveal,
+    .about-divisions .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      visibility: visible !important;
+    }
+  </style>
 </head>
 <body data-page="about">
 
@@ -97,7 +119,6 @@
     </section>
 
     <!-- INTRO BAND -->
-    <!-- Fix #6: blockquote now wraps text in <p> for correct screen-reader semantics -->
     <section class="about-intro">
       <div class="about-intro__inner">
         <div class="about-intro__accent" aria-hidden="true"></div>
@@ -108,7 +129,6 @@
     </section>
 
     <!-- STORY -->
-    <!-- Fix #1: removed order:-1 from .about-story__visual in CSS so photo follows heading on mobile -->
     <section class="about-story">
       <div class="container about-story__inner">
         <div class="about-story__text">
@@ -152,8 +172,8 @@
     <section class="about-divisions">
       <div class="container">
         <header class="section-header reveal">
-          <span class="section-header__label">Our Structure</span>
-          <h2 class="section-header__title">Three Divisions.<br />One Direction.</h2>
+          <span class="section-header__label" style="color:#111111;opacity:1;">Our Structure</span>
+          <h2 class="section-header__title" style="color:#111111;opacity:1;transform:none;visibility:visible;">Three Divisions.<br />One Direction.</h2>
         </header>
         <div class="about-divisions__grid">
           <a href="/waste-management" class="about-div-card about-div-card--industrial reveal" aria-label="Industrial &amp; Trade &mdash; Waste Management">
@@ -221,7 +241,6 @@
     </section>
 
     <!-- NETWORK -->
-    <!-- Fix #3: added class="about-network__logo" to all partner imgs for broken-image fallback styling -->
     <section class="about-network" id="network" aria-labelledby="network-heading">
       <div class="container about-network__inner">
         <header class="about-network__header reveal">
