@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../about.css" />
 
-  <!-- DIVISIONS SECTION: inline override — black text, beats JS reveal & external CSS -->
   <style>
+    /* DIVISIONS SECTION: black text override */
     .about-divisions .section-header__label {
       color: #111111 !important;
       opacity: 1 !important;
@@ -59,6 +59,18 @@
       transform: none !important;
       transition: none !important;
       visibility: visible !important;
+    }
+
+    /* NETWORK LOGOS: remove all box backgrounds, blend dark PNG fills away */
+    .about-network__item {
+      background: transparent !important;
+    }
+    .about-network__logo {
+      background: transparent !important;
+      mix-blend-mode: lighten !important;
+    }
+    .about-network__logo:hover {
+      mix-blend-mode: normal !important;
     }
   </style>
 </head>
@@ -249,13 +261,13 @@
           <p class="about-network__sub">The organisations and enterprises that share our commitment to sustainable progress and lasting relationships.</p>
         </header>
         <ul class="about-network__grid reveal" aria-label="Partner and affiliate logos">
-          <li class="about-network__item"><img src="../assets/images/prymm-enterprises.png" alt="Prymm Enterprises" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/equip.png" alt="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc." class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/gets.png" alt="GETS &mdash; Global Excellence Technical School Inc." class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/gepsearch.png" alt="GEPSearch" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/dp-fabrication.png" alt="DP Fabrication and Machineries" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/tulai-foundation.png" alt="Tulai Foundation" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item"><img src="../assets/images/seamphony.png" alt="The Seamphony Seafood and Grill" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/prymm-enterprises.png" alt="Prymm Enterprises" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/equip.png" alt="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc." class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/gets.png" alt="GETS &mdash; Global Excellence Technical School Inc." class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/gepsearch.png" alt="GEPSearch" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/dp-fabrication.png" alt="DP Fabrication and Machineries" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/tulai-foundation.png" alt="Tulai Foundation" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/seamphony.png" alt="The Seamphony Seafood and Grill" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
         </ul>
       </div>
     </section>
