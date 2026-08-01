@@ -56,6 +56,7 @@
   background: rgba(0,0,0,0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  overflow: hidden;
 }
 .hero__stat { flex: 1; min-width: 100px; display: flex; flex-direction: column; justify-content: center; padding: clamp(16px, 4vw, 28px) clamp(16px, 4vw, 40px); gap: 4px; }
 .hero__stat-divider { width: 1px; background: rgba(255,255,255,0.08); flex-shrink: 0; }
@@ -262,6 +263,10 @@
   .division { border-right: none; border-bottom: 3px solid var(--black); min-height: 300px; }
   .division:last-child { border-bottom: none; }
   .product__inner { grid-template-columns: 1fr; gap: 48px; }
+  /* Hide the decorative blue clip-path flag at the same breakpoint the
+     product grid collapses to 1 column. At sub-desktop widths the flag
+     bleeds into the single-column layout and creates visual noise. */
+  .product__flag { display: none; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
   .hero__block--red    { width: 200px; height: 200px; }
   .hero__block--yellow { width: 100px; height: 100px; top: calc(var(--nav-h) + 200px); }
@@ -283,8 +288,6 @@
   .mission__accent { width: 40px; height: 6px; }
 
   .division { min-height: 280px; }
-
-  .product__flag { display: none; }
 
   .manifesto__inner { flex-direction: column; align-items: flex-start; gap: 24px; }
   .manifesto__blocks { flex-direction: row; }
