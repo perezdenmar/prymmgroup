@@ -61,6 +61,118 @@
     @media (prefers-reduced-motion: reduce) {
       .wm-hero__video { animation-play-state: paused; }
     }
+
+    /* ── EXPLAINER SECTION ──────────────────────────────── */
+    .wm-explainer {
+      background: var(--color-bg, #f7f6f2);
+      padding-block: clamp(4rem, 8vw, 7rem);
+      border-bottom: 1px solid oklch(from currentColor l c h / 0.08);
+    }
+    .wm-explainer__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .wm-explainer__label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted, #7a7974);
+      margin-bottom: 0.75rem;
+    }
+    .wm-explainer__title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--color-text, #28251d);
+      margin-bottom: 1.25rem;
+    }
+    .wm-explainer__title em {
+      font-style: italic;
+      font-weight: 900;
+    }
+    .wm-explainer__body {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--color-text-muted, #7a7974);
+      margin-bottom: 1.75rem;
+      max-width: 52ch;
+    }
+    .wm-explainer__highlights {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .wm-explainer__highlight {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--color-text, #28251d);
+    }
+    .wm-explainer__highlight::before {
+      content: '';
+      flex-shrink: 0;
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-top: 0.45em;
+      border-radius: 50%;
+      background: #c0392b;
+    }
+    /* video column */
+    .wm-explainer__video-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .wm-explainer__video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      aspect-ratio: 9 / 16;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px oklch(0.15 0.01 60 / 0.18), 0 2px 6px oklch(0.15 0.01 60 / 0.10);
+      background: #0a0a0a;
+    }
+    .wm-explainer__video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .wm-explainer__video-caption {
+      font-size: 0.75rem;
+      color: var(--color-text-muted, #7a7974);
+      text-align: center;
+      max-width: 28ch;
+      line-height: 1.4;
+    }
+    /* mobile: stack */
+    @media (max-width: 767px) {
+      .wm-explainer__inner {
+        grid-template-columns: 1fr;
+      }
+      .wm-explainer__video-col {
+        order: -1;
+      }
+      .wm-explainer__video-wrap {
+        max-width: 280px;
+      }
+    }
   </style>
 
   <!-- Schema.org JSON-LD -->
@@ -185,6 +297,46 @@
       </div>
     </div>
   </section>
+
+  <!-- EXPLAINER / YOUTUBE SHORT ──────────────────────── -->
+  <section class="wm-explainer" aria-labelledby="explainer-heading">
+    <div class="container wm-explainer__inner">
+
+      <!-- LEFT: editorial copy -->
+      <div class="wm-explainer__text">
+        <span class="wm-explainer__label">See It In Action</span>
+        <h2 class="wm-explainer__title" id="explainer-heading">
+          How It<br /><em>Works.</em>
+        </h2>
+        <p class="wm-explainer__body">
+          Sanitary landfills across the country are rapidly overflowing and generating massive greenhouse gases. The KGV Series solves this through controlled thermal incineration — destroying waste at temperatures exceeding 800&deg;C while meeting the strictest clean air standards.
+        </p>
+        <ul class="wm-explainer__highlights" aria-label="Key technology highlights">
+          <li class="wm-explainer__highlight"><strong>95% waste volume reduction</strong> — slashing landfill dependency and extending site lifespans</li>
+          <li class="wm-explainer__highlight"><strong>Fuel-less forced airflow</strong> — fans sustain ultra-high heat combustion, keeping operating costs low</li>
+          <li class="wm-explainer__highlight"><strong>Secondary burner failsafe</strong> — instantly ignites at the exhaust to eliminate toxic fumes before venting</li>
+          <li class="wm-explainer__highlight"><strong>Hospital-grade sterilization</strong> — destroys biohazards, syringes, and medical waste on-site</li>
+          <li class="wm-explainer__highlight"><strong>Clean Air Act compliant</strong> — releases harmless clean steam, not toxic black smoke</li>
+        </ul>
+      </div>
+
+      <!-- RIGHT: YouTube Short embed -->
+      <div class="wm-explainer__video-col">
+        <div class="wm-explainer__video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/j15qYxWvT9g?rel=0&modestbranding=1"
+            title="Why the Philippines is Replacing Landfills with This Japanese Tech — Prymm Group"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <p class="wm-explainer__video-caption">Watch: KGV Series thermal incineration explained in 70 seconds</p>
+      </div>
+
+    </div>
+  </section>
+  <!-- /EXPLAINER ─────────────────────────────────────── -->
 
   <!-- COMPARISON TABLE -->
   <section class="wm-compare" id="comparison">
