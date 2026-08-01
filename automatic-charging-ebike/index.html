@@ -43,6 +43,48 @@
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../automatic-charging-ebike.css" />
 
+  <!-- INTRO SECTION: inline override — white text, beats JS reveal & external CSS -->
+  <style>
+    .eb-intro {
+      background: #111111 !important;
+    }
+    .eb-intro .eb-intro__title,
+    .eb-intro h2.eb-intro__title {
+      color: #ffffff !important;
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    .eb-intro .eb-intro__text p {
+      color: rgba(247, 245, 240, 0.75) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .eb-intro .section-header__label {
+      color: #4fc3f7 !important;
+      opacity: 1 !important;
+    }
+    .eb-intro .eb-intro__accent {
+      background: #4fc3f7 !important;
+    }
+    /* Stats: numbers yellow, labels white */
+    .eb-intro .eb-intro__stat-num {
+      color: #f5c518 !important;
+      opacity: 1 !important;
+    }
+    .eb-intro .eb-intro__stat-label {
+      color: rgba(247, 245, 240, 0.65) !important;
+      opacity: 1 !important;
+    }
+    .eb-intro .reveal,
+    .eb-intro [class*="reveal"] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      visibility: visible !important;
+    }
+  </style>
+
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
@@ -123,23 +165,23 @@
       <div class="eb-intro__accent" aria-hidden="true"></div>
       <div class="eb-intro__text">
         <span class="section-header__label">Technology &amp; Systems &mdash; Emerging Technology &mdash; Autonomous Energy Generation</span>
-        <h2 class="eb-intro__title">Plus Ultra:<br />Self-Charging<br />Micro-Mobility</h2>
-        <p>This Japanese e-bike generates its own power while you ride. Using a patented dual-motor kinetic energy system, we&rsquo;ve eliminated the need for charging stations. No plugs. No grid dependence. Zero emissions.</p>
-        <p>The biggest obstacle to electric motorcycle adoption worldwide is charging infrastructure &mdash; especially in developing nations. Plus Ultra solves this at the vehicle level, converting front-wheel rotational kinetic energy into continuous battery charge during every ride.</p>
+        <h2 class="eb-intro__title" style="color:#ffffff;opacity:1;transform:none;visibility:visible;">Plus Ultra:<br />Self-Charging<br />Micro-Mobility</h2>
+        <p style="color:rgba(247,245,240,0.75);opacity:1;visibility:visible;">This Japanese e-bike generates its own power while you ride. Using a patented dual-motor kinetic energy system, we&rsquo;ve eliminated the need for charging stations. No plugs. No grid dependence. Zero emissions.</p>
+        <p style="color:rgba(247,245,240,0.75);opacity:1;visibility:visible;">The biggest obstacle to electric motorcycle adoption worldwide is charging infrastructure &mdash; especially in developing nations. Plus Ultra solves this at the vehicle level, converting front-wheel rotational kinetic energy into continuous battery charge during every ride.</p>
         <a href="/appointments?product=automatic-charging-ebike" class="btn btn--primary" style="margin-top:24px;">Partner With Us &rarr;</a>
       </div>
       <div class="eb-intro__stats">
         <div class="eb-intro__stat">
-          <span class="eb-intro__stat-num">7<sub>km/h</sub></span>
-          <span class="eb-intro__stat-label">Activation Threshold</span>
+          <span class="eb-intro__stat-num" style="color:#f5c518;opacity:1;">7<sub>km/h</sub></span>
+          <span class="eb-intro__stat-label" style="color:rgba(247,245,240,0.65);opacity:1;">Activation Threshold</span>
         </div>
         <div class="eb-intro__stat">
-          <span class="eb-intro__stat-num">100<sup>%</sup></span>
-          <span class="eb-intro__stat-label">Charge at Low Load</span>
+          <span class="eb-intro__stat-num" style="color:#f5c518;opacity:1;">100<sup>%</sup></span>
+          <span class="eb-intro__stat-label" style="color:rgba(247,245,240,0.65);opacity:1;">Charge at Low Load</span>
         </div>
         <div class="eb-intro__stat">
-          <span class="eb-intro__stat-num">0</span>
-          <span class="eb-intro__stat-label">CO&#8322; Emissions</span>
+          <span class="eb-intro__stat-num" style="color:#f5c518;opacity:1;">0</span>
+          <span class="eb-intro__stat-label" style="color:rgba(247,245,240,0.65);opacity:1;">CO&#8322; Emissions</span>
         </div>
       </div>
     </div>
