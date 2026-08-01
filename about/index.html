@@ -18,7 +18,8 @@
   <meta property="og:title"       content="About &mdash; The Prymm Group LLC" />
   <meta property="og:description" content="The Prymm Group LLC is a multi-division enterprise unifying industrial, technology, and human capital solutions for sustainable infrastructure worldwide." />
   <meta property="og:url"         content="https://prymmgroup.com/about" />
-  <meta property="og:image"       content="https://prymmgroup.com/assets/og/about.svg" />
+  <meta property="og:image"       content="https://prymmgroup.com/assets/og/about.png" />
+  <meta property="og:image:type"   content="image/png" />
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt"    content="About The Prymm Group LLC" />
@@ -27,7 +28,7 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="About &mdash; The Prymm Group LLC" />
   <meta name="twitter:description" content="The Prymm Group LLC is a multi-division enterprise unifying industrial, technology, and human capital solutions for sustainable infrastructure worldwide." />
-  <meta name="twitter:image"       content="https://prymmgroup.com/assets/og/about.svg" />
+  <meta name="twitter:image"       content="https://prymmgroup.com/assets/og/about.png" />
   <meta name="twitter:image:alt"   content="About The Prymm Group LLC" />
 
   <!-- Structured Data -->
@@ -61,7 +62,8 @@
   <link rel="stylesheet" href="../about.css" />
 
   <style>
-    /* DIVISIONS SECTION: use data-no-reveal to bypass animation for this section */
+    /* DIVISIONS SECTION: bypass reveal animation — declarations kept here
+       because they depend on the live animation state in JS/base.css */
     .about-divisions [data-no-reveal] {
       opacity: 1;
       transform: none;
@@ -71,25 +73,6 @@
     }
     .about-divisions .section-header__label[data-no-reveal] {
       color: #111111;
-    }
-
-    /* NETWORK LOGOS */
-    .about-network__item {
-      background: transparent;
-    }
-    .about-network__logo {
-      background: transparent;
-      mix-blend-mode: lighten;
-    }
-    .about-network__logo:hover {
-      mix-blend-mode: normal;
-    }
-
-    /* PHILOSOPHY PILLAR headings */
-    .about-philosophy__pillar h3 {
-      font-size: inherit;
-      font-weight: bold;
-      margin: 0;
     }
   </style>
 </head>
