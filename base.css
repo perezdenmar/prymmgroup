@@ -248,7 +248,10 @@ ul { list-style: none; }
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 40px;
+  /* Fluid padding: 20px on narrow screens → 40px on wide.
+     Replaces the hard-coded 40px + @media ≤600px { 20px } two-step.
+     clamp() handles the full 320px–1200px range without a breakpoint. */
+  padding: 0 clamp(20px, 4vw, 40px);
 }
 
 /* ─── SCROLL PROGRESS BAR ────────────────────────── */
@@ -516,7 +519,7 @@ ul { list-style: none; }
   .nav__logo-img { height: 28px; }
 }
 @media (max-width: 600px) {
-  .container { padding: 0 20px; }
+  /* .container padding is now handled by clamp() above — no override needed */
   .nav { padding: 0 20px; }
   .footer__logo-img { height: 40px; }
 }
