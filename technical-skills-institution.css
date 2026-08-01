@@ -1,6 +1,6 @@
 /* =====================================================
    TECHNICAL SKILLS INSTITUTION — technical-skills-institution.css
-   Extends style.css; never overrides global tokens
+   Extends base.css; never overrides global tokens
 ===================================================== */
 
 /* ── HERO ─────────────────────────────────────────── */
@@ -76,7 +76,6 @@
   text-transform: uppercase;
   color: rgba(247,245,240,0.65);
 }
-/* TESDA badge */
 .tsi-hero__badge {
   position: absolute;
   right: 40px;
@@ -118,11 +117,11 @@
   line-height: 1.4;
 }
 
-/* ── OVERVIEW BAND ────────────────────────────────── */
+/* ── OVERVIEW BAND ─────────────────────────────────── */
 .tsi-overview {
-  background: #111111;
+  background: #f7f5f0;
   padding: 100px 0;
-  border-bottom: 3px solid rgba(255,255,255,0.08);
+  border-bottom: 3px solid #1a1a1a;
 }
 .tsi-overview__inner {
   display: grid;
@@ -138,10 +137,24 @@
   flex-shrink: 0;
 }
 
-/* Section label above the heading */
+/* Force all reveal children in overview to be fully visible immediately */
+.tsi-overview .reveal,
+.tsi-overview .reveal.is-visible,
+.tsi-overview [class*="reveal"] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
 .tsi-overview .section-header__label {
-  color: var(--yellow);
-  opacity: 0.75;
+  display: block;
+  font-family: var(--ff-head);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c8282e;
+  margin-bottom: 14px;
 }
 
 .tsi-overview__title {
@@ -151,14 +164,15 @@
   line-height: 1;
   text-transform: uppercase;
   margin-bottom: 24px;
-  color: var(--white);
-  /* ensure reveal animation ends at full opacity */
+  color: #0a0a0a !important;
   opacity: 1 !important;
+  transform: none !important;
 }
+
 .tsi-overview__text p {
   font-size: 0.97rem;
   line-height: 1.82;
-  color: rgba(247,245,240,0.72);
+  color: #2e2e2e;
   margin-bottom: 16px;
 }
 .tsi-overview__text p:last-child { margin-bottom: 0; }
@@ -170,7 +184,7 @@
   gap: 32px;
   flex-shrink: 0;
   min-width: 180px;
-  border-left: 3px solid rgba(255,255,255,0.15);
+  border-left: 3px solid #1a1a1a;
   padding-left: 32px;
 }
 .tsi-stat__num {
@@ -179,14 +193,15 @@
   font-weight: 900;
   font-size: 2.8rem;
   line-height: 1;
-  color: var(--yellow);
+  color: #0a0a0a;
+  opacity: 1 !important;
 }
 .tsi-stat__num sub {
   font-size: 0.9rem;
   font-weight: 700;
   vertical-align: baseline;
   margin-left: 2px;
-  color: rgba(247,245,240,0.5);
+  color: #555;
 }
 .tsi-stat__label {
   display: block;
@@ -195,11 +210,11 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(247,245,240,0.45);
+  color: #555;
   margin-top: 6px;
 }
 
-/* ── CAREER TRACKS GRID ───────────────────────────── */
+/* ── CAREER TRACKS GRID ────────────────────────────── */
 .tsi-tracks {
   background: var(--black);
   padding: 100px 0 120px;
@@ -408,7 +423,7 @@
     grid-column: 2;
     flex-direction: row;
     border-left: none;
-    border-top: 3px solid rgba(255,255,255,0.15);
+    border-top: 3px solid #1a1a1a;
     padding-left: 0;
     padding-top: 24px;
   }
