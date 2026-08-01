@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Appointments &mdash; The Prymm Group LLC</title>
-  <meta name="description" content="Book a consultation with The Prymm Group LLC. Schedule a meeting across our Industrial &amp; Trade, Technology &amp; Systems, or Education &amp; Human Capital divisions." />
+  <meta name="description" content="Book a 30-minute consultation with The Prymm Group LLC. Pick a date, choose a time slot, and confirm instantly — no back-and-forth required." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://prymmgroup.com/appointments" />
   <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any" />
@@ -13,12 +13,12 @@
   <link rel="manifest" href="../assets/favicon/site.webmanifest" />
 
   <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:site_name"   content="The Prymm Group LLC" />
-  <meta property="og:title"       content="Appointments &mdash; The Prymm Group LLC" />
-  <meta property="og:description" content="Book a consultation with The Prymm Group LLC across our Industrial, Technology, or Education divisions." />
-  <meta property="og:url"         content="https://prymmgroup.com/appointments" />
-  <meta property="og:image"       content="https://prymmgroup.com/assets/og/appointments.png" />
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="The Prymm Group LLC" />
+  <meta property="og:title"        content="Appointments — The Prymm Group LLC" />
+  <meta property="og:description"  content="Book a 30-minute consultation with The Prymm Group LLC. Pick a date, choose a time, confirm instantly." />
+  <meta property="og:url"          content="https://prymmgroup.com/appointments" />
+  <meta property="og:image"        content="https://prymmgroup.com/assets/og/appointments.png" />
   <meta property="og:image:type"   content="image/png" />
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
@@ -26,8 +26,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Appointments &mdash; The Prymm Group LLC" />
-  <meta name="twitter:description" content="Book a consultation with The Prymm Group LLC across our Industrial, Technology, or Education divisions." />
+  <meta name="twitter:title"       content="Appointments — The Prymm Group LLC" />
+  <meta name="twitter:description" content="Book a 30-minute consultation with The Prymm Group LLC. Pick a date, choose a time, confirm instantly." />
   <meta name="twitter:image"       content="https://prymmgroup.com/assets/og/appointments.png" />
   <meta name="twitter:image:alt"   content="Book an appointment with The Prymm Group LLC" />
 
@@ -38,6 +38,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
 
+  <!-- Cal.com preconnect -->
+  <link rel="preconnect" href="https://app.cal.com" />
+
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../appointments.css" />
 </head>
@@ -47,7 +50,7 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <a href="/" class="nav__logo" aria-label="The Prymm Group &mdash; home">
+    <a href="/" class="nav__logo" aria-label="The Prymm Group — home">
       <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="async" />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
@@ -78,7 +81,8 @@
           BOOK A<br />
           <em>CONSULTATION.</em>
         </h1>
-        <p class="apt-hero__sub">Schedule a meeting with our team across any of our three divisions. We respond to all inquiries within one business day.</p>
+        <p class="apt-hero__sub">Pick a date, choose a time, confirm instantly. No back-and-forth. Your 30-minute consultation is one click away.</p>
+        <a href="#book" class="apt-hero__cta">Schedule Now &darr;</a>
       </div>
     </section>
 
@@ -87,283 +91,45 @@
       <div class="container apt-steps__inner">
         <header>
           <span class="section-header__label">How It Works</span>
-          <h2 class="apt-steps__title">THREE STEPS.<br />ONE MEETING.</h2>
+          <h2 class="apt-steps__title">THREE CLICKS.<br />ONE MEETING.</h2>
         </header>
         <div class="apt-steps__grid" role="list">
           <div class="apt-step" role="listitem">
             <p class="apt-step__num">01</p>
             <div class="apt-step__bar apt-step__bar--red" aria-hidden="true"></div>
-            <p class="apt-step__label">Fill the Form</p>
-            <p class="apt-step__desc">Tell us who you are, which division you&rsquo;re interested in, and your preferred date and time.</p>
+            <p class="apt-step__label">Pick a Date</p>
+            <p class="apt-step__desc">Browse the live calendar below. Only real available slots are shown — no guesswork, no back-and-forth emails.</p>
           </div>
           <div class="apt-step" role="listitem">
             <p class="apt-step__num">02</p>
             <div class="apt-step__bar apt-step__bar--yellow" aria-hidden="true"></div>
-            <p class="apt-step__label">We Confirm</p>
-            <p class="apt-step__desc">Our team reviews your request and sends a confirmation email within one business day.</p>
+            <p class="apt-step__label">Choose a Time</p>
+            <p class="apt-step__desc">Select any 30-minute slot that suits your schedule. Times are shown in your local timezone automatically.</p>
           </div>
           <div class="apt-step" role="listitem">
             <p class="apt-step__num">03</p>
             <div class="apt-step__bar apt-step__bar--blue" aria-hidden="true"></div>
-            <p class="apt-step__label">Meet &amp; Discuss</p>
-            <p class="apt-step__desc">We connect at your scheduled time to explore how The Prymm Group can serve your goals.</p>
+            <p class="apt-step__label">Confirm &amp; Go</p>
+            <p class="apt-step__desc">Enter your name and email. You’ll receive an instant calendar invite with a video link — no waiting required.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FORM SECTION -->
-    <section class="apt-form-section" id="book">
-      <div class="container apt-form-section__inner">
+    <!-- CAL.COM BOOKING EMBED -->
+    <section class="apt-cal-section" id="book" aria-label="Book a consultation">
+      <div class="apt-cal-section__inner">
+        <div class="apt-cal-section__header container">
+          <span class="section-header__label">Live Availability</span>
+          <h2 class="apt-cal-section__title">SCHEDULE YOUR<br /><em>SESSION.</em></h2>
+          <p class="apt-cal-section__sub">All slots are 30 minutes. Times display in your local timezone. A calendar invite is sent to you immediately upon confirmation.</p>
+        </div>
 
-        <!-- LEFT INFO PANEL -->
-        <aside class="apt-form-info" aria-label="Booking information">
-          <span class="section-header__label">Request a Meeting</span>
-          <h2 class="apt-form-info__title">LET&rsquo;S<br />TALK.</h2>
-          <p class="apt-form-info__desc">We hold virtual consultations on a rolling basis. Select a date that works for you and we&rsquo;ll confirm availability within 24 hours.</p>
-
-          <div class="apt-availability" aria-label="Available consultation days">
-            <p class="apt-availability__label">Availability</p>
-            <ul class="apt-availability__list" role="list">
-              <li>
-                <span class="apt-avail-day">Monday</span>
-                <span class="apt-avail-time">10:00 AM &ndash; 3:30 PM PST</span>
-              </li>
-              <li>
-                <span class="apt-avail-day">Tuesday</span>
-                <span class="apt-avail-time">10:00 AM &ndash; 3:30 PM PST</span>
-              </li>
-              <li>
-                <span class="apt-avail-day">Friday</span>
-                <span class="apt-avail-time">10:00 AM &ndash; 1:00 PM PST</span>
-              </li>
-            </ul>
-            <p class="apt-availability__note">All times listed in Philippine Standard Time (PST / UTC+8). Slots are 30&nbsp;minutes. Requests received after business hours are processed the next available day.</p>
-          </div>
-        </aside>
-
-        <!-- FORM WRAP -->
-        <div class="apt-form-wrap">
-
-          <!-- SUCCESS STATE (hidden until form is submitted) -->
-          <div class="apt-success" id="apt-success" hidden aria-live="polite" aria-atomic="true">
-            <div class="apt-success__icon" aria-hidden="true">
-              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="32" cy="32" r="30" stroke="#2D7D46" stroke-width="3" />
-                <path d="M18 33l10 10 18-20" stroke="#2D7D46" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-            <h2 class="apt-success__title">Request Received!</h2>
-            <p class="apt-success__msg">Thank you for reaching out. We&rsquo;ll review your request and send a confirmation to your email within one business day.</p>
-
-            <div class="apt-summary" aria-label="Booking summary">
-              <p class="apt-summary__heading">Your Booking Summary</p>
-              <div class="apt-summary__row">
-                <span class="apt-summary__label">Name</span>
-                <span class="apt-summary__value" id="summary-name">&mdash;</span>
-              </div>
-              <div class="apt-summary__row">
-                <span class="apt-summary__label">Preferred Date</span>
-                <span class="apt-summary__value" id="summary-date">&mdash;</span>
-              </div>
-              <div class="apt-summary__row">
-                <span class="apt-summary__label">Time Slot</span>
-                <span class="apt-summary__value" id="summary-time">&mdash;</span>
-              </div>
-              <div class="apt-summary__row">
-                <span class="apt-summary__label">Division</span>
-                <span class="apt-summary__value" id="summary-division">&mdash;</span>
-              </div>
-            </div>
-
-            <div class="apt-success__actions">
-              <button class="btn btn--outline" id="apt-reset" type="button">Submit Another Request</button>
-              <a href="/" class="btn btn--ghost">Back to Home</a>
-            </div>
-          </div>
-
-          <!-- APPOINTMENT FORM -->
-          <form
-            id="apt-form"
-            class="apt-form"
-            action="https://formsubmit.co/info@prymmgroup.com"
-            method="POST"
-            novalidate
-            aria-label="Appointment request form"
-          >
-            <!-- FormSubmit hidden config -->
-            <input type="hidden" name="_subject" value="New Appointment Request &mdash; The Prymm Group" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value="https://prymmgroup.com/appointments" />
-            <!-- Honeypot -->
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-            <!-- Row 1: Name + Email -->
-            <div class="apt-form__row apt-form__row--2">
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-name">Full Name <span class="apt-form__req" aria-label="required">*</span></label>
-                <input
-                  class="apt-form__input"
-                  type="text"
-                  id="apt-name"
-                  name="Full Name"
-                  placeholder="Jane Smith"
-                  required
-                  autocomplete="name"
-                  aria-required="true"
-                />
-                <span class="apt-form__error" id="err-name" role="alert" aria-live="polite"></span>
-              </div>
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-email">Email Address <span class="apt-form__req" aria-label="required">*</span></label>
-                <input
-                  class="apt-form__input"
-                  type="email"
-                  id="apt-email"
-                  name="Email"
-                  placeholder="jane@company.com"
-                  required
-                  autocomplete="email"
-                  aria-required="true"
-                />
-                <span class="apt-form__error" id="err-email" role="alert" aria-live="polite"></span>
-              </div>
-            </div>
-
-            <!-- Row 2: Organization + Phone -->
-            <div class="apt-form__row apt-form__row--2">
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-org">Organization <span class="apt-form__req" aria-label="required">*</span></label>
-                <input
-                  class="apt-form__input"
-                  type="text"
-                  id="apt-org"
-                  name="Organization"
-                  placeholder="Company or Institution"
-                  required
-                  autocomplete="organization"
-                  aria-required="true"
-                />
-                <span class="apt-form__error" id="err-org" role="alert" aria-live="polite"></span>
-              </div>
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-phone">Phone <span class="apt-form__optional">(optional)</span></label>
-                <input
-                  class="apt-form__input"
-                  type="tel"
-                  id="apt-phone"
-                  name="Phone"
-                  placeholder="+1 (555) 000-0000"
-                  autocomplete="tel"
-                />
-              </div>
-            </div>
-
-            <!-- Row 3: Division -->
-            <div class="apt-form__row">
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-division">Division of Interest <span class="apt-form__req" aria-label="required">*</span></label>
-                <select
-                  class="apt-form__input apt-form__select"
-                  id="apt-division"
-                  name="Division"
-                  required
-                  aria-required="true"
-                >
-                  <option value="" disabled selected>Select a division&hellip;</option>
-                  <option value="Industrial &amp; Trade">Industrial &amp; Trade</option>
-                  <option value="Technology &amp; Systems">Technology &amp; Systems</option>
-                  <option value="Education &amp; Human Capital">Education &amp; Human Capital</option>
-                  <option value="General / Not Sure">General / Not Sure</option>
-                </select>
-                <span class="apt-form__error" id="err-division" role="alert" aria-live="polite"></span>
-              </div>
-            </div>
-
-            <!-- Row 4: Preferred Date + Time -->
-            <div class="apt-form__row apt-form__row--2">
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-date">Preferred Date <span class="apt-form__req" aria-label="required">*</span></label>
-                <input
-                  class="apt-form__input"
-                  type="date"
-                  id="apt-date"
-                  name="Preferred Date"
-                  required
-                  aria-required="true"
-                  aria-describedby="hint-date"
-                />
-                <span class="apt-form__hint" id="hint-date">Available Mon, Tue &amp; Fri only</span>
-                <span class="apt-form__error" id="err-date" role="alert" aria-live="polite"></span>
-              </div>
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-time">Preferred Time <span class="apt-form__req" aria-label="required">*</span></label>
-                <select
-                  class="apt-form__input apt-form__select"
-                  id="apt-time"
-                  name="Preferred Time"
-                  required
-                  disabled
-                  aria-required="true"
-                >
-                  <option value="" disabled selected>Select a date first&hellip;</option>
-                </select>
-                <span class="apt-form__error" id="err-time" role="alert" aria-live="polite"></span>
-              </div>
-            </div>
-
-            <!-- Row 5: Alternate Date -->
-            <div class="apt-form__row">
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-alt-date">Alternate Date <span class="apt-form__optional">(optional)</span></label>
-                <input
-                  class="apt-form__input"
-                  type="date"
-                  id="apt-alt-date"
-                  name="Alternate Date"
-                  aria-describedby="hint-alt-date"
-                />
-                <span class="apt-form__hint" id="hint-alt-date">In case your preferred date is unavailable</span>
-              </div>
-            </div>
-
-            <!-- Row 6: Topic -->
-            <div class="apt-form__row">
-              <div class="apt-form__field">
-                <label class="apt-form__label" for="apt-topic">Meeting Topic <span class="apt-form__req" aria-label="required">*</span></label>
-                <textarea
-                  class="apt-form__input apt-form__textarea"
-                  id="apt-topic"
-                  name="Meeting Topic"
-                  placeholder="Briefly describe what you&rsquo;d like to discuss&hellip;"
-                  required
-                  maxlength="500"
-                  aria-required="true"
-                  aria-describedby="hint-topic err-topic"
-                ></textarea>
-                <div class="apt-form__char-wrap" aria-live="polite" aria-atomic="true">
-                  <span id="char-count">0</span> / 500
-                </div>
-                <span class="apt-form__error" id="err-topic" role="alert" aria-live="polite"></span>
-              </div>
-            </div>
-
-            <!-- Footer + Submit -->
-            <div class="apt-form__footer">
-              <p class="apt-form__disclaimer">By submitting this form you agree to be contacted by The Prymm Group LLC regarding your request. We do not share your information with third parties.</p>
-              <button
-                class="btn btn--primary apt-form__submit"
-                type="submit"
-                id="apt-submit"
-              >
-                Submit Request &rarr;
-              </button>
-            </div>
-
-          </form>
-        </div><!-- /.apt-form-wrap -->
-      </div><!-- /.apt-form-section__inner -->
+        <!-- Cal inline embed -->
+        <div class="apt-cal-wrap">
+          <div id="my-cal-inline-30min" class="apt-cal-embed"></div>
+        </div>
+      </div>
     </section>
 
     <!-- WHAT TO EXPECT -->
@@ -377,29 +143,29 @@
         <div class="apt-expect__items">
           <div class="apt-expect__item">
             <div class="apt-expect__icon apt-expect__icon--red" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
             <div>
-              <strong id="expect-heading">Confirmed in 24 Hours</strong>
-              <p>Every request is reviewed by a team member. You&rsquo;ll receive a calendar confirmation or a reschedule request within one business day.</p>
+              <strong id="expect-heading">Instant Confirmation</strong>
+              <p>Once you book, a calendar invite with a video link lands in your inbox immediately. No waiting for a manual confirmation email.</p>
             </div>
           </div>
           <div class="apt-expect__item">
             <div class="apt-expect__icon apt-expect__icon--yellow" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <strong>Focused Conversation</strong>
-              <p>Sessions run 30 minutes. We come prepared based on your topic submission so your time is spent on substance, not introductions.</p>
+              <strong>30-Minute Sessions</strong>
+              <p>Focused, structured consultations. We come prepared so your time is spent on substance — not introductions or logistics.</p>
             </div>
           </div>
           <div class="apt-expect__item">
             <div class="apt-expect__icon apt-expect__icon--blue" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </div>
             <div>
               <strong>No Obligation</strong>
-              <p>This is an exploratory meeting. There is no commitment required &mdash; just an open dialogue about how we might work together.</p>
+              <p>This is an exploratory conversation. There’s no commitment required — just an open dialogue about how we might work together.</p>
             </div>
           </div>
         </div>
@@ -410,7 +176,7 @@
 
   <footer class="footer">
     <div class="container footer__inner">
-      <a href="/" class="footer__logo" aria-label="The Prymm Group &mdash; back to home">
+      <a href="/" class="footer__logo" aria-label="The Prymm Group — back to home">
         <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="footer__logo-img" width="48" height="48" loading="lazy" decoding="async" />
         <span class="footer__logo-text">PRYMM GROUP</span>
       </a>
@@ -420,7 +186,100 @@
   </footer>
 
   <script src="../main.js"></script>
-  <script src="../appointments.js"></script>
   <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+
+  <!-- Cal.com inline embed -->
+  <script type="text/javascript">
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement('script')).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === 'string') {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ['initNamespace', namespace]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, 'https://app.cal.com/embed/embed.js', 'init');
+
+    Cal('init', '30min', { origin: 'https://app.cal.com' });
+
+    Cal.config = Cal.config || {};
+    Cal.config.forwardQueryParams = true;
+
+    Cal.ns['30min']('inline', {
+      elementOrSelector: '#my-cal-inline-30min',
+      config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' },
+      calLink: 'prymmgroup/30min',
+    });
+
+    Cal.ns['30min']('ui', {
+      hideEventTypeDetails: false,
+      layout: 'month_view',
+      cssVarsPerTheme: {
+        light: {
+          'cal-brand': '#D62828',
+          'cal-text': '#0D0D0D',
+          'cal-border': '#E0DDD6',
+          'cal-bg-emphasis': '#F0EDE6',
+        },
+        dark: {
+          'cal-brand': '#D62828',
+          'cal-text': '#F2F2F2',
+          'cal-border': '#2A2A2A',
+          'cal-bg': '#111111',
+          'cal-bg-emphasis': '#1A1A1A',
+        }
+      }
+    });
+
+    /* Redirect to prymmgroup.com on successful booking */
+    Cal.ns['30min']('on', {
+      action: 'bookingSuccessful',
+      callback: function () {
+        setTimeout(function () {
+          window.location.href = 'https://prymmgroup.com/appointments?booked=1';
+        }, 2000);
+      }
+    });
+
+    /* Show a thank-you banner if redirected back after booking */
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('booked') === '1') {
+        var banner = document.createElement('div');
+        banner.className = 'apt-booked-banner';
+        banner.setAttribute('role', 'status');
+        banner.setAttribute('aria-live', 'polite');
+        banner.innerHTML =
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+          '<span>Your consultation is confirmed! Check your email for the calendar invite.</span>' +
+          '<button class="apt-booked-banner__close" aria-label="Dismiss">&times;</button>';
+        document.body.prepend(banner);
+        banner.querySelector('.apt-booked-banner__close').addEventListener('click', function () {
+          banner.remove();
+          history.replaceState(null, '', window.location.pathname);
+        });
+        /* Auto-dismiss after 8s */
+        setTimeout(function () { if (banner.parentNode) banner.remove(); }, 8000);
+      }
+    })();
+  </script>
+
 </body>
 </html>
