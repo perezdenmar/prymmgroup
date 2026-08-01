@@ -14,6 +14,7 @@
    #10 Pillar accent bars: 40px fixed → clamp(32px,5vw,56px)
    #11 Intro accent bar stays vertical on mobile (shrinks, not rotates)
    #12 Explicit prefers-reduced-motion guard on division card transitions
+   #13 Network logo square background removed (transparent)
 ===================================================== */
 
 /* ---- HERO ---- */
@@ -443,7 +444,8 @@
   align-items: center;
   justify-content: center;
 }
-/* Fix #3: .about-network__logo — fallback bg + min dimensions for broken images */
+/* Fix #3: .about-network__logo — fallback min dimensions for broken images */
+/* Fix #13: background set to transparent — removes visible square boxes behind logos */
 .about-network__logo {
   display: block;
   max-width: 140px;
@@ -453,7 +455,7 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  background: rgba(247,245,240,0.05);
+  background: transparent;
   filter: grayscale(1);
   opacity: 0.40;
   transition: filter 320ms ease, opacity 320ms ease;
