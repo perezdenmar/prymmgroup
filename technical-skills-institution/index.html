@@ -38,6 +38,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../technical-skills-institution.css" />
+
+  <!-- OVERVIEW SECTION: inline override — highest specificity, beats JS reveal -->
+  <style>
+    .tsi-overview {
+      background: #111111 !important;
+    }
+    .tsi-overview .tsi-overview__title,
+    .tsi-overview h2.tsi-overview__title,
+    .tsi-overview h2.tsi-overview__title.reveal {
+      color: #ffffff !important;
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    .tsi-overview .tsi-overview__text p {
+      color: rgba(247, 245, 240, 0.75) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .tsi-overview .section-header__label {
+      color: #e8b800 !important;
+      opacity: 1 !important;
+    }
+    .tsi-overview .tsi-stat__num {
+      color: #e8b800 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .tsi-overview .tsi-stat__num sub {
+      color: rgba(247,245,240,0.5) !important;
+    }
+    .tsi-overview .tsi-stat__label {
+      color: rgba(247,245,240,0.5) !important;
+      opacity: 1 !important;
+    }
+    .tsi-overview .tsi-overview__stats {
+      border-left-color: rgba(255,255,255,0.15) !important;
+    }
+    .tsi-overview .tsi-overview__accent {
+      background: #e8b800 !important;
+    }
+  </style>
 </head>
 <body data-page="technical-skills-institution">
 
@@ -100,7 +142,7 @@
       <div class="tsi-overview__accent" aria-hidden="true"></div>
       <div class="tsi-overview__text">
         <span class="section-header__label">Education &amp; Human Capital &mdash; Division 03</span>
-        <h2 class="tsi-overview__title reveal">Developing the Operators<br />Who Run Every System<br />We Build</h2>
+        <h2 class="tsi-overview__title" style="color:#ffffff;opacity:1;transform:none;visibility:visible;">Developing the Operators<br />Who Run Every System<br />We Build</h2>
         <p>The Prymm Group&rsquo;s Technical Skills Institution bridges the persistent gap between industrial demand and workforce supply. Anchored to TESDA&rsquo;s National Certificate (NC) framework, TSI delivers technical-vocational training that moves graduates directly into industry-ready roles &mdash; operators, technicians, and service professionals who sustain the infrastructure Prymm deploys.</p>
         <p>Three structured career tracks &mdash; Environmental Technology, Electromechanical Systems, and Digital Infrastructure &mdash; align precisely with the operational needs of our Industrial &amp; Trade and Technology &amp; Systems divisions. TSI graduates are not just employable; they are pre-qualified for roles within the Prymm Group ecosystem and its partner network.</p>
       </div>
