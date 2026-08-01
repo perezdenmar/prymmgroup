@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About &mdash; The Prymm Group LLC</title>
-  <meta name="description" content="The Prymm Group LLC &mdash; company background, mission, values, and the three divisions driving sustainable infrastructure since 2017." />
+  <meta name="description" content="The Prymm Group LLC is a multi-division enterprise unifying industrial, technology, and human capital solutions for sustainable infrastructure worldwide." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://prymmgroup.com/about" />
   <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any" />
@@ -16,7 +16,7 @@
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="The Prymm Group LLC" />
   <meta property="og:title"       content="About &mdash; The Prymm Group LLC" />
-  <meta property="og:description" content="Company background, mission and values. Building sustainable infrastructure since 2017." />
+  <meta property="og:description" content="The Prymm Group LLC is a multi-division enterprise unifying industrial, technology, and human capital solutions for sustainable infrastructure worldwide." />
   <meta property="og:url"         content="https://prymmgroup.com/about" />
   <meta property="og:image"       content="https://prymmgroup.com/assets/og/about.svg" />
   <meta property="og:image:width"  content="1200" />
@@ -26,9 +26,29 @@
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="About &mdash; The Prymm Group LLC" />
-  <meta name="twitter:description" content="Company background, mission and values. Building sustainable infrastructure since 2017." />
+  <meta name="twitter:description" content="The Prymm Group LLC is a multi-division enterprise unifying industrial, technology, and human capital solutions for sustainable infrastructure worldwide." />
   <meta name="twitter:image"       content="https://prymmgroup.com/assets/og/about.svg" />
   <meta name="twitter:image:alt"   content="About The Prymm Group LLC" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "The Prymm Group LLC",
+    "url": "https://prymmgroup.com",
+    "logo": "https://prymmgroup.com/assets/prymm-group-logo.png",
+    "foundingDate": "2017",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Wilmington",
+      "addressRegion": "DE",
+      "addressCountry": "US"
+    },
+    "description": "The Prymm Group LLC is a multi-division enterprise operating across Industrial & Trade, Technology & Systems, and Education & Human Capital.",
+    "sameAs": ["https://prymmgroup.com"]
+  }
+  </script>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -41,36 +61,35 @@
   <link rel="stylesheet" href="../about.css" />
 
   <style>
-    /* DIVISIONS SECTION: black text override */
-    .about-divisions .section-header__label {
-      color: #111111 !important;
-      opacity: 1 !important;
+    /* DIVISIONS SECTION: use data-no-reveal to bypass animation for this section */
+    .about-divisions [data-no-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      visibility: visible;
+      color: #111111;
     }
-    .about-divisions .section-header__title,
-    .about-divisions h2.section-header__title {
-      color: #111111 !important;
-      opacity: 1 !important;
-      transform: none !important;
-      visibility: visible !important;
-    }
-    .about-divisions .section-header.reveal,
-    .about-divisions .reveal {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-      visibility: visible !important;
+    .about-divisions .section-header__label[data-no-reveal] {
+      color: #111111;
     }
 
-    /* NETWORK LOGOS: remove all box backgrounds, blend dark PNG fills away */
+    /* NETWORK LOGOS */
     .about-network__item {
-      background: transparent !important;
+      background: transparent;
     }
     .about-network__logo {
-      background: transparent !important;
-      mix-blend-mode: lighten !important;
+      background: transparent;
+      mix-blend-mode: lighten;
     }
     .about-network__logo:hover {
-      mix-blend-mode: normal !important;
+      mix-blend-mode: normal;
+    }
+
+    /* PHILOSOPHY PILLAR headings */
+    .about-philosophy__pillar h3 {
+      font-size: inherit;
+      font-weight: bold;
+      margin: 0;
     }
   </style>
 </head>
@@ -81,7 +100,7 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="/" class="nav__logo" aria-label="The Prymm Group &mdash; home">
-      <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="sync" />
+      <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="async" />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
     <ul class="nav__links" id="nav-links" role="list">
@@ -121,7 +140,7 @@
       </div>
 
       <div class="about-hero__content container">
-        <p class="about-hero__eyebrow">Est. 2017 &mdash; Wilmington, Delaware</p>
+        <p class="about-hero__eyebrow">Est. 2017</p>
         <h1 class="about-hero__headline">
           BUILT ON<br />
           <em>PURPOSE.</em>
@@ -134,8 +153,9 @@
     <section class="about-intro">
       <div class="about-intro__inner">
         <div class="about-intro__accent" aria-hidden="true"></div>
-        <blockquote class="about-intro__quote">
+        <blockquote class="about-intro__quote" cite="https://prymmgroup.com/about">
           <p>We exist to build the capacity for tomorrow &mdash; integrating physical infrastructure, digital systems, and human capital into one unified enterprise.</p>
+          <footer>&mdash; <cite>The Prymm Group LLC</cite></footer>
         </blockquote>
       </div>
     </section>
@@ -183,9 +203,9 @@
     <!-- DIVISIONS STRIP -->
     <section class="about-divisions">
       <div class="container">
-        <header class="section-header reveal">
-          <span class="section-header__label" style="color:#111111;opacity:1;">Our Structure</span>
-          <h2 class="section-header__title" style="color:#111111;opacity:1;transform:none;visibility:visible;">Three Divisions.<br />One Direction.</h2>
+        <header class="section-header">
+          <span class="section-header__label" data-no-reveal style="color:#111111;">Our Structure</span>
+          <h2 class="section-header__title" data-no-reveal style="color:#111111;">Three Divisions.<br />One Direction.</h2>
         </header>
         <div class="about-divisions__grid">
           <a href="/waste-management" class="about-div-card about-div-card--industrial reveal" aria-label="Industrial &amp; Trade &mdash; Waste Management">
@@ -235,17 +255,17 @@
         <div class="about-philosophy__pillars">
           <div class="about-philosophy__pillar">
             <div class="about-philosophy__pillar-bar about-philosophy__pillar-bar--red" aria-hidden="true"></div>
-            <strong>Sustainability First</strong>
+            <h3>Sustainability First</h3>
             <p>We reject short-term thinking. Every solution we propose must reduce environmental impact, extend useful life, and contribute to a regenerative economy.</p>
           </div>
           <div class="about-philosophy__pillar">
             <div class="about-philosophy__pillar-bar about-philosophy__pillar-bar--yellow" aria-hidden="true"></div>
-            <strong>Lasting Relationships</strong>
+            <h3>Lasting Relationships</h3>
             <p>We build with people, not just for them. Our partners, clients, and communities are stakeholders in every outcome we pursue.</p>
           </div>
           <div class="about-philosophy__pillar">
             <div class="about-philosophy__pillar-bar about-philosophy__pillar-bar--blue" aria-hidden="true"></div>
-            <strong>Integrated Progress</strong>
+            <h3>Integrated Progress</h3>
             <p>Physical, digital, and human systems do not exist in isolation. We connect them &mdash; because real progress requires all three working in concert.</p>
           </div>
         </div>
@@ -258,16 +278,16 @@
         <header class="about-network__header reveal">
           <span class="section-header__label" style="color:rgba(247,245,240,0.35)">Affiliates &amp; Partners</span>
           <h2 class="about-network__title" id="network-heading">Our Network.</h2>
-          <p class="about-network__sub">The organisations and enterprises that share our commitment to sustainable progress and lasting relationships.</p>
+          <p class="about-network__sub">The organizations and enterprises that share our commitment to sustainable progress and lasting relationships.</p>
         </header>
         <ul class="about-network__grid reveal" aria-label="Partner and affiliate logos">
-          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/prymm-enterprises.png" alt="Prymm Enterprises" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/equip.png" alt="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc." class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/gets.png" alt="GETS &mdash; Global Excellence Technical School Inc." class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/gepsearch.png" alt="GEPSearch" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/dp-fabrication.png" alt="DP Fabrication and Machineries" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/tulai-foundation.png" alt="Tulai Foundation" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
-          <li class="about-network__item" style="background:transparent;"><img src="../assets/images/seamphony.png" alt="The Seamphony Seafood and Grill" class="about-network__logo" style="background:transparent;mix-blend-mode:lighten;" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/prymm-enterprises.png" alt="Prymm Enterprises" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/equip.png" alt="EQUIP &mdash; Quantum Upskilling Institute of the Philippines Inc." class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/gets.png" alt="GETS &mdash; Global Excellence Technical School Inc." class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/gepsearch.png" alt="GEPSearch" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/dp-fabrication.png" alt="DP Fabrication and Machineries" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/tulai-foundation.png" alt="Tulai Foundation" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
+          <li class="about-network__item"><img src="../assets/images/seamphony.png" alt="The Seamphony Seafood and Grill" class="about-network__logo" width="160" height="80" loading="lazy" decoding="async" /></li>
         </ul>
       </div>
     </section>
