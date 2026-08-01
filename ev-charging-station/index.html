@@ -38,6 +38,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../ev-charging-station.css" />
+
+  <!-- ACCRED SECTION: inline override — white text, beats JS reveal & external CSS -->
+  <style>
+    .ev-accred {
+      background: #111111 !important;
+    }
+    .ev-accred .ev-accred__title,
+    .ev-accred h2.ev-accred__title,
+    .ev-accred h2.ev-accred__title.reveal {
+      color: #ffffff !important;
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    .ev-accred .ev-accred__text p {
+      color: rgba(247, 245, 240, 0.75) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .ev-accred .section-header__label {
+      color: #4fc3f7 !important;
+      opacity: 1 !important;
+    }
+    .ev-accred .ev-accred__accent {
+      background: #4fc3f7 !important;
+    }
+    .ev-accred .reveal,
+    .ev-accred [class*="reveal"] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      visibility: visible !important;
+    }
+  </style>
 </head>
 <body data-page="ev-charging-station">
 
@@ -100,9 +134,9 @@
       <div class="ev-accred__accent" aria-hidden="true"></div>
       <div class="ev-accred__text">
         <span class="section-header__label">Technology &amp; Systems &mdash; Featured Solution</span>
-        <h2 class="ev-accred__title reveal">DOE-Accredited<br />EV Charging<br />Infrastructure</h2>
-        <p>The Prymm Group delivers DOE-accredited electric vehicle charging infrastructure designed for the intelligent, grid-integrated networks that modern cities and commercial campuses demand. Our turnkey solutions span hardware supply, network software, installation, and ongoing maintenance &mdash; a single point of accountability for the entire EV charging lifecycle.</p>
-        <p>With EV adoption accelerating across the Philippines and Southeast Asia, Prymm positions operators, LGUs, and real estate developers ahead of the curve &mdash; generating new revenue streams while meeting national electrification mandates under the Electric Vehicle Industry Development Act (EVIDA).</p>
+        <h2 class="ev-accred__title" style="color:#ffffff;opacity:1;transform:none;visibility:visible;">DOE-Accredited<br />EV Charging<br />Infrastructure</h2>
+        <p style="color:rgba(247,245,240,0.75);opacity:1;visibility:visible;">The Prymm Group delivers DOE-accredited electric vehicle charging infrastructure designed for the intelligent, grid-integrated networks that modern cities and commercial campuses demand. Our turnkey solutions span hardware supply, network software, installation, and ongoing maintenance &mdash; a single point of accountability for the entire EV charging lifecycle.</p>
+        <p style="color:rgba(247,245,240,0.75);opacity:1;visibility:visible;">With EV adoption accelerating across the Philippines and Southeast Asia, Prymm positions operators, LGUs, and real estate developers ahead of the curve &mdash; generating new revenue streams while meeting national electrification mandates under the Electric Vehicle Industry Development Act (EVIDA).</p>
       </div>
       <div class="ev-accred__cert-card" aria-label="DOE Accreditation certificate details">
         <div class="ev-accred__cert-header">
