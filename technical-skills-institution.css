@@ -120,9 +120,9 @@
 
 /* ── OVERVIEW BAND ────────────────────────────────── */
 .tsi-overview {
-  background: var(--white);
+  background: #111111;
   padding: 100px 0;
-  border-bottom: 3px solid var(--black);
+  border-bottom: 3px solid rgba(255,255,255,0.08);
 }
 .tsi-overview__inner {
   display: grid;
@@ -137,6 +137,13 @@
   background: var(--yellow);
   flex-shrink: 0;
 }
+
+/* Section label above the heading */
+.tsi-overview .section-header__label {
+  color: var(--yellow);
+  opacity: 0.75;
+}
+
 .tsi-overview__title {
   font-family: var(--ff-head);
   font-weight: 900;
@@ -144,12 +151,14 @@
   line-height: 1;
   text-transform: uppercase;
   margin-bottom: 24px;
-  color: var(--black);
+  color: var(--white);
+  /* ensure reveal animation ends at full opacity */
+  opacity: 1 !important;
 }
 .tsi-overview__text p {
-  font-size: 0.95rem;
-  line-height: 1.78;
-  color: var(--grey-2);
+  font-size: 0.97rem;
+  line-height: 1.82;
+  color: rgba(247,245,240,0.72);
   margin-bottom: 16px;
 }
 .tsi-overview__text p:last-child { margin-bottom: 0; }
@@ -161,23 +170,23 @@
   gap: 32px;
   flex-shrink: 0;
   min-width: 180px;
-  border-left: 3px solid var(--black);
+  border-left: 3px solid rgba(255,255,255,0.15);
   padding-left: 32px;
 }
 .tsi-stat__num {
   display: block;
   font-family: var(--ff-head);
   font-weight: 900;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   line-height: 1;
-  color: var(--black);
+  color: var(--yellow);
 }
 .tsi-stat__num sub {
   font-size: 0.9rem;
   font-weight: 700;
   vertical-align: baseline;
   margin-left: 2px;
-  color: var(--grey-3);
+  color: rgba(247,245,240,0.5);
 }
 .tsi-stat__label {
   display: block;
@@ -186,8 +195,8 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--grey-3);
-  margin-top: 4px;
+  color: rgba(247,245,240,0.45);
+  margin-top: 6px;
 }
 
 /* ── CAREER TRACKS GRID ───────────────────────────── */
@@ -399,7 +408,7 @@
     grid-column: 2;
     flex-direction: row;
     border-left: none;
-    border-top: 3px solid var(--black);
+    border-top: 3px solid rgba(255,255,255,0.15);
     padding-left: 0;
     padding-top: 24px;
   }
