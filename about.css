@@ -154,16 +154,37 @@
   background: var(--clr-paper);
   padding: clamp(4rem, 8vw, 7rem) 0;
 }
+/* FIX: align columns to center so photo top tracks headline */
 .about-story__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(3rem, 6vw, 6rem);
-  align-items: start;
+  align-items: center;
 }
 @media (max-width: 768px) {
   .about-story__inner { grid-template-columns: 1fr; }
   .about-story__visual { order: -1; }
 }
+
+/* FIX: accent bar left of headline */
+.about-story__text {
+  position: relative;
+  padding-left: 1.25rem;
+}
+.about-story__text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 3px;
+  background: var(--clr-red);
+  border-radius: 2px;
+}
+@media (max-width: 768px) {
+  .about-story__text { padding-left: 1rem; }
+}
+
 .about-story__title {
   font-family: var(--font-cond);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -178,14 +199,34 @@
   font-style: italic;
   color: var(--clr-red);
 }
+/* FIX: body font 17px, line width 64ch */
 .about-story__body {
   font-family: var(--font-body);
-  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
-  line-height: 1.7;
+  font-size: 1.0625rem;
+  line-height: 1.75;
   color: #333;
   margin-bottom: 1.25rem;
-  max-width: 62ch;
+  max-width: 64ch;
 }
+
+/* FIX: Explore CTA link */
+.about-story__cta {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-red);
+  text-decoration: none;
+  transition: letter-spacing 180ms var(--ease-out), color 180ms var(--ease-out);
+}
+.about-story__cta:hover {
+  letter-spacing: 0.16em;
+  color: var(--clr-ink);
+}
+
 .about-story__visual { position: relative; }
 .about-story__photo-wrap {
   position: relative;
@@ -205,10 +246,11 @@
 .about-story__photo-bar--red    { background: var(--clr-red);    left: 0;  width: 33.33%; }
 .about-story__photo-bar--yellow { background: var(--clr-yellow); left: 33.33%; width: 33.33%; }
 .about-story__photo-bar--blue   { background: var(--clr-blue);   left: 66.66%; width: 33.34%; }
+/* FIX: badge breathing room */
 .about-story__founded {
   position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
+  top: 1.5rem;
+  right: 1.5rem;
   background: var(--clr-ink);
   color: var(--clr-paper);
   padding: 0.75rem 1rem;
@@ -546,18 +588,6 @@
 
 /*
  * Network logos — greyscale → full colour on hover
- * ─────────────────────────────────────────────────────────────
- * The logo files are full-colour PNGs. The technique:
- *
- *   Resting : grayscale(1) + low opacity → muted, dim silhouette
- *             that doesn't compete with the dark background.
- *
- *   Hover   : filter removed + opacity: 1 → the logo's own
- *             brand colours appear exactly as designed.
- *
- * A single smooth transition on filter + opacity covers both
- * directions (in and out) automatically.
- * ─────────────────────────────────────────────────────────────
  */
 .about-network__logo {
   width: auto;
@@ -565,19 +595,13 @@
   max-width: 130px;
   object-fit: contain;
   display: block;
-
-  /* Resting: greyscale + dim */
   filter: grayscale(1) brightness(1.4);
   opacity: 0.4;
-
-  /* Smooth transition for both hover-in and hover-out */
   transition:
     filter  360ms var(--ease-out),
     opacity 360ms var(--ease-out),
     transform 360ms var(--ease-out);
 }
-
-/* Hover: reveal the logo's original full colours */
 .about-network__item:hover .about-network__logo {
   filter: none;
   opacity: 1;

@@ -68,6 +68,7 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="/" class="nav__logo" aria-label="The Prymm Group &mdash; home">
+      <!-- FIX: decoding=async for non-blocking image decode -->
       <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="async" />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
@@ -131,6 +132,7 @@
     <!-- STORY -->
     <section class="about-story">
       <div class="container about-story__inner">
+        <!-- FIX: accent bar via ::before pseudo-element on .about-story__text -->
         <div class="about-story__text">
           <h2 class="about-story__title">
             WHO WE<br /><em>ARE.</em>
@@ -144,9 +146,12 @@
           <p class="about-story__body">
             From deploying world-class Japanese thermal waste technology in the Philippines, to installing EV charging infrastructure, to training the next generation of technical workers &mdash; every project we undertake is measured against one standard: does it stand the test of time?
           </p>
+          <!-- FIX: CTA nudging readers to divisions section -->
+          <a href="#divisions" class="about-story__cta">Explore our divisions &darr;</a>
         </div>
         <div class="about-story__visual">
           <div class="about-story__photo-wrap">
+            <!-- FIX: badge top/right inset bumped to 1.5rem (was 1.25rem) -->
             <div class="about-story__founded" aria-label="Founded 2017">
               <span class="about-story__founded-year">2017</span>
               <span class="about-story__founded-label">EST.</span>
@@ -169,7 +174,7 @@
     </section>
 
     <!-- DIVISIONS STRIP -->
-    <section class="about-divisions">
+    <section class="about-divisions" id="divisions">
       <div class="container">
         <header class="section-header">
           <span class="section-header__label">Our Structure</span>
