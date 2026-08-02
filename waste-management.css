@@ -473,11 +473,22 @@ thead th:last-child {
   color: var(--grey-3);
 }
 
-/* ── COMPLIANCE BAND ────────────────────────────── */
+/* ══════════════════════════════════════════════════
+   COMPLIANCE BAND — redesigned
+   Changes:
+   1. border-top separator (1px alpha) for clear ceiling edge
+   2. Asymmetric grid: first item wider (1.25fr vs 1fr)
+   3. Replaced .wm-compliance__icon with .wm-compliance__num
+      — large bold numerals (01 / 02 / 03) in brand colors,
+      no colored box background (removes the "icon in square" template look)
+   4. strong heading: explicit color: var(--black) so it's
+      always readable regardless of inherited dark-mode overrides
+   5. p body text: bumped to rgba(28,28,28,0.82) for WCAG AA
+══════════════════════════════════════════════════ */
 .wm-compliance {
   background: var(--white);
   padding: 100px 0;
-  border-top: 6px solid var(--red);
+  border-top: 1px solid rgba(28, 28, 28, 0.12);
 }
 .wm-compliance__inner {
   display: flex;
@@ -494,43 +505,50 @@ thead th:last-child {
 .wm-compliance__block--r { background: var(--red); }
 .wm-compliance__block--y { background: var(--yellow); }
 .wm-compliance__block--b { background: var(--blue); }
+
+/* Asymmetric 3-col: first item gets more horizontal space */
 .wm-compliance__items {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1.25fr 1fr 1fr;
   gap: 40px;
   flex: 1;
 }
 .wm-compliance__item {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
-.wm-compliance__icon {
-  width: 40px; height: 40px;
-  display: grid;
-  place-items: center;
-  font-size: 1rem;
+
+/* Bold numeral marker — replaces colored square icon */
+.wm-compliance__num {
+  font-family: var(--ff-head);
   font-weight: 900;
-  color: var(--white);
-  flex-shrink: 0;
+  font-size: 2.4rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  /* color set per modifier below */
 }
-.wm-compliance__icon--red    { background: var(--red); }
-.wm-compliance__icon--yellow { background: var(--yellow); color: var(--black); }
-.wm-compliance__icon--blue   { background: var(--blue); }
+.wm-compliance__num--red    { color: var(--red); }
+.wm-compliance__num--yellow { color: var(--yellow); }
+.wm-compliance__num--blue   { color: var(--blue); }
+
+/* Heading — explicit black so dark-mode base overrides can't steal it */
 .wm-compliance__item strong {
   display: block;
   font-family: var(--ff-head);
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 900;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--black);
   margin-bottom: 6px;
 }
+
+/* Body — bumped contrast for WCAG AA on white */
 .wm-compliance__item p {
-  font-size: 0.88rem;
-  line-height: 1.68;
-  color: var(--grey-2);
+  font-size: 0.9rem;
+  line-height: 1.72;
+  color: rgba(28, 28, 28, 0.75);
 }
 
 /* ── CTA BAND ──────────────────────────────────────── */
@@ -574,6 +592,7 @@ thead th:last-child {
 ═══════════════════════════════════════════════════════ */
 
 @media (max-width: 1000px) {
+  /* collapse to even 2-col on mid tablets */
   .wm-compliance__items { grid-template-columns: 1fr 1fr; }
 }
 
@@ -603,6 +622,7 @@ thead th:last-child {
   .wm-compliance__inner { flex-direction: column; }
   .wm-compliance__blocks { flex-direction: row; }
   .wm-compliance__block { width: 60px; height: 8px; }
+  /* single-col on mobile */
   .wm-compliance__items { grid-template-columns: 1fr; }
   .wm-download__inner {
     grid-template-columns: 6px 1fr;
@@ -708,4 +728,7 @@ thead th:last-child {
   .wm-download__action { flex-direction: column; align-items: flex-start; }
   .wm-download__btn { width: 100%; text-align: center; }
   .wm-table__spec-col { width: 18%; }
+
+  /* compliance — scale numeral down on phones */
+  .wm-compliance__num { font-size: 1.8rem; }
 }

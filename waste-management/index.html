@@ -442,7 +442,7 @@
   </section>
 
   <!-- COMPLIANCE BAND -->
-  <section class="wm-compliance">
+  <section class="wm-compliance" aria-labelledby="compliance-heading">
     <div class="container wm-compliance__inner">
       <div class="wm-compliance__blocks" aria-hidden="true">
         <div class="wm-compliance__block wm-compliance__block--r"></div>
@@ -450,9 +450,34 @@
         <div class="wm-compliance__block wm-compliance__block--b"></div>
       </div>
       <div class="wm-compliance__items">
-        <div class="wm-compliance__item reveal"><div class="wm-compliance__icon wm-compliance__icon--red" aria-hidden="true">&#10004;</div><div><strong>Clean Air Compliance</strong><p>Ultra-low emissions exceed international and local clean air standards by design, not adjustment.</p></div></div>
-        <div class="wm-compliance__item reveal"><div class="wm-compliance__icon wm-compliance__icon--yellow" aria-hidden="true">&#10004;</div><div><strong>Zero-Landfill Pathway</strong><p>Up to 95% volume reduction converts waste liability into recoverable ash residue and recoverable energy.</p></div></div>
-        <div class="wm-compliance__item reveal"><div class="wm-compliance__icon wm-compliance__icon--blue" aria-hidden="true">&#10004;</div><div><strong>Scalable Fleet</strong><p>Four models scale from 1,000 to 12,000 kg/day — right-sized for LGUs, hospitals, and large industrial operators.</p></div></div>
+
+        <!-- Item 01 — wider, anchor card -->
+        <div class="wm-compliance__item wm-compliance__item--wide reveal">
+          <div class="wm-compliance__num wm-compliance__num--red" aria-hidden="true">01</div>
+          <div>
+            <strong id="compliance-heading">Clean Air Compliance</strong>
+            <p>Ultra-low emissions exceed international and local clean air standards by design, not adjustment.</p>
+          </div>
+        </div>
+
+        <!-- Item 02 -->
+        <div class="wm-compliance__item reveal">
+          <div class="wm-compliance__num wm-compliance__num--yellow" aria-hidden="true">02</div>
+          <div>
+            <strong>Zero-Landfill Pathway</strong>
+            <p>Up to 95% volume reduction converts waste liability into recoverable ash residue and recoverable energy.</p>
+          </div>
+        </div>
+
+        <!-- Item 03 -->
+        <div class="wm-compliance__item reveal">
+          <div class="wm-compliance__num wm-compliance__num--blue" aria-hidden="true">03</div>
+          <div>
+            <strong>Scalable Fleet</strong>
+            <p>Four models scale from 1,000 to 12,000 kg/day — right-sized for LGUs, hospitals, and large industrial operators.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
