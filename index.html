@@ -24,17 +24,17 @@
   <meta property="og:title"       content="The Prymm Group LLC &mdash; Sustainable Solutions. Lasting Relationships." />
   <meta property="og:description" content="We integrate physical, digital, and human infrastructure to modernize operations and empower communities &mdash; delivering sustainable progress that stands the test of time." />
   <meta property="og:url"         content="https://prymmgroup.com/" />
-  <meta property="og:image"       content="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=85&auto=format&fit=crop&crop=center" />
+  <meta property="og:image"       content="https://prymmgroup.com/assets/og/home.jpg" />
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt"    content="Bright coastal forest meeting the ocean, representing The Prymm Group's sustainable operations" />
+  <meta property="og:image:alt"    content="The Prymm Group — Build the Capacity for Tomorrow" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="The Prymm Group LLC &mdash; Sustainable Solutions. Lasting Relationships." />
   <meta name="twitter:description" content="We integrate physical, digital, and human infrastructure to modernize operations and empower communities &mdash; delivering sustainable progress that stands the test of time." />
-  <meta name="twitter:image"       content="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=85&auto=format&fit=crop&crop=center" />
-  <meta name="twitter:image:alt"   content="Bright coastal forest meeting the ocean" />
+  <meta name="twitter:image"       content="https://prymmgroup.com/assets/og/home.jpg" />
+  <meta name="twitter:image:alt"   content="The Prymm Group — Build the Capacity for Tomorrow" />
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -110,7 +110,8 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="hero__photo" aria-hidden="true">
+    <!-- FIX 5: removed aria-hidden from wrapper; img carries alt="" for decorative intent -->
+    <div class="hero__photo">
       <img
         src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1920&q=80&auto=format&fit=crop&crop=center"
         alt=""
@@ -133,13 +134,15 @@
     </div>
 
     <div class="hero__content">
-      <p class="hero__eyebrow">EST. WILMINGTON, DELAWARE</p>
+      <!-- FIX 1: opacity bumped via CSS class; copy updated to EST. 2017 — GLOBAL OPERATIONS -->
+      <p class="hero__eyebrow">EST. 2017 &mdash; GLOBAL OPERATIONS</p>
       <h1 class="hero__headline">
         BUILD THE<br />
         CAPACITY<br />
         <em>FOR TOMORROW.</em>
       </h1>
       <p class="hero__sub">Sustainable Solutions.&nbsp;&nbsp;Lasting Relationships.</p>
+      <!-- FIX 2: CTA halo applied via .hero__content .btn in style.css -->
       <a href="#divisions" class="btn btn--primary">Explore Our Work</a>
     </div>
     <div class="hero__stat-strip">
@@ -153,8 +156,9 @@
         <span class="hero__stat-label">Waste Volume Reduction</span>
       </div>
       <div class="hero__stat-divider" aria-hidden="true"></div>
+      <!-- FIX 3: reframed as static "Zero" — no counter animation on a non-changing value -->
       <div class="hero__stat">
-        <span class="hero__stat-num" data-count="0">0<sup>%</sup></span>
+        <span class="hero__stat-num">Zero</span>
         <span class="hero__stat-label">Waste to Landfill</span>
       </div>
     </div>
@@ -180,7 +184,6 @@
       <div class="divisions__grid">
 
         <!-- Division 01 — Industrial & Trade -->
-        <!-- Clicking the card toggles the drawer below the grid -->
         <article
           class="division division--industrial reveal"
           data-index="01"
@@ -263,7 +266,7 @@
 
       </div><!-- /.divisions__grid -->
 
-      <!-- DIVISION 01 DRAWER — expands below the full-width grid on click -->
+      <!-- DIVISION 01 DRAWER -->
       <div
         class="division__drawer"
         id="drawer-industrial"
