@@ -1,6 +1,6 @@
 /* =====================================================
    PRYMM GROUP — INDEX PAGE STYLES
-   Style System v16 — Division 01 expand drawer
+   Style System v17 — Division 01 expand drawer
 
    Shared system (tokens, reset, nav, footer,
    buttons, reveal, animations, responsive base)
@@ -134,13 +134,22 @@
   background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.30) 100%);
 }
 
-/* Arrow: rotates 180° when drawer is open; never translates */
+/*
+  FIX 5: Arrow rotates smoothly 90deg on open (down → right = collapsed,
+  rotated 90deg clockwise = pointing down = expanded). Using rotate(90deg)
+  so it reads as a continuous physical motion rather than an icon swap.
+  The ↓ character in the HTML naturally points down when at 0deg,
+  and points right when rotated −90deg (collapsed state).
+  We start at −90deg (pointing right, like the other cards) and
+  rotate to 0deg (pointing down) when the drawer is open.
+*/
 .division__arrow--toggle {
   display: inline-block;
-  transition: transform var(--t-base) var(--ease), color var(--t-base) var(--ease);
+  transform: rotate(-90deg);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), color var(--t-base) var(--ease);
 }
 .division--active .division__arrow--toggle {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
   color: var(--yellow);
 }
 .division--industrial:hover .division__arrow--toggle {
@@ -210,14 +219,23 @@
 .division:hover .division__arrow,
 .division--active .division__arrow { color: var(--yellow); transform: translateX(6px); }
 /* Toggle arrow rotates instead of sliding — no translateX */
-.division:hover   .division__arrow--toggle { transform: none; }
-.division--active .division__arrow--toggle { transform: rotate(180deg); }
+.division:hover   .division__arrow--toggle { transform: rotate(-90deg); }
+.division--active .division__arrow--toggle { transform: rotate(0deg); }
 
 /* =====================================================
    DIVISION 01 EXPAND DRAWER
    Sits below the full-width grid, hidden by default.
    Opens via JS toggle; animates with max-height driven
    by scrollHeight set directly on the element in JS.
+
+   FIX 1: background changed from var(--white) to #0d0d0d
+           so the drawer is visually continuous with the
+           dark site theme above and below it.
+   FIX 3: .division__products uses align-items: stretch
+           so both product cards are always the same height.
+   FIX 2: Both product card accent bars now use var(--red)
+           exclusively — Industrial & Trade owns red.
+   FIX 4: Drawer label strip is dark to match background.
 ===================================================== */
 .division__drawer {
   overflow: hidden;
@@ -228,7 +246,8 @@
     opacity    0.3s  cubic-bezier(0.16, 1, 0.3, 1);
   border: 3px solid var(--black);
   border-top: none;
-  background: var(--white);
+  /* FIX 1: dark background to match site theme */
+  background: #0d0d0d;
 }
 .division__drawer--open {
   opacity: 1;
@@ -242,11 +261,14 @@
   align-items: center;
   gap: 20px;
   margin-bottom: clamp(24px, 4vw, 40px);
+  /* FIX 4: horizontal padding so the rule spans edge-to-edge inside the inner padding */
+  padding: 0 clamp(20px, 4vw, 40px);
 }
 .division__drawer-rule {
   flex: 1;
   height: 1px;
-  background: rgba(0,0,0,0.12);
+  /* FIX 4: lighter rule on dark background */
+  background: rgba(247,245,240,0.12);
 }
 .division__drawer-heading {
   font-family: var(--ff-head);
@@ -254,7 +276,8 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(0,0,0,0.35);
+  /* FIX 4: legible muted text on dark background */
+  color: rgba(247,245,240,0.35);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -265,19 +288,20 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 0;
   border: 3px solid var(--black);
+  /* FIX 3: equal card heights regardless of content length */
+  align-items: stretch;
 }
 
 .division__product-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 340px;
+  min-height: 380px;
   text-decoration: none;
   color: inherit;
   border-right: 3px solid var(--black);
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
-  /* overflow:hidden so the absolutely-positioned photo is clipped to the card bounds */
   overflow: hidden;
 }
 .division__product-card:last-child { border-right: none; }
@@ -330,9 +354,13 @@
   height: 8px;
   flex-shrink: 0;
   margin-top: auto;
+  /* FIX 2: Industrial & Trade owns red — all product cards use red accent bar */
+  background: var(--red);
 }
-.division__product-bar--red    { background: var(--red); }
-.division__product-bar--yellow { background: var(--yellow); }
+/* Remove the old colour-specific modifiers — both bars are now red by default above.
+   Keep the classes in HTML for semantic clarity but normalise them here. */
+.division__product-bar--red,
+.division__product-bar--yellow { background: var(--red); }
 
 .division__product-body {
   position: relative;
@@ -486,7 +514,7 @@
 
   /* Drawer: product cards stack at tablet */
   .division__drawer { border: none; border-top: 3px solid var(--black); }
-  .division__products { grid-template-columns: 1fr; }
+  .division__products { grid-template-columns: 1fr; align-items: unset; }
   .division__product-card { border-right: none; border-bottom: 3px solid var(--black); min-height: 260px; }
   .division__product-card:last-child { border-bottom: none; }
 }
