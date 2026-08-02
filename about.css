@@ -154,7 +154,6 @@
   background: var(--clr-paper);
   padding: clamp(4rem, 8vw, 7rem) 0;
 }
-/* FIX: align columns to center so photo top tracks headline */
 .about-story__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -166,7 +165,6 @@
   .about-story__visual { order: -1; }
 }
 
-/* FIX: accent bar left of headline */
 .about-story__text {
   position: relative;
   padding-left: 1.25rem;
@@ -199,7 +197,6 @@
   font-style: italic;
   color: var(--clr-red);
 }
-/* FIX: body font 17px, line width 64ch */
 .about-story__body {
   font-family: var(--font-body);
   font-size: 1.0625rem;
@@ -209,7 +206,6 @@
   max-width: 64ch;
 }
 
-/* FIX: Explore CTA link */
 .about-story__cta {
   display: inline-block;
   margin-top: 0.5rem;
@@ -246,7 +242,6 @@
 .about-story__photo-bar--red    { background: var(--clr-red);    left: 0;  width: 33.33%; }
 .about-story__photo-bar--yellow { background: var(--clr-yellow); left: 33.33%; width: 33.33%; }
 .about-story__photo-bar--blue   { background: var(--clr-blue);   left: 66.66%; width: 33.34%; }
-/* FIX: badge breathing room */
 .about-story__founded {
   position: absolute;
   top: 1.5rem;
@@ -540,6 +535,14 @@
   line-height: 1.65;
   color: rgba(247,245,240,0.6);
   margin: 0;
+}
+
+/* ── Section Header label modifiers for dark-background sections ── */
+.section-header__label--on-dark {
+  color: rgba(247,245,240,0.45);
+}
+.section-header__label--on-dark-faint {
+  color: rgba(247,245,240,0.35);
 }
 
 /* ── Network ── */
