@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v13 — Division 01 drawer
+   Interactions v14 — Division 01 drawer
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
    ─ Active nav indicator on sub-pages
@@ -503,6 +503,20 @@
      so max-height never clips the content.
      Moves focus to the first product card on open
      so keyboard users land in the drawer directly.
+
+     FIX v14: The drawer's scrollHeight was being
+     read before the browser had laid out its
+     contents (product card images are lazy-loaded
+     and the drawer was never rendered at full
+     height before). We now:
+       1. Temporarily remove overflow:hidden and
+          set visibility:hidden / position:absolute
+          so the drawer paints off-screen at its
+          natural height.
+       2. Read scrollHeight after a forced reflow.
+       3. Restore overflow:hidden and animate.
+     This guarantees the product cards are fully
+     visible and clickable when the drawer opens.
   ───────────────────────────────────────────── */
   (function () {
     var btn    = document.querySelector('.division__toggle');
@@ -510,13 +524,43 @@
     var card   = document.getElementById('div-industrial');
     if (!btn || !drawer) return;
 
+    /* Pre-measure the drawer's natural height off-screen so scrollHeight
+       is always accurate regardless of lazy-load or reveal state. */
+    function measureDrawer() {
+      var prevMax  = drawer.style.maxHeight;
+      var prevVis  = drawer.style.visibility;
+      var prevPos  = drawer.style.position;
+      var prevOver = drawer.style.overflow;
+
+      drawer.style.maxHeight  = 'none';
+      drawer.style.visibility = 'hidden';
+      drawer.style.position   = 'absolute';
+      drawer.style.overflow   = 'visible';
+
+      /* Force reflow */
+      var h = drawer.scrollHeight;
+
+      drawer.style.maxHeight  = prevMax  || '';
+      drawer.style.visibility = prevVis  || '';
+      drawer.style.position   = prevPos  || '';
+      drawer.style.overflow   = prevOver || '';
+
+      /* Never return a height shorter than the min-height defined in CSS
+         (2 cards × 340px min-height + drawer padding ≈ 800px) */
+      return Math.max(h, 800);
+    }
+
     function openDrawer() {
       btn.setAttribute('aria-expanded', 'true');
       drawer.setAttribute('aria-hidden', 'false');
-      drawer.classList.add('division__drawer--open');
       card.classList.add('division--active');
-      /* Use scrollHeight for exact height — no hardcoded max-height needed */
-      drawer.style.maxHeight = drawer.scrollHeight + 'px';
+
+      /* Measure before adding the open class so overflow:hidden is still off */
+      var targetHeight = measureDrawer();
+
+      drawer.classList.add('division__drawer--open');
+      drawer.style.maxHeight = targetHeight + 'px';
+
       /* Move focus to the first product card after the transition ends */
       drawer.addEventListener('transitionend', function onEnd(e) {
         if (e.propertyName !== 'max-height') return;
