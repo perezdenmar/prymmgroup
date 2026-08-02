@@ -575,21 +575,39 @@
   align-items: center;
   justify-content: center;
   padding: 1.75rem 1.25rem;
-  transition: background 180ms var(--ease-out);
+  transition: background 300ms var(--ease-out);
 }
-.about-network__item:hover { background: rgba(255,255,255,0.04); }
+.about-network__item:hover { background: rgba(255,255,255,0.06); }
+
+/*
+ * Logo colour-reveal on hover
+ * ─────────────────────────────────────────────────────────────
+ * Default: greyscale + dimmed so every logo reads as a neutral
+ *          silhouette on the dark background.
+ * Hover:   filter lifted entirely so the original brand colours
+ *          come through. Opacity bumps to full for crispness.
+ *          mix-blend-mode removed so colours aren't washed out.
+ * ─────────────────────────────────────────────────────────────
+ */
 .about-network__logo {
   width: auto;
   height: 40px;
   max-width: 130px;
   object-fit: contain;
-  background: transparent;
-  mix-blend-mode: lighten;
-  filter: brightness(0) invert(1);
-  opacity: 0.55;
-  transition: opacity 180ms var(--ease-out);
+  display: block;
+  /* Greyscale + dim — baseline resting state */
+  filter: grayscale(1) brightness(0.6) contrast(1.1);
+  opacity: 0.7;
+  mix-blend-mode: normal;
+  transition:
+    filter  320ms var(--ease-out),
+    opacity 320ms var(--ease-out);
 }
-.about-network__item:hover .about-network__logo { opacity: 0.85; }
+.about-network__item:hover .about-network__logo {
+  /* Full original colour revealed */
+  filter: none;
+  opacity: 1;
+}
 
 /* ── Reveal Animation (handled by main.js) ── */
 .reveal {
