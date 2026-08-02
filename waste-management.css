@@ -63,7 +63,6 @@
 .wm-hero__breadcrumb a {
   color: rgba(247,245,240,0.45);
   transition: color 0.15s;
-  /* WCAG 44px tap target */
   padding-block: 0.5rem;
   display: inline-flex;
   align-items: center;
@@ -83,7 +82,6 @@
 .wm-hero__headline em {
   font-style: normal;
   color: var(--red);
-  /* Anchor red text against shifting video backgrounds */
   text-shadow: 0 2px 12px rgba(0,0,0,0.55);
 }
 .wm-hero__sub {
@@ -95,7 +93,7 @@
   color: rgba(247,245,240,0.65);
 }
 
-/* Desktop badge — absolutely positioned bottom-right of the hero section */
+/* ── BADGE — desktop only (>768px) ── */
 .wm-hero__badge {
   position: absolute;
   right: 40px;
@@ -194,7 +192,7 @@
   color: var(--black);
 }
 
-/* kg unit — rendered as superscript-style qualifier, not a true subscript */
+/* kg unit */
 .wm-intro__stat-num sub {
   font-size: 0.55em;
   font-weight: 700;
@@ -571,11 +569,15 @@ thead th:last-child {
   border-color: var(--black);
 }
 
-/* ── RESPONSIVE ──────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════ */
+
 @media (max-width: 1000px) {
   .wm-compliance__items { grid-template-columns: 1fr 1fr; }
 }
 
+/* ── 860px: other layout adjustments ── */
 @media (max-width: 860px) {
   .wm-intro__inner { grid-template-columns: 6px 1fr; }
   .wm-intro__stats {
@@ -613,76 +615,96 @@ thead th:last-child {
   }
 }
 
-@media (max-width: 600px) {
-  /* ═══════════════════════════════════════════════════════
-     HERO — ROOT FIX for badge-over-subtitle overlap
+/* ═══════════════════════════════════════════════════════
+   HERO MOBILE FIX — <=768px
 
-     The badge is a sibling of .wm-hero__content inside the
-     .wm-hero flex container. On desktop it floats via
-     position:absolute. On mobile we pull it into normal
-     document flow by:
-       1. Switching .wm-hero to flex-direction:column so
-          content + badge stack vertically.
-       2. Setting .wm-hero__badge to position:static so it
-          occupies real space BELOW the content — no more
-          z-index overlap with the subtitle or headline.
-       3. Sizing and spacing the in-flow badge appropriately.
-  ═══════════════════════════════════════════════════════ */
+   WHY 768px (not 600px):
+   The previous fix used max-width:600px, which missed all
+   tablet/responsive viewport widths between 600–768px where
+   the badge still overlapped the subtitle as shown in the
+   browser DevTools responsive mode screenshot.
+
+   The badge is a sibling of .wm-hero__content inside the
+   .wm-hero flex container. As long as it is position:absolute,
+   it floats over content at any width where the hero is
+   not wide enough for the badge to sit safely in the corner.
+
+   The ONLY reliable fix is:
+     1. Switch .wm-hero to flex-direction:column (children stack)
+     2. Set .wm-hero__badge to position:static (in normal flow,
+        BELOW the content — physically impossible to overlap)
+     3. Scale headline down at this breakpoint so it never
+        pushes the content area so wide that the badge clips it
+═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* 1. Stack the hero vertically */
   .wm-hero {
     flex-direction: column;
     justify-content: flex-end;
     align-items: stretch;
+    min-height: 60vh;
   }
+
+  /* 2. Content block takes full width, reduced padding */
   .wm-hero__content {
-    padding: 40px 20px 24px;
-    /* Content no longer needs to reserve space for the badge */
+    padding: 36px 20px 20px;
     max-width: 100%;
   }
-  .wm-hero__sub {
-    /* Allow full-width wrapping — badge is now below, not overlapping */
-    white-space: normal;
-    font-size: 0.82rem;
-    letter-spacing: 0.12em;
+
+  /* 3. Scale headline so it fits without pushing layout */
+  .wm-hero__headline {
+    font-size: clamp(2.6rem, 11vw, 4.5rem);
+    margin-bottom: 14px;
   }
+
+  /* 4. Let subtitle wrap fully — no badge to collide with */
+  .wm-hero__sub {
+    white-space: normal;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    padding-right: 0;
+  }
+
+  /* 5. Badge: pull OUT of absolute, flow below content as a bar */
   .wm-hero__badge {
-    /* Pull completely out of absolute positioning into normal flow */
-    position: static;
-    /* Span full width and left-align to match the content above */
+    position: static;          /* <-- THE core fix: in normal flow, below content */
     width: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
-    padding: 16px 20px;
+    gap: 14px;
+    padding: 14px 20px;
     min-width: unset;
-    /* Subtle top separator to visually anchor it below the content */
-    border-top: 2px solid rgba(255,255,255,0.12);
+    border-top: 2px solid rgba(255,255,255,0.10);
   }
-  .wm-hero__badge-num {
-    font-size: 2.4rem;
-  }
+  .wm-hero__badge-num  { font-size: 2.2rem; }
   .wm-hero__badge-label {
     text-align: left;
-    font-size: 0.65rem;
+    font-size: 0.63rem;
   }
+}
 
-  /* ── INTRO STATS — stack vertically on narrow phones ── */
+/* ── 480px: narrow phone tidying ── */
+@media (max-width: 480px) {
+  .wm-hero__content  { padding: 32px 16px 16px; }
+  .wm-hero__headline { font-size: clamp(2.2rem, 12vw, 3.5rem); }
+  .wm-hero__badge    { padding: 12px 16px; gap: 10px; }
+  .wm-hero__badge-num { font-size: 2rem; }
+
+  /* INTRO STATS — stack vertically on very narrow phones */
   .wm-intro__stats {
     flex-direction: column;
     border-top: 3px solid var(--black);
     padding-top: 24px;
   }
-  .wm-intro__stat {
-    padding-inline: 0;
-    padding-block: 16px;
-  }
+  .wm-intro__stat        { padding-inline: 0; padding-block: 16px; }
   .wm-intro__stat + .wm-intro__stat {
     border-left: none;
-    border-top: 1px solid rgba(28, 28, 28, 0.14);
+    border-top: 1px solid rgba(28,28,28,0.14);
   }
 
-  /* ── OTHER SMALL-SCREEN TIDYING ── */
-  .wm-cta__inner { padding: 0 20px; }
+  .wm-cta__inner { padding: 0 16px; }
   .wm-download__action { flex-direction: column; align-items: flex-start; }
   .wm-download__btn { width: 100%; text-align: center; }
   .wm-table__spec-col { width: 18%; }
