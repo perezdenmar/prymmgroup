@@ -1,534 +1,635 @@
-/* =====================================================
-   PRYMM GROUP — ABOUT PAGE STYLES
-   Depends on base.css being loaded first.
+/* ============================================================
+   about.css — The Prymm Group LLC — About Page Styles
+   ============================================================ */
 
-   Design review fixes applied 2026-08-01:
-   #1  Mobile story photo order restored (no order:-1)
-   #2  Philosophy pillar body contrast raised (0.55 → 0.72)
-   #3  Network logo broken-image fallback via .about-network__logo
-   #4  Photo-wrap overflow:visible; founded badge offset corrected at tablet
-   #5  Division card index hover opacity raised (0.30 → 0.45)
-   #7  Hero Bauhaus blocks replaced display:none with narrow strip at 600px
-   #8  Story body font-size floor raised 0.875rem → 1rem (14px → 16px)
-   #9  Network logo grid: flex → CSS Grid auto-fill
-   #10 Pillar accent bars: 40px fixed → clamp(32px,5vw,56px)
-   #11 Intro accent bar stays vertical on mobile (shrinks, not rotates)
-   #12 Explicit prefers-reduced-motion guard on division card transitions
-   #13 Network logo square background removed (transparent)
-   #14 Philosophy pillar <h3> selector added (was <strong> in old markup)
-===================================================== */
+/* ── Tokens ── */
+:root {
+  --clr-red:    #d42b2b;
+  --clr-yellow: #f5c518;
+  --clr-blue:   #1a4fa0;
+  --clr-ink:    #111111;
+  --clr-paper:  #f7f5f0;
+  --clr-warm:   #f0ede6;
+  --font-cond:  'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body:  'Barlow', Arial, sans-serif;
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-/* ---- HERO ---- */
+/* ── Skip Link ── */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--clr-ink);
+  color: var(--clr-paper);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ── Hero ── */
 .about-hero {
   position: relative;
   min-height: 80vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-top: var(--nav-h);
+  align-items: flex-end;
   overflow: hidden;
-  background: #111;
 }
-.about-hero__photo { position: absolute; inset: 0; z-index: 0; }
+.about-hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
 .about-hero__photo-img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center 40%;
-  display: block;
-  filter: saturate(1.1) brightness(0.65);
+  object-position: center;
 }
 .about-hero__photo-overlay {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.70) 40%, rgba(0,0,0,0.25) 100%),
-    linear-gradient(to top,   rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.00) 30%);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.28) 60%, transparent 100%);
 }
-
-/* Bauhaus corner blocks */
-.about-hero__grid-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
-.about-hero__block { position: absolute; }
-.about-hero__block--red    { width: clamp(120px,20vw,260px); height: clamp(120px,20vw,260px); top: var(--nav-h); right: 0; background: var(--red); opacity: 0.50; }
-.about-hero__block--yellow { width: clamp(60px,10vw,130px);  height: clamp(60px,10vw,130px);  top: calc(var(--nav-h) + clamp(120px,20vw,260px)); right: 0; background: var(--yellow); opacity: 0.65; }
-.about-hero__block--blue   { width: clamp(40px,6vw,80px);    height: clamp(40px,6vw,80px);    top: calc(var(--nav-h) + clamp(120px,20vw,260px)); right: clamp(60px,10vw,130px); background: var(--blue); opacity: 0.75; }
-
+.about-hero__grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.about-hero__block {
+  position: absolute;
+  width: 4px;
+  top: 0;
+  bottom: 0;
+  opacity: 0.85;
+}
+.about-hero__block--red    { background: var(--clr-red);    left: 12%; }
+.about-hero__block--yellow { background: var(--clr-yellow); left: calc(12% + 10px); }
+.about-hero__block--blue   { background: var(--clr-blue);   left: calc(12% + 20px); }
 .about-hero__content {
   position: relative;
   z-index: 2;
-  padding-bottom: clamp(48px, 8vw, 96px);
-  padding-top: clamp(32px, 5vw, 64px);
+  padding-bottom: 5rem;
+  padding-top: 2rem;
 }
 .about-hero__eyebrow {
-  font-family: var(--ff-head);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(247,245,240,0.50);
-  margin-bottom: 20px;
-}
-.about-hero__headline {
-  font-family: var(--ff-head);
-  font-weight: 900;
-  font-size: clamp(3rem, 9vw, 8rem);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: var(--white);
-  text-shadow: 0 2px 24px rgba(0,0,0,0.9);
-  margin-bottom: 24px;
-}
-.about-hero__headline em {
-  font-style: normal;
-  color: var(--yellow);
-}
-.about-hero__sub {
-  font-family: var(--ff-head);
-  font-size: clamp(0.78rem, 2vw, 1rem);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(247,245,240,0.65);
+  color: rgba(247,245,240,0.55);
+  margin-bottom: 1rem;
+}
+.about-hero__headline {
+  font-family: var(--font-cond);
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #f7f5f0;
+  margin-bottom: 1.5rem;
+}
+.about-hero__headline em {
+  font-style: italic;
+  color: var(--clr-yellow);
+}
+.about-hero__sub {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.55);
 }
 
-/* ---- INTRO BAND ---- */
+/* ── Intro Band ── */
 .about-intro {
-  background: var(--red);
-  padding: clamp(40px,6vw,64px) 0;
+  background: var(--clr-ink);
+  padding: clamp(3rem, 6vw, 5rem) 0;
 }
 .about-intro__inner {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 0 clamp(20px,4vw,40px);
+  padding: 0 clamp(1.5rem, 5vw, 3rem);
   display: flex;
-  align-items: center;
-  gap: 40px;
+  gap: 2.5rem;
+  align-items: flex-start;
 }
-/* Fix #11: accent bar stays vertical on mobile — shrinks in height, never rotates */
 .about-intro__accent {
   flex-shrink: 0;
-  width: 6px;
-  height: 80px;
-  background: var(--white);
-  align-self: flex-start;
+  width: 3px;
+  align-self: stretch;
+  background: linear-gradient(to bottom, var(--clr-red) 0%, var(--clr-yellow) 50%, var(--clr-blue) 100%);
+  border-radius: 2px;
 }
 .about-intro__quote {
-  font-family: var(--ff-head);
-  font-size: clamp(1rem, 2.5vw, 1.55rem);
+  font-family: var(--font-cond);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 700;
   font-style: normal;
-  line-height: 1.4;
-  color: var(--white);
-  letter-spacing: 0.01em;
-}
-/* Fix #6: <p> inside blockquote inherits quote styles cleanly */
-.about-intro__quote p {
+  line-height: 1.35;
+  color: #f7f5f0;
+  border: none;
+  padding: 0;
   margin: 0;
-  font: inherit;
-  color: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
+}
+.about-intro__quote p { margin: 0 0 0.75rem; }
+.about-intro__quote footer {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: rgba(247,245,240,0.45);
 }
 
-/* ---- STORY SECTION ---- */
+/* ── Story ── */
 .about-story {
-  padding: clamp(60px,8vw,120px) 0;
-  background: var(--white);
+  background: var(--clr-paper);
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 .about-story__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(40px,6vw,80px);
+  gap: clamp(3rem, 6vw, 6rem);
   align-items: start;
 }
+@media (max-width: 768px) {
+  .about-story__inner { grid-template-columns: 1fr; }
+  .about-story__visual { order: -1; }
+}
 .about-story__title {
-  font-family: var(--ff-head);
+  font-family: var(--font-cond);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 900;
-  font-size: clamp(2rem, 4.5vw, 3.8rem);
-  line-height: 1;
+  line-height: 0.95;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  color: var(--black);
-  margin-bottom: 32px;
+  color: var(--clr-ink);
+  margin-bottom: 2rem;
 }
 .about-story__title em {
-  font-style: normal;
-  color: var(--red);
+  font-style: italic;
+  color: var(--clr-red);
 }
-/* Fix #8: floor raised from 0.875rem (14px) to 1rem (16px) for mobile readability */
 .about-story__body {
-  font-size: clamp(1rem, 2vw, 1.0625rem);
-  line-height: 1.8;
-  color: #444;
+  font-family: var(--font-body);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 1.25rem;
   max-width: 62ch;
-  margin-bottom: 20px;
 }
-.about-story__body:last-child { margin-bottom: 0; }
-
-/* Photo with tricolour accent bars */
-/* Fix #4: overflow:visible ensures founded badge is not clipped */
+.about-story__visual { position: relative; }
 .about-story__photo-wrap {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  overflow: visible;
+  border-radius: 2px;
+  overflow: hidden;
 }
 .about-story__photo {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
-  aspect-ratio: 3/2;
-  filter: saturate(0.9) brightness(0.95);
 }
 .about-story__photo-bar {
-  height: 8px;
-  width: 100%;
-  flex-shrink: 0;
+  position: absolute;
+  bottom: 0;
+  height: 4px;
 }
-.about-story__photo-bar--red    { background: var(--red); }
-.about-story__photo-bar--yellow { background: var(--yellow); }
-.about-story__photo-bar--blue   { background: var(--blue); }
-
-/* Founded badge */
+.about-story__photo-bar--red    { background: var(--clr-red);    left: 0;  width: 33.33%; }
+.about-story__photo-bar--yellow { background: var(--clr-yellow); left: 33.33%; width: 33.33%; }
+.about-story__photo-bar--blue   { background: var(--clr-blue);   left: 66.66%; width: 33.34%; }
 .about-story__founded {
   position: absolute;
-  top: -20px;
-  right: -20px;
-  width: clamp(80px,12vw,110px);
-  height: clamp(80px,12vw,110px);
-  background: var(--black);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  border: 4px solid var(--yellow);
-  z-index: 2;
-}
-.about-story__founded-year {
-  font-family: var(--ff-head);
-  font-weight: 900;
-  font-size: clamp(1.2rem,3vw,1.6rem);
-  color: var(--yellow);
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--clr-ink);
+  color: var(--clr-paper);
+  padding: 0.75rem 1rem;
+  text-align: center;
+  z-index: 1;
   line-height: 1;
 }
+.about-story__founded-year {
+  display: block;
+  font-family: var(--font-cond);
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
 .about-story__founded-label {
-  font-family: var(--ff-head);
-  font-size: 0.55rem;
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(247,245,240,0.55);
-  text-align: center;
-  line-height: 1.3;
+  color: rgba(247,245,240,0.5);
+  margin-top: 0.2rem;
 }
 
-/* ---- DIVISIONS STRIP ---- */
+/* ── Divisions Strip ── */
 .about-divisions {
-  padding: clamp(60px,8vw,120px) 0;
-  background: #f4f3f0;
-  border-top: 3px solid var(--black);
-  border-bottom: 3px solid var(--black);
+  background: var(--clr-warm);
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
+
+/* Section header — no reveal override needed; main.js handles .reveal */
+.about-divisions .section-header__label {
+  color: var(--clr-ink);
+}
+.about-divisions .section-header__title {
+  color: var(--clr-ink);
+}
+
+/* ── Peer Division Cards (3-col grid, no outer border) ── */
 .about-divisions__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border: 3px solid var(--black);
-  margin-top: clamp(32px,5vw,64px);
+  /* No border, no box — column rules only */
+  border-left: 1px solid rgba(17,17,17,0.12);
+  margin-top: 3rem;
+}
+@media (max-width: 768px) {
+  .about-divisions__grid {
+    grid-template-columns: 1fr;
+    border-left: none;
+    border-top: 1px solid rgba(17,17,17,0.12);
+  }
 }
 
-/* Division card — flat light variant */
 .about-div-card {
   display: flex;
   flex-direction: column;
-  padding: clamp(28px,4vw,40px) clamp(20px,3vw,32px);
-  border-right: 3px solid var(--black);
+  padding: 2rem 2rem 2rem;
+  border-right: 1px solid rgba(17,17,17,0.12);
   text-decoration: none;
-  color: var(--black);
-  background: #f4f3f0;
-  transition: background 0.2s var(--ease), color 0.2s var(--ease);
-  -webkit-tap-highlight-color: transparent;
+  color: var(--clr-ink);
+  transition: background 180ms var(--ease-out);
+  min-height: 340px;
 }
-/* Fix #12: suppress transitions for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
+.about-div-card:hover {
+  background: rgba(17,17,17,0.04);
+}
+@media (max-width: 768px) {
   .about-div-card {
-    transition: none;
-  }
-  .about-div-card__desc,
-  .about-div-card__arrow,
-  .about-div-card__index {
-    transition: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(17,17,17,0.12);
+    min-height: unset;
   }
 }
-.about-div-card:last-child { border-right: none; }
-.about-div-card:hover, .about-div-card:focus-visible {
-  background: var(--black);
-  color: var(--white);
-  outline: none;
-}
-.about-div-card:hover .about-div-card__desc,
-.about-div-card:focus-visible .about-div-card__desc { color: rgba(247,245,240,0.65); }
-.about-div-card:hover .about-div-card__arrow,
-.about-div-card:focus-visible .about-div-card__arrow { color: var(--yellow); }
 
+/* Accent bar at top of each card */
 .about-div-card__bar {
-  height: 6px;
-  width: 100%;
-  margin-bottom: 28px;
-  flex-shrink: 0;
+  height: 3px;
+  width: 60%;
+  margin-bottom: 1.75rem;
+  border-radius: 1px;
 }
-.about-div-card--industrial .about-div-card__bar { background: var(--red); }
-.about-div-card--tech       .about-div-card__bar { background: var(--blue); }
-.about-div-card--edu        .about-div-card__bar { background: var(--yellow); }
+.about-div-card--industrial .about-div-card__bar { background: var(--clr-red); }
+.about-div-card--tech        .about-div-card__bar { background: var(--clr-blue); }
+.about-div-card--edu         .about-div-card__bar { background: var(--clr-yellow); }
 
-/* Fix #5: index opacity on hover raised 0.30 → 0.45 for sufficient contrast */
-.about-div-card__index {
-  font-family: var(--ff-head);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: rgba(0,0,0,0.28);
-  margin-bottom: 12px;
-  transition: color 0.2s;
+.about-div-card__header {
+  margin-bottom: 0.5rem;
 }
-.about-div-card:hover .about-div-card__index,
-.about-div-card:focus-visible .about-div-card__index { color: rgba(247,245,240,0.45); }
+
+.about-div-card__index {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(17,17,17,0.35);
+  margin: 0;
+}
 
 .about-div-card__name {
-  font-family: var(--ff-head);
+  font-family: var(--font-cond);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 900;
-  font-size: clamp(1.3rem,2.5vw,1.75rem);
-  line-height: 1.05;
+  line-height: 0.95;
   text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.about-div-card__desc {
-  font-size: clamp(0.8rem,1.8vw,0.875rem);
-  line-height: 1.65;
-  color: #555;
-  flex: 1;
-  transition: color 0.2s;
-}
-.about-div-card__arrow {
-  display: block;
-  font-size: 1.4rem;
-  margin-top: 28px;
-  color: var(--black);
-  transition: color 0.2s;
+  letter-spacing: -0.01em;
+  color: var(--clr-ink);
+  margin: 0.5rem 0 1rem;
 }
 
-/* ---- PHILOSOPHY BAND ---- */
+.about-div-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #444;
+  margin: 0;
+  /* Grow to push CTA to bottom */
+  flex: 1;
+}
+
+/* CTA label pinned to bottom — replaces bare → */
+.about-div-card__cta {
+  display: inline-block;
+  margin-top: 2rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-ink);
+  transition: color 180ms var(--ease-out), letter-spacing 180ms var(--ease-out);
+}
+.about-div-card:hover .about-div-card__cta {
+  letter-spacing: 0.14em;
+}
+
+/* ── Prymm Farm Sub-Row ── */
+.about-divisions__sub-row {
+  margin-top: 2.5rem;
+  border-top: 1px solid rgba(17,17,17,0.12);
+  padding-top: 2rem;
+}
+
+.about-divisions__sub-label {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.about-divisions__sub-rule {
+  flex: 1;
+  height: 1px;
+  background: rgba(17,17,17,0.15);
+  display: block;
+}
+.about-divisions__sub-heading {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(17,17,17,0.4);
+  white-space: nowrap;
+}
+
+/* Farm card — full-width horizontal layout, clearly a sub-entity */
+.about-div-farm-card {
+  display: flex;
+  align-items: stretch;
+  text-decoration: none;
+  color: var(--clr-ink);
+  background: rgba(17,17,17,0.03);
+  border: 1px solid rgba(17,17,17,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: background 180ms var(--ease-out);
+}
+.about-div-farm-card:hover {
+  background: rgba(17,17,17,0.07);
+}
+
+/* Yellow left bar marking it as agriculture / 01 sub-entity */
+.about-div-farm-card__bar {
+  width: 4px;
+  flex-shrink: 0;
+  background: var(--clr-yellow);
+}
+
+.about-div-farm-card__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
+  flex: 1;
+}
+@media (max-width: 600px) {
+  .about-div-farm-card__body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.about-div-farm-card__tag {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(17,17,17,0.4);
+  margin: 0 0 0.4rem;
+}
+
+.about-div-farm-card__name {
+  font-family: var(--font-cond);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--clr-ink);
+  margin: 0 0 0.5rem;
+}
+
+.about-div-farm-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #444;
+  margin: 0;
+  max-width: 56ch;
+}
+
+.about-div-farm-card__cta {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-ink);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: letter-spacing 180ms var(--ease-out);
+}
+.about-div-farm-card:hover .about-div-farm-card__cta {
+  letter-spacing: 0.14em;
+}
+
+/* ── Philosophy ── */
 .about-philosophy {
   position: relative;
-  padding: clamp(60px,8vw,120px) 0;
   overflow: hidden;
-  background: #0d1a0d;
 }
-.about-philosophy__photo { position: absolute; inset: 0; z-index: 0; }
+.about-philosophy__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
 .about-philosophy__photo img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  display: block;
-  filter: saturate(0.5) brightness(0.35);
 }
 .about-philosophy__overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.55) 100%);
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
 }
 .about-philosophy__inner {
   position: relative;
-  z-index: 2;
+  z-index: 1;
+  padding: clamp(5rem, 10vw, 9rem) 0;
 }
 .about-philosophy__title {
-  font-family: var(--ff-head);
+  font-family: var(--font-cond);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
   font-weight: 900;
-  font-size: clamp(2.2rem,5vw,4.5rem);
-  line-height: 0.97;
+  line-height: 0.9;
   text-transform: uppercase;
-  color: var(--white);
-  margin: 16px 0 28px;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.9);
+  letter-spacing: -0.01em;
+  color: #f7f5f0;
+  margin: 1rem 0 1.5rem;
 }
 .about-philosophy__body {
-  font-size: clamp(0.875rem,2vw,1rem);
-  line-height: 1.8;
+  font-family: var(--font-body);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  line-height: 1.7;
   color: rgba(247,245,240,0.65);
-  max-width: 58ch;
-  margin-bottom: 48px;
+  max-width: 54ch;
+  margin-bottom: 3rem;
 }
-
-/* Three pillars */
 .about-philosophy__pillars {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(20px,3vw,36px);
+  gap: 2.5rem;
 }
-.about-philosophy__pillar {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+@media (max-width: 768px) {
+  .about-philosophy__pillars { grid-template-columns: 1fr; gap: 2rem; }
 }
-/* Fix #10: pillar bars fluid width instead of fixed 40px */
 .about-philosophy__pillar-bar {
-  height: 4px;
-  width: clamp(32px,5vw,56px);
-  flex-shrink: 0;
-  margin-bottom: 4px;
+  height: 3px;
+  width: 40px;
+  margin-bottom: 1.25rem;
+  border-radius: 1px;
 }
-.about-philosophy__pillar-bar--red    { background: var(--red); }
-.about-philosophy__pillar-bar--yellow { background: var(--yellow); }
-.about-philosophy__pillar-bar--blue   { background: var(--blue); }
-/* Fix #14: h3 selector added to match updated HTML (was <strong> in old markup).
-   Retains <strong> selector as fallback in case any page still uses the old pattern. */
-.about-philosophy__pillar strong,
+.about-philosophy__pillar-bar--red    { background: var(--clr-red); }
+.about-philosophy__pillar-bar--yellow { background: var(--clr-yellow); }
+.about-philosophy__pillar-bar--blue   { background: var(--clr-blue); }
 .about-philosophy__pillar h3 {
-  display: block;
-  font-family: var(--ff-head);
-  font-size: clamp(0.85rem,1.8vw,0.95rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-family: var(--font-cond);
+  font-size: 1.125rem;
+  font-weight: 900;
   text-transform: uppercase;
-  color: var(--white);
+  letter-spacing: 0.04em;
+  color: #f7f5f0;
+  margin: 0 0 0.75rem;
+}
+.about-philosophy__pillar p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(247,245,240,0.6);
   margin: 0;
 }
-/* Fix #2: opacity raised 0.55 → 0.72 to pass WCAG AA at small font sizes */
-.about-philosophy__pillar p {
-  font-size: clamp(0.78rem,1.6vw,0.875rem);
-  line-height: 1.65;
-  color: rgba(247,245,240,0.72);
-}
 
-/* ---- OUR NETWORK BAND ---- */
+/* ── Network ── */
 .about-network {
-  background: #0d0d0d;
-  padding: clamp(56px,7vw,96px) 0;
-  border-top: 1px solid rgba(247,245,240,0.06);
+  background: var(--clr-ink);
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
-.about-network__inner {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(36px,5vw,56px);
-}
-.about-network__header {
-  text-align: center;
-}
+.about-network__inner { max-width: 960px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); }
 .about-network__title {
-  font-family: var(--ff-head);
+  font-family: var(--font-cond);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 900;
-  font-size: clamp(1.8rem,3.5vw,2.8rem);
-  line-height: 1;
   text-transform: uppercase;
-  color: var(--white);
-  margin: 10px 0 14px;
-  letter-spacing: -0.01em;
+  color: #f7f5f0;
+  margin: 0.5rem 0 0.75rem;
 }
 .about-network__sub {
-  font-size: clamp(0.8rem,1.8vw,0.92rem);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
   line-height: 1.65;
-  color: rgba(247,245,240,0.40);
+  color: rgba(247,245,240,0.5);
   max-width: 52ch;
-  margin: 0 auto;
+  margin-bottom: 3rem;
 }
-
-/* Fix #9: CSS Grid auto-fill for even logo distribution (no orphaned lone logo) */
 .about-network__grid {
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  justify-items: center;
-  align-items: center;
-  gap: clamp(28px,4vw,48px) clamp(20px,3vw,36px);
+  gap: 1px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 0;
+  margin: 0;
 }
 .about-network__item {
+  background: var(--clr-ink);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  padding: 1.75rem 1.25rem;
+  transition: background 180ms var(--ease-out);
 }
-/* Fix #3: .about-network__logo — fallback min dimensions for broken images */
-/* Fix #13: background set to transparent — removes visible square boxes behind logos */
+.about-network__item:hover { background: rgba(255,255,255,0.04); }
 .about-network__logo {
-  display: block;
-  max-width: 140px;
-  max-height: 64px;
-  min-width: 80px;
-  min-height: 40px;
   width: auto;
-  height: auto;
+  height: 40px;
+  max-width: 130px;
   object-fit: contain;
   background: transparent;
   mix-blend-mode: lighten;
-  filter: grayscale(1);
-  opacity: 0.40;
-  transition: filter 320ms ease, opacity 320ms ease;
-  cursor: default;
+  filter: brightness(0) invert(1);
+  opacity: 0.55;
+  transition: opacity 180ms var(--ease-out);
 }
-.about-network__logo:hover {
-  mix-blend-mode: normal;
-  filter: grayscale(0);
+.about-network__item:hover .about-network__logo { opacity: 0.85; }
+
+/* ── Reveal Animation (handled by main.js) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+}
+.reveal.is-visible {
   opacity: 1;
-}
-@media (prefers-reduced-motion: reduce) {
-  .about-network__logo { transition: none; }
+  transform: none;
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 900px) {
-  /* Fix #1: removed order:-1 — photo now follows the heading text on mobile */
-  .about-story__inner   { grid-template-columns: 1fr; }
-  .about-divisions__grid { grid-template-columns: 1fr; }
-  .about-div-card { border-right: none; border-bottom: 3px solid var(--black); }
-  .about-div-card:last-child { border-bottom: none; }
-  .about-philosophy__pillars { grid-template-columns: 1fr; gap: 28px; }
+/* ── Container ── */
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 3rem);
 }
 
-@media (max-width: 768px) {
-  /* Fix #4: reduce founded badge overhang at tablet width */
-  .about-story__founded {
-    top: -12px;
-    right: -8px;
-  }
+/* ── Section Header ── */
+.section-header {
+  margin-bottom: 0.5rem;
 }
-
-@media (max-width: 600px) {
-  /* Fix #7: Bauhaus blocks become narrow brand stripes instead of display:none */
-  .about-hero__block--red {
-    width: 4px;
-    height: 55%;
-    top: var(--nav-h);
-    right: 0;
-    opacity: 0.75;
-  }
-  .about-hero__block--yellow {
-    width: 4px;
-    height: 30%;
-    top: calc(var(--nav-h) + 55%);
-    right: 0;
-    opacity: 0.85;
-  }
-  /* Blue block is too small to be useful at this width — hidden */
-  .about-hero__block--blue { display: none; }
-
-  /* Fix #11: intro accent stays vertical, just shorter — never rotates */
-  .about-intro__inner { gap: 16px; }
-  .about-intro__accent {
-    width: 4px;
-    height: 48px;
-  }
-
-  .about-story__founded { top: -12px; right: -8px; }
-  .about-network__logo { max-width: 110px; max-height: 52px; }
+.section-header__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(17,17,17,0.4);
+  margin-bottom: 0.75rem;
 }
-
-@media (max-width: 380px) {
-  .about-hero__headline { font-size: 2.6rem; }
-  .about-story__title   { font-size: 1.9rem; }
+.section-header__title {
+  font-family: var(--font-cond);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--clr-ink);
+  margin: 0;
 }
