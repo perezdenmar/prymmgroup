@@ -56,16 +56,14 @@
   text-transform: uppercase;
   color: rgba(247,245,240,0.45);
   margin-bottom: 20px;
-  /* FIX: increase tap target height for breadcrumb links */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0;
 }
 .wm-hero__breadcrumb a {
   color: rgba(247,245,240,0.45);
   transition: color 0.15s;
-  /* FIX: meet 44px WCAG touch target */
+  /* WCAG 44px tap target */
   padding-block: 0.5rem;
   display: inline-flex;
   align-items: center;
@@ -85,7 +83,7 @@
 .wm-hero__headline em {
   font-style: normal;
   color: var(--red);
-  /* FIX: anchor red headline text against variable video backgrounds */
+  /* Anchor red text against shifting video backgrounds */
   text-shadow: 0 2px 12px rgba(0,0,0,0.55);
 }
 .wm-hero__sub {
@@ -95,11 +93,9 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(247,245,240,0.65);
-  /* FIX: allow wrapping so text is never clipped */
-  white-space: normal;
-  /* FIX: ensure subtitle never runs under the absolutely-positioned badge */
-  padding-right: 0;
 }
+
+/* Desktop badge — absolutely positioned bottom-right of the hero section */
 .wm-hero__badge {
   position: absolute;
   right: 40px;
@@ -209,7 +205,7 @@
   color: var(--grey-2);
 }
 
-/* Stat label — darkened and slightly larger for legibility */
+/* Stat label */
 .wm-intro__stat-label {
   display: block;
   font-family: var(--ff-head);
@@ -259,10 +255,8 @@
   border-bottom: 1px solid var(--grey-2);
 }
 
-/* Column widths */
 .wm-table__spec-col { width: 26%; }
 
-/* Header row */
 .wm-table thead tr {
   background: var(--grey-1);
 }
@@ -315,7 +309,6 @@
   text-transform: uppercase;
 }
 
-/* Body rows */
 .wm-table tbody tr {
   border-bottom: 1px solid var(--grey-2);
   transition: background 0.12s;
@@ -332,7 +325,6 @@
 }
 .wm-table tbody td:last-child { border-right: none; }
 
-/* Sticky spec column — keeps row labels visible during horizontal scroll */
 .wm-table__spec {
   font-family: var(--ff-head);
   font-size: 0.78rem;
@@ -355,7 +347,6 @@
   background: rgba(28,28,28,0.95);
 }
 
-/* Who It's For row */
 .wm-table__row--who .wm-table__spec {
   color: var(--yellow);
   opacity: 0.85;
@@ -367,7 +358,6 @@
   font-style: italic;
 }
 
-/* KGV 600 column highlight — Industrial flagship */
 .wm-table__highlight {
   background: rgba(26,62,191,0.12) !important;
   color: var(--white) !important;
@@ -395,20 +385,17 @@ thead th:last-child {
   font-style: italic;
 }
 
-/* CTA row */
 .wm-table__row--cta td {
   padding: 24px 16px;
   background: var(--grey-1);
   border-top: 3px solid var(--grey-2);
 }
-/* Increased from 10px -> 12px to meet 44px WCAG tap target minimum */
 .wm-table__btn {
   font-size: 0.75rem;
   padding: 12px 22px;
   white-space: nowrap;
 }
 
-/* sr-only utility (in case base.css doesn't include it) */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -588,6 +575,7 @@ thead th:last-child {
 @media (max-width: 1000px) {
   .wm-compliance__items { grid-template-columns: 1fr 1fr; }
 }
+
 @media (max-width: 860px) {
   .wm-intro__inner { grid-template-columns: 6px 1fr; }
   .wm-intro__stats {
@@ -599,7 +587,6 @@ thead th:last-child {
     padding-top: 24px;
     gap: 0;
   }
-  /* On mobile row layout, dividers flip to vertical between stat items */
   .wm-intro__stat {
     padding-block: 0;
     padding-inline: 20px;
@@ -625,36 +612,61 @@ thead th:last-child {
     align-items: center;
   }
 }
+
 @media (max-width: 600px) {
-  /* ── HERO MOBILE FIXES ─────────────────────────── */
+  /* ═══════════════════════════════════════════════════════
+     HERO — ROOT FIX for badge-over-subtitle overlap
+
+     The badge is a sibling of .wm-hero__content inside the
+     .wm-hero flex container. On desktop it floats via
+     position:absolute. On mobile we pull it into normal
+     document flow by:
+       1. Switching .wm-hero to flex-direction:column so
+          content + badge stack vertically.
+       2. Setting .wm-hero__badge to position:static so it
+          occupies real space BELOW the content — no more
+          z-index overlap with the subtitle or headline.
+       3. Sizing and spacing the in-flow badge appropriately.
+  ═══════════════════════════════════════════════════════ */
+  .wm-hero {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+  }
   .wm-hero__content {
-    /* FIX: reduce bottom padding so badge gets its own space below the text */
-    padding: 40px 20px 160px;
+    padding: 40px 20px 24px;
+    /* Content no longer needs to reserve space for the badge */
+    max-width: 100%;
   }
   .wm-hero__sub {
-    /* FIX: smaller tracking so subtitle fits within the viewport width */
-    font-size: 0.78rem;
-    letter-spacing: 0.10em;
-    /* FIX: constrain width so it never reaches the badge area */
-    max-width: calc(100% - 150px);
+    /* Allow full-width wrapping — badge is now below, not overlapping */
+    white-space: normal;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
   }
   .wm-hero__badge {
-    /* FIX: detach from content area — anchor to bottom-left on narrow screens
-       so badge never overlaps the headline or subtitle text */
-    right: auto;
-    left: 20px;
-    bottom: 40px;
-    /* FIX: scale down badge so it takes less vertical space */
-    padding: 14px 20px;
-    min-width: 100px;
+    /* Pull completely out of absolute positioning into normal flow */
+    position: static;
+    /* Span full width and left-align to match the content above */
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    min-width: unset;
+    /* Subtle top separator to visually anchor it below the content */
+    border-top: 2px solid rgba(255,255,255,0.12);
   }
   .wm-hero__badge-num {
-    /* FIX: reduce num size proportionally */
-    font-size: 2.2rem;
+    font-size: 2.4rem;
+  }
+  .wm-hero__badge-label {
+    text-align: left;
+    font-size: 0.65rem;
   }
 
-  /* ── STATS MOBILE FIXES ────────────────────────── */
-  /* FIX: stack stats vertically on phones — row layout crowds at 375px */
+  /* ── INTRO STATS — stack vertically on narrow phones ── */
   .wm-intro__stats {
     flex-direction: column;
     border-top: 3px solid var(--black);
@@ -669,12 +681,9 @@ thead th:last-child {
     border-top: 1px solid rgba(28, 28, 28, 0.14);
   }
 
-  /* ── OTHER SMALL-SCREEN FIXES ──────────────────── */
+  /* ── OTHER SMALL-SCREEN TIDYING ── */
   .wm-cta__inner { padding: 0 20px; }
   .wm-download__action { flex-direction: column; align-items: flex-start; }
   .wm-download__btn { width: 100%; text-align: center; }
-  /* Narrow the spec column on small screens to give data columns more room.
-     Sticky positioning is intentionally kept (NOT released) so row labels
-     remain visible when the user scrolls the table horizontally. */
   .wm-table__spec-col { width: 18%; }
 }
