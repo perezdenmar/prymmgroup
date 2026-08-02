@@ -62,6 +62,12 @@
       .wm-hero__video { animation-play-state: paused; }
     }
 
+    /* ── INTRO STATS — vertical dividers between columns ── */
+    .wm-intro__stat + .wm-intro__stat {
+      border-left: 1px solid rgba(40, 37, 29, 0.15);
+      padding-left: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
     /* ── EXPLAINER SECTION ──────────────────────────────── */
     .wm-explainer {
       background: var(--color-bg, #f7f6f2);
@@ -101,25 +107,28 @@
       line-height: 1.7;
       color: var(--color-text-muted, #7a7974);
       margin-bottom: 1.75rem;
-      max-width: 52ch;
+      max-width: 62ch;
     }
+
+    /* ── FEATURE LIST — two-column dl grid ──────────────── */
     .wm-explainer__highlights {
-      list-style: none;
-      padding: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.55rem 1rem;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+      padding: 0;
     }
-    .wm-explainer__highlight {
+    .wm-explainer__highlights dt {
       display: flex;
       align-items: flex-start;
-      gap: 0.65rem;
+      gap: 0.55rem;
       font-size: 0.9rem;
+      font-weight: 700;
       line-height: 1.5;
       color: var(--color-text, #28251d);
+      white-space: nowrap;
     }
-    .wm-explainer__highlight::before {
+    .wm-explainer__highlights dt::before {
       content: '';
       flex-shrink: 0;
       display: inline-block;
@@ -129,6 +138,13 @@
       border-radius: 50%;
       background: #c0392b;
     }
+    .wm-explainer__highlights dd {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--color-text-muted, #7a7974);
+    }
+
     /* video column */
     .wm-explainer__video-col {
       display: flex;
@@ -171,6 +187,15 @@
       }
       .wm-explainer__video-wrap {
         max-width: 280px;
+      }
+      .wm-explainer__highlights dt {
+        white-space: normal;
+      }
+      .wm-intro__stat + .wm-intro__stat {
+        border-left: none;
+        border-top: 1px solid rgba(40, 37, 29, 0.15);
+        padding-left: 0;
+        padding-top: clamp(1rem, 2vw, 1.5rem);
       }
     }
   </style>
@@ -216,7 +241,7 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="/" class="nav__logo" aria-label="The Prymm Group — home">
-      <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="sync" />
+      <img src="../assets/prymm-group-logo.png" alt="Prymm Group logo" class="nav__logo-img" width="36" height="36" loading="eager" decoding="async" />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
     <ul class="nav__links" id="nav-links-wm">
@@ -311,13 +336,18 @@
         <p class="wm-explainer__body">
           Sanitary landfills across the country are rapidly overflowing and generating massive greenhouse gases. The KGV Series solves this through controlled thermal incineration — destroying waste at temperatures exceeding 800&deg;C while meeting the strictest clean air standards.
         </p>
-        <ul class="wm-explainer__highlights" aria-label="Key technology highlights">
-          <li class="wm-explainer__highlight"><strong>95% waste volume reduction</strong> — slashing landfill dependency and extending site lifespans</li>
-          <li class="wm-explainer__highlight"><strong>Fuel-less forced airflow</strong> — fans sustain ultra-high heat combustion, keeping operating costs low</li>
-          <li class="wm-explainer__highlight"><strong>Secondary burner failsafe</strong> — instantly ignites at the exhaust to eliminate toxic fumes before venting</li>
-          <li class="wm-explainer__highlight"><strong>Hospital-grade sterilization</strong> — destroys biohazards, syringes, and medical waste on-site</li>
-          <li class="wm-explainer__highlight"><strong>Clean Air Act compliant</strong> — releases harmless clean steam, not toxic black smoke</li>
-        </ul>
+        <dl class="wm-explainer__highlights" aria-label="Key technology highlights">
+          <dt>95% waste volume reduction</dt>
+          <dd>slashing landfill dependency and extending site lifespans</dd>
+          <dt>Fuel-less forced airflow</dt>
+          <dd>fans sustain ultra-high heat combustion, keeping operating costs low</dd>
+          <dt>Secondary burner failsafe</dt>
+          <dd>instantly ignites at the exhaust to eliminate toxic fumes before venting</dd>
+          <dt>Hospital-grade sterilization</dt>
+          <dd>destroys biohazards, syringes, and medical waste on-site</dd>
+          <dt>Clean Air Act compliant</dt>
+          <dd>releases harmless clean steam, not toxic black smoke</dd>
+        </dl>
       </div>
 
       <!-- RIGHT: YouTube Short embed -->
