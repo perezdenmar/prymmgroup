@@ -90,7 +90,7 @@
         width="36"
         height="36"
         loading="eager"
-        decoding="sync"
+        decoding="async"
       />
       <span class="nav__logo-text">PRYMM GROUP</span>
     </a>
@@ -176,59 +176,41 @@
         <span class="section-header__label">Our Structure</span>
         <h2 class="section-header__title">Three Divisions.<br />One Direction.</h2>
       </header>
+
       <div class="divisions__grid">
 
         <!-- Division 01 — Industrial & Trade -->
-        <article class="division division--industrial reveal" data-index="01">
-          <div class="division__sub-cards">
-
-            <!-- Sub-card A: Waste Management -->
-            <a href="/waste-management" class="division__link-overlay division__link-overlay--sub" aria-label="Industrial &amp; Trade &mdash; Waste Management">
-              <div class="division__photo" aria-hidden="true">
-                <img
-                  src="assets/images/incineration_machine.png"
-                  alt="Industrial incineration machine for waste management"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div class="division__photo-overlay"></div>
-              </div>
-              <div class="division__color-bar" aria-hidden="true"></div>
-              <div class="division__body">
-                <p class="division__index">01</p>
-                <p class="division__sub-tag">Trade &bull; Environmental</p>
-                <h3 class="division__name">Industrial<br />&amp; Trade</h3>
-                <p class="division__desc">Heavy machinery fabrication and global environmental technologies. Engineering the physical backbone of modern infrastructure.</p>
-                <span class="division__arrow" aria-hidden="true">&rarr;</span>
-              </div>
-            </a>
-
-            <!-- Sub-card B: Japan Fresh (Agriculture) -->
-            <a href="/japan-fresh" class="division__link-overlay division__link-overlay--sub division__link-overlay--agriculture" aria-label="Industrial &amp; Trade &mdash; Agriculture &mdash; Japan Fresh">
-              <div class="division__photo" aria-hidden="true">
-                <img
-                  src="assets/WAGYU.png"
-                  alt="Premium A-5 Kuroge Wagyu beef representing Japan Fresh agriculture"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div class="division__photo-overlay"></div>
-              </div>
-              <div class="division__color-bar division__color-bar--yellow" aria-hidden="true"></div>
-              <div class="division__body">
-                <p class="division__index">01</p>
-                <p class="division__sub-tag">Agriculture &bull; Japan Fresh</p>
-                <h3 class="division__name">Prymm<br />Farm</h3>
-                <p class="division__desc">Direct-from-origin premium Japanese Wagyu A-5 and Halal-certified beef. Sourced across Japan, delivered globally.</p>
-                <span class="division__arrow" aria-hidden="true">&rarr;</span>
-              </div>
-            </a>
-
-          </div>
+        <!-- Clicking the card toggles the drawer below the grid -->
+        <article
+          class="division division--industrial reveal"
+          data-index="01"
+          id="div-industrial"
+        >
+          <button
+            class="division__toggle"
+            aria-expanded="false"
+            aria-controls="drawer-industrial"
+            aria-label="Industrial &amp; Trade &mdash; expand products"
+          >
+            <div class="division__photo" aria-hidden="true">
+              <img
+                src="assets/images/incineration_machine.png"
+                alt="Industrial incineration machine"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="division__photo-overlay"></div>
+            </div>
+            <div class="division__color-bar" aria-hidden="true"></div>
+            <div class="division__body">
+              <p class="division__index">01</p>
+              <h3 class="division__name">Industrial<br />&amp; Trade</h3>
+              <p class="division__desc">Heavy machinery fabrication and global environmental technologies. Engineering the physical backbone of modern infrastructure.</p>
+              <span class="division__arrow division__arrow--toggle" aria-hidden="true">&darr;</span>
+            </div>
+          </button>
         </article>
 
         <!-- Division 02 — Technology & Systems -->
@@ -279,8 +261,75 @@
           </a>
         </article>
 
-      </div>
-    </div>
+      </div><!-- /.divisions__grid -->
+
+      <!-- DIVISION 01 DRAWER — expands below the grid on click -->
+      <div
+        class="division__drawer"
+        id="drawer-industrial"
+        aria-hidden="true"
+        role="region"
+        aria-label="Industrial &amp; Trade — Products"
+      >
+        <div class="division__drawer-inner">
+
+          <div class="division__drawer-label">
+            <span class="division__drawer-rule" aria-hidden="true"></span>
+            <span class="division__drawer-heading">01 &mdash; Industrial &amp; Trade</span>
+            <span class="division__drawer-rule" aria-hidden="true"></span>
+          </div>
+
+          <div class="division__products">
+
+            <!-- Product A: Waste Management -->
+            <a href="/waste-management" class="division__product-card" aria-label="Waste Management &mdash; view solutions">
+              <div class="division__product-photo" aria-hidden="true">
+                <img
+                  src="assets/images/incineration_machine.png"
+                  alt="Industrial incineration machine for waste management"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="division__product-overlay"></div>
+              </div>
+              <div class="division__product-bar division__product-bar--red" aria-hidden="true"></div>
+              <div class="division__product-body">
+                <p class="division__product-tag">Trade &bull; Environmental</p>
+                <h4 class="division__product-name">Waste<br />Management</h4>
+                <p class="division__product-desc">Heavy machinery fabrication and world-class Japanese thermal technology. Zero-landfill solutions for municipalities and healthcare facilities.</p>
+                <span class="division__product-arrow" aria-hidden="true">&rarr;</span>
+              </div>
+            </a>
+
+            <!-- Product B: Japan Fresh -->
+            <a href="/japan-fresh" class="division__product-card" aria-label="Japan Fresh &mdash; view products">
+              <div class="division__product-photo" aria-hidden="true">
+                <img
+                  src="assets/WAGYU.png"
+                  alt="Premium A-5 Kuroge Wagyu beef — Japan Fresh"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="division__product-overlay"></div>
+              </div>
+              <div class="division__product-bar division__product-bar--yellow" aria-hidden="true"></div>
+              <div class="division__product-body">
+                <p class="division__product-tag">Agriculture &bull; Japan Fresh</p>
+                <h4 class="division__product-name">Prymm<br />Farm</h4>
+                <p class="division__product-desc">Direct-from-origin premium Japanese Wagyu A-5 and Halal-certified beef. Sourced across Japan, delivered globally.</p>
+                <span class="division__product-arrow" aria-hidden="true">&rarr;</span>
+              </div>
+            </a>
+
+          </div><!-- /.division__products -->
+        </div><!-- /.division__drawer-inner -->
+      </div><!-- /#drawer-industrial -->
+
+    </div><!-- /.container -->
   </section>
 
   <!-- PRODUCT SPOTLIGHT -->
@@ -442,6 +491,24 @@
   </footer>
 
   <script src="main.js"></script>
-  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Division 01 drawer toggle
+    (function () {
+      var btn    = document.querySelector('.division__toggle');
+      var drawer = document.getElementById('drawer-industrial');
+      var card   = document.getElementById('div-industrial');
+      if (!btn || !drawer) return;
+
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        drawer.setAttribute('aria-hidden', String(open));
+        drawer.classList.toggle('division__drawer--open', !open);
+        card.classList.toggle('division--active', !open);
+      });
+    })();
+  </script>
 </body>
 </html>

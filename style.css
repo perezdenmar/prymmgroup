@@ -1,6 +1,6 @@
 /* =====================================================
    PRYMM GROUP — INDEX PAGE STYLES
-   Style System v13 — Division 01 sub-card layout
+   Style System v14 — Division 01 expand drawer
 
    Shared system (tokens, reset, nav, footer,
    buttons, reveal, animations, responsive base)
@@ -34,7 +34,6 @@
 }
 .hero__grid-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .hero__block { position: absolute; border-radius: 0; }
-/* Promote parallax blocks to their own compositor layer to avoid layout repaints */
 .hero__block--red    { width: 320px; height: 320px; top: var(--nav-h); right: 0; background: var(--red); opacity: 0.55; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.1s; will-change: transform; }
 .hero__block--yellow { width: 160px; height: 160px; top: calc(var(--nav-h) + 320px); right: 0; background: var(--yellow); opacity: 0.70; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.2s; will-change: transform; }
 .hero__block--blue   { width: 80px; height: 80px; top: calc(var(--nav-h) + 480px); right: 160px; background: var(--blue); opacity: 0.80; animation: bauhaus-snap-in 0.3s var(--ease) both; animation-delay: 0.25s; will-change: transform; }
@@ -101,135 +100,53 @@
 .division:hover::before,
 .division--active::before { opacity: 1; }
 
-/* ── Division 01: sub-card split layout ────────────────────
-   The industrial card is split vertically into two equal
-   clickable sub-cards (Waste Management + Japan Fresh).
-   Each sub-card behaves like a standalone division card
-   with its own photo, colour bar, body, and hover states.
-──────────────────────────────────────────────────────────── */
-.division__sub-cards {
+/* Division 01 uses a <button> toggle instead of an <a> overlay */
+.division__toggle {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   position: absolute;
   inset: 0;
-}
-
-/* Each sub-card is a full-width link that fills half the column */
-.division__link-overlay--sub {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
+  z-index: 3;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
   color: inherit;
   -webkit-tap-highlight-color: transparent;
-  /* remove the inherited absolute positioning from the base overlay */
-  inset: unset;
-  z-index: auto;
 }
-
-/* Dividing line between the two sub-cards */
-.division__link-overlay--sub + .division__link-overlay--sub {
-  border-top: 2px solid rgba(255,255,255,0.12);
+.division__toggle:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: -2px;
 }
-
-/* Photo fills the sub-card absolutely */
-.division__link-overlay--sub .division__photo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-.division__link-overlay--sub .division__photo img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  filter: saturate(1.05) brightness(0.72);
-  transition: filter var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
-}
-.division__link-overlay--sub .division__photo-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.12) 100%);
-  transition: background var(--t-slow) var(--ease);
-}
-
-/* Colour bar sits on top of the photo */
-.division__link-overlay--sub .division__color-bar {
-  position: relative;
-  z-index: 2;
-  height: 8px;
-  flex-shrink: 0;
-  margin-top: auto;
-}
-
-/* Body content above the colour bar */
-.division__link-overlay--sub .division__body {
-  position: relative;
-  z-index: 2;
-  padding: clamp(16px, 3vw, 28px) clamp(20px, 4vw, 36px) clamp(12px, 2vw, 20px);
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-/* Sub-tag label (e.g. "Trade • Environmental") */
-.division__sub-tag {
-  font-family: var(--ff-head);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(247,245,240,0.45);
-  margin-bottom: 8px;
-}
-
-/* Yellow colour bar variant (Agriculture / Japan Fresh) */
-.division__color-bar--yellow { background: var(--yellow); }
-
-/* Hover states for sub-cards */
-.division__link-overlay--sub:hover .division__photo img,
-.division__link-overlay--sub:focus-visible .division__photo img {
+/* Mirror the link-overlay hover states for the toggle */
+.division--industrial:hover .division__photo img,
+.division--industrial:focus-within .division__photo img,
+.division--active .division__photo img {
   filter: saturate(0.80) brightness(0.55);
   transform: scale(1.04);
 }
-.division__link-overlay--sub:hover .division__photo-overlay,
-.division__link-overlay--sub:focus-visible .division__photo-overlay {
+.division--industrial:hover .division__photo-overlay,
+.division--industrial:focus-within .division__photo-overlay,
+.division--active .division__photo-overlay {
   background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.30) 100%);
 }
-.division__link-overlay--sub:hover .division__arrow,
-.division__link-overlay--sub:focus-visible .division__arrow {
+/* Arrow rotates 180° when drawer is open */
+.division__arrow--toggle {
+  display: inline-block;
+  transition: transform var(--t-base) var(--ease), color var(--t-base) var(--ease);
+}
+.division--active .division__arrow--toggle {
+  transform: rotate(180deg);
   color: var(--yellow);
-  transform: translateX(6px);
+}
+.division--industrial:hover .division__arrow--toggle {
+  color: var(--yellow);
 }
 
-/* Top highlight bar on sub-card hover */
-.division__link-overlay--sub::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--yellow);
-  z-index: 5;
-  opacity: 0;
-  transition: opacity var(--t-base) var(--ease);
-}
-.division__link-overlay--sub:hover::before,
-.division__link-overlay--sub:focus-visible::before { opacity: 1; }
-
-/* Active (tap) states */
-.division__link-overlay--sub:active .division__photo img { filter: saturate(0.80) brightness(0.55); transform: scale(1.04); }
-.division__link-overlay--sub:active .division__photo-overlay { background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.30) 100%); }
-.division__link-overlay--sub:active .division__arrow { color: var(--yellow); transform: translateX(6px); }
-
-/* Keep the division::before top bar suppressed on Division 01 since
-   each sub-card manages its own top highlight */
-.division--industrial::before { display: none; }
-
-/* ── End Division 01 sub-card layout ─────────────────────── */
-
+/* Standard link overlay (Div 02 & 03) */
 .division__link-overlay {
   display: flex;
   flex-direction: column;
@@ -249,15 +166,8 @@
 
 .division__link-overlay .division__photo,
 .division__link-overlay .division__color-bar,
-.division__link-overlay .division__body {
-  position: relative;
-  z-index: auto;
-}
-.division__link-overlay .division__photo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
+.division__link-overlay .division__body { position: relative; z-index: auto; }
+.division__link-overlay .division__photo { position: absolute; inset: 0; z-index: 0; }
 .division__link-overlay .division__color-bar { z-index: 2; height: 8px; flex-shrink: 0; }
 .division__link-overlay .division__body { z-index: 2; padding: clamp(24px, 4vw, 40px) clamp(20px, 4vw, 36px); flex: 1; display: flex; flex-direction: column; margin-top: auto; }
 
@@ -280,7 +190,7 @@
 .division:hover .division__photo-overlay,
 .division--active .division__photo-overlay { background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.30) 100%); }
 
-.division__color-bar { position: relative; z-index: 2; height: 8px; flex-shrink: 0; border-radius: 0; }
+.division__color-bar { position: relative; z-index: 2; height: 8px; flex-shrink: 0; }
 .division--industrial .division__color-bar { background: var(--red); }
 .division--tech       .division__color-bar { background: var(--blue); }
 .division--edu        .division__color-bar { background: var(--yellow); }
@@ -297,6 +207,178 @@
 }
 .division:hover .division__arrow,
 .division--active .division__arrow { color: var(--yellow); transform: translateX(6px); }
+/* Override translateX for the toggle arrow — it rotates instead */
+.division--active .division__arrow--toggle,
+.division:hover   .division__arrow--toggle { transform: none; }
+.division--active .division__arrow--toggle { transform: rotate(180deg); }
+
+/* =====================================================
+   DIVISION 01 EXPAND DRAWER
+   Sits below the full-width grid, hidden by default.
+   Opens via JS toggle, animates with max-height.
+===================================================== */
+.division__drawer {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity    0.3s  cubic-bezier(0.16, 1, 0.3, 1);
+  border: 3px solid var(--black);
+  border-top: none;
+  background: var(--white);
+}
+.division__drawer--open {
+  max-height: 700px;
+  opacity: 1;
+}
+.division__drawer-inner {
+  padding: clamp(32px, 5vw, 56px) 0 clamp(40px, 6vw, 64px);
+}
+.division__drawer-label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: clamp(24px, 4vw, 40px);
+}
+.division__drawer-rule {
+  flex: 1;
+  height: 1px;
+  background: rgba(0,0,0,0.12);
+}
+.division__drawer-heading {
+  font-family: var(--ff-head);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Product card grid inside the drawer */
+.division__products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 3px solid var(--black);
+}
+
+.division__product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 340px;
+  text-decoration: none;
+  color: inherit;
+  border-right: 3px solid var(--black);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+.division__product-card:last-child { border-right: none; }
+
+/* Top highlight bar on hover */
+.division__product-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--yellow);
+  z-index: 4;
+  opacity: 0;
+  transition: opacity var(--t-base) var(--ease);
+}
+.division__product-card:hover::before,
+.division__product-card:focus-visible::before { opacity: 1; }
+
+.division__product-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.division__product-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(1.05) brightness(0.72);
+  transition: filter var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
+}
+.division__product-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.12) 100%);
+  transition: background var(--t-slow) var(--ease);
+}
+.division__product-card:hover .division__product-photo img,
+.division__product-card:focus-visible .division__product-photo img {
+  filter: saturate(0.80) brightness(0.55);
+  transform: scale(1.04);
+}
+.division__product-card:hover .division__product-overlay,
+.division__product-card:focus-visible .division__product-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.30) 100%);
+}
+
+.division__product-bar {
+  position: relative;
+  z-index: 2;
+  height: 8px;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+.division__product-bar--red    { background: var(--red); }
+.division__product-bar--yellow { background: var(--yellow); }
+
+.division__product-body {
+  position: relative;
+  z-index: 2;
+  padding: clamp(24px, 4vw, 40px) clamp(20px, 4vw, 36px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.division__product-tag {
+  font-family: var(--ff-head);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.45);
+  margin-bottom: 10px;
+}
+.division__product-name {
+  font-family: var(--ff-head);
+  font-weight: 900;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 16px;
+  text-shadow: 0 1px 16px rgba(0,0,0,0.95);
+}
+.division__product-desc {
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  line-height: 1.65;
+  color: rgba(247,245,240,0.72);
+  flex: 1;
+}
+.division__product-arrow {
+  display: block;
+  font-size: 1.5rem;
+  margin-top: 24px;
+  color: var(--white);
+  transition: color var(--t-base) var(--ease), transform var(--t-base) var(--ease-snap);
+}
+.division__product-card:hover .division__product-arrow,
+.division__product-card:focus-visible .division__product-arrow {
+  color: var(--yellow);
+  transform: translateX(6px);
+}
+/* =====================================================
+   END DIVISION 01 DRAWER
+===================================================== */
 
 /* PRODUCT SPOTLIGHT */
 .product { position: relative; padding: clamp(60px, 8vw, 120px) 0; overflow: hidden; background: #0f1f0f; }
@@ -391,56 +473,40 @@
   .divisions__grid { grid-template-columns: 1fr; border: 3px solid var(--black); }
   .division { border-right: none; border-bottom: 3px solid var(--black); min-height: 300px; }
   .division:last-child { border-bottom: none; }
-
-  /* On tablet the sub-cards stack horizontally side by side */
-  .division__sub-cards { flex-direction: row; }
-  .division__link-overlay--sub + .division__link-overlay--sub {
-    border-top: none;
-    border-left: 2px solid rgba(255,255,255,0.12);
-  }
-
   .product__inner { grid-template-columns: 1fr; gap: 48px; }
-  /* Hide the decorative blue clip-path flag at the same breakpoint the
-     product grid collapses to 1 column. At sub-desktop widths the flag
-     bleeds into the single-column layout and creates visual noise. */
   .product__flag { display: none; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
   .hero__block--red    { width: 200px; height: 200px; }
   .hero__block--yellow { width: 100px; height: 100px; top: calc(var(--nav-h) + 200px); }
   .hero__block--blue   { width: 60px; height: 60px; right: 100px; top: calc(var(--nav-h) + 300px); }
   .hero__rule--v { right: 200px; }
+
+  /* Drawer: product cards stack at tablet */
+  .division__drawer { border: none; border-top: 3px solid var(--black); }
+  .division__products { grid-template-columns: 1fr; }
+  .division__product-card { border-right: none; border-bottom: 3px solid var(--black); min-height: 260px; }
+  .division__product-card:last-child { border-bottom: none; }
+  .division__drawer--open { max-height: 1100px; }
 }
 
 /* Mobile (≤600px) */
 @media (max-width: 600px) {
   .hero__block, .hero__rule { display: none; }
-
   .hero__stat-strip { flex-direction: column; }
   .hero__stat-divider { width: 100%; height: 1px; }
   .hero__stat { flex-direction: row; align-items: center; justify-content: space-between; padding: 16px 20px; }
   .hero__stat-num { font-size: 2rem; }
   .hero__stat-label { text-align: right; max-width: 140px; }
-
   .mission__inner { flex-direction: column; gap: 20px; }
   .mission__accent { width: 40px; height: 6px; }
-
   .division { min-height: 280px; }
-
-  /* On mobile the sub-cards stack vertically again */
-  .division__sub-cards { flex-direction: column; }
-  .division__link-overlay--sub + .division__link-overlay--sub {
-    border-left: none;
-    border-top: 2px solid rgba(255,255,255,0.12);
-  }
-  /* Give each sub-card a fixed minimum height so they're tappable */
-  .division__link-overlay--sub { min-height: 220px; }
-
   .manifesto__inner { flex-direction: column; align-items: flex-start; gap: 24px; }
   .manifesto__blocks { flex-direction: row; }
   .manifesto__cta { width: 100%; text-align: center; }
-
   .contact__photo { display: none; }
   .contact__form .btn { width: 100%; text-align: center; align-self: stretch; }
+  .division__product-card { min-height: 220px; }
+  .division__drawer--open { max-height: 1300px; }
 }
 
 /* Very small (≤380px) */
