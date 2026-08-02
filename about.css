@@ -240,19 +240,13 @@
   padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
-/* Section header — no reveal override needed; main.js handles .reveal */
-.about-divisions .section-header__label {
-  color: var(--clr-ink);
-}
-.about-divisions .section-header__title {
-  color: var(--clr-ink);
-}
+.about-divisions .section-header__label { color: var(--clr-ink); }
+.about-divisions .section-header__title  { color: var(--clr-ink); }
 
-/* ── Peer Division Cards (3-col grid, no outer border) ── */
+/* ── Peer Division Cards ── */
 .about-divisions__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* No border, no box — column rules only */
   border-left: 1px solid rgba(17,17,17,0.12);
   margin-top: 3rem;
 }
@@ -267,16 +261,14 @@
 .about-div-card {
   display: flex;
   flex-direction: column;
-  padding: 2rem 2rem 2rem;
+  padding: 2rem;
   border-right: 1px solid rgba(17,17,17,0.12);
   text-decoration: none;
   color: var(--clr-ink);
   transition: background 180ms var(--ease-out);
   min-height: 340px;
 }
-.about-div-card:hover {
-  background: rgba(17,17,17,0.04);
-}
+.about-div-card:hover { background: rgba(17,17,17,0.04); }
 @media (max-width: 768px) {
   .about-div-card {
     border-right: none;
@@ -285,7 +277,6 @@
   }
 }
 
-/* Accent bar at top of each card */
 .about-div-card__bar {
   height: 3px;
   width: 60%;
@@ -296,10 +287,7 @@
 .about-div-card--tech        .about-div-card__bar { background: var(--clr-blue); }
 .about-div-card--edu         .about-div-card__bar { background: var(--clr-yellow); }
 
-.about-div-card__header {
-  margin-bottom: 0.5rem;
-}
-
+.about-div-card__header { margin-bottom: 0.5rem; }
 .about-div-card__index {
   font-family: var(--font-body);
   font-size: 0.6875rem;
@@ -309,7 +297,6 @@
   color: rgba(17,17,17,0.35);
   margin: 0;
 }
-
 .about-div-card__name {
   font-family: var(--font-cond);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
@@ -320,18 +307,14 @@
   color: var(--clr-ink);
   margin: 0.5rem 0 1rem;
 }
-
 .about-div-card__desc {
   font-family: var(--font-body);
   font-size: 0.9rem;
   line-height: 1.65;
   color: #444;
   margin: 0;
-  /* Grow to push CTA to bottom */
   flex: 1;
 }
-
-/* CTA label pinned to bottom — replaces bare → */
 .about-div-card__cta {
   display: inline-block;
   margin-top: 2rem;
@@ -341,11 +324,9 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--clr-ink);
-  transition: color 180ms var(--ease-out), letter-spacing 180ms var(--ease-out);
+  transition: letter-spacing 180ms var(--ease-out);
 }
-.about-div-card:hover .about-div-card__cta {
-  letter-spacing: 0.14em;
-}
+.about-div-card:hover .about-div-card__cta { letter-spacing: 0.14em; }
 
 /* ── Prymm Farm Sub-Row ── */
 .about-divisions__sub-row {
@@ -353,7 +334,6 @@
   border-top: 1px solid rgba(17,17,17,0.12);
   padding-top: 2rem;
 }
-
 .about-divisions__sub-label {
   display: flex;
   align-items: center;
@@ -375,8 +355,6 @@
   color: rgba(17,17,17,0.4);
   white-space: nowrap;
 }
-
-/* Farm card — full-width horizontal layout, clearly a sub-entity */
 .about-div-farm-card {
   display: flex;
   align-items: stretch;
@@ -388,17 +366,12 @@
   overflow: hidden;
   transition: background 180ms var(--ease-out);
 }
-.about-div-farm-card:hover {
-  background: rgba(17,17,17,0.07);
-}
-
-/* Yellow left bar marking it as agriculture / 01 sub-entity */
+.about-div-farm-card:hover { background: rgba(17,17,17,0.07); }
 .about-div-farm-card__bar {
   width: 4px;
   flex-shrink: 0;
   background: var(--clr-yellow);
 }
-
 .about-div-farm-card__body {
   display: flex;
   align-items: center;
@@ -408,13 +381,8 @@
   flex: 1;
 }
 @media (max-width: 600px) {
-  .about-div-farm-card__body {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
+  .about-div-farm-card__body { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
-
 .about-div-farm-card__tag {
   font-family: var(--font-body);
   font-size: 0.6875rem;
@@ -424,7 +392,6 @@
   color: rgba(17,17,17,0.4);
   margin: 0 0 0.4rem;
 }
-
 .about-div-farm-card__name {
   font-family: var(--font-cond);
   font-size: clamp(1.25rem, 2vw, 1.625rem);
@@ -434,7 +401,6 @@
   color: var(--clr-ink);
   margin: 0 0 0.5rem;
 }
-
 .about-div-farm-card__desc {
   font-family: var(--font-body);
   font-size: 0.875rem;
@@ -443,7 +409,6 @@
   margin: 0;
   max-width: 56ch;
 }
-
 .about-div-farm-card__cta {
   font-family: var(--font-body);
   font-size: 0.8125rem;
@@ -455,9 +420,7 @@
   flex-shrink: 0;
   transition: letter-spacing 180ms var(--ease-out);
 }
-.about-div-farm-card:hover .about-div-farm-card__cta {
-  letter-spacing: 0.14em;
-}
+.about-div-farm-card:hover .about-div-farm-card__cta { letter-spacing: 0.14em; }
 
 /* ── Philosophy ── */
 .about-philosophy {
@@ -580,32 +543,91 @@
 .about-network__item:hover { background: rgba(255,255,255,0.06); }
 
 /*
- * Logo colour-reveal on hover
+ * Network logos — per-logo colour reveal on hover
  * ─────────────────────────────────────────────────────────────
- * Default: greyscale + dimmed so every logo reads as a neutral
- *          silhouette on the dark background.
- * Hover:   filter lifted entirely so the original brand colours
- *          come through. Opacity bumps to full for crispness.
- *          mix-blend-mode removed so colours aren't washed out.
+ * All logos are white/monochrome PNGs, so we use CSS filter
+ * chains to inject colour. The technique:
+ *   1. brightness(0)   → force all pixels to black
+ *   2. invert(1)       → flip to white (clean start)
+ *   3. sepia(1)        → push to a warm amber mid-tone
+ *   4. hue-rotate(Xdeg)→ rotate hue to target colour
+ *   5. saturate(Y)     → punch up saturation
+ *   6. brightness(Z)   → final lightness correction
+ *
+ * Resting state: dim white silhouette.
+ * Hover: each logo gets its own brand-appropriate colour.
  * ─────────────────────────────────────────────────────────────
+ * Order in HTML:
+ *   1. prymm-enterprises   → brand red   #d42b2b
+ *   2. equip               → gold        #e6a817
+ *   3. gets                → royal blue  #1a4fa0
+ *   4. gepsearch           → teal        #0d8a84
+ *   5. dp-fabrication      → orange      #e05c1a
+ *   6. tulai-foundation    → green       #2e8b57
+ *   7. seamphony           → coral/pink  #e0446a
  */
+
+/* Resting state — all logos: dim white silhouette */
 .about-network__logo {
   width: auto;
   height: 40px;
   max-width: 130px;
   object-fit: contain;
   display: block;
-  /* Greyscale + dim — baseline resting state */
-  filter: grayscale(1) brightness(0.6) contrast(1.1);
-  opacity: 0.7;
+  filter: brightness(0) invert(1);
+  opacity: 0.45;
   mix-blend-mode: normal;
   transition:
-    filter  320ms var(--ease-out),
-    opacity 320ms var(--ease-out);
+    filter  360ms var(--ease-out),
+    opacity 360ms var(--ease-out);
 }
-.about-network__item:hover .about-network__logo {
-  /* Full original colour revealed */
-  filter: none;
+
+/* 1. Prymm Enterprises — brand red #d42b2b
+   hue-rotate(325deg) lands near red from sepia amber */
+.about-network__item:nth-child(1):hover .about-network__logo {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(325deg) saturate(6) brightness(0.85);
+  opacity: 1;
+}
+
+/* 2. EQUIP — gold #e6a817
+   sepia is already warm amber; minimal rotation, high sat */
+.about-network__item:nth-child(2):hover .about-network__logo {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(5deg) saturate(4) brightness(1.05);
+  opacity: 1;
+}
+
+/* 3. GETS — royal blue #1a4fa0
+   hue-rotate(190deg) swings from amber into blue territory */
+.about-network__item:nth-child(3):hover .about-network__logo {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(190deg) saturate(7) brightness(0.75);
+  opacity: 1;
+}
+
+/* 4. GEPSearch — teal #0d8a84
+   hue-rotate(150deg) → cyan-teal range */
+.about-network__item:nth-child(4):hover .about-network__logo {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(150deg) saturate(6) brightness(0.85);
+  opacity: 1;
+}
+
+/* 5. DP Fabrication — orange #e05c1a
+   hue-rotate(345deg) → warm orange-red */
+.about-network__item:nth-child(5):hover .about-network__logo {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(345deg) saturate(5) brightness(1.0);
+  opacity: 1;
+}
+
+/* 6. Tulai Foundation — green #2e8b57
+   hue-rotate(100deg) → mid-green */
+.about-network__item:nth-child(6):hover .about-network__logo {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(100deg) saturate(5) brightness(0.85);
+  opacity: 1;
+}
+
+/* 7. Seamphony — coral/pink #e0446a
+   hue-rotate(310deg) → coral-pink */
+.about-network__item:nth-child(7):hover .about-network__logo {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(310deg) saturate(5) brightness(1.0);
   opacity: 1;
 }
 
@@ -628,9 +650,7 @@
 }
 
 /* ── Section Header ── */
-.section-header {
-  margin-bottom: 0.5rem;
-}
+.section-header { margin-bottom: 0.5rem; }
 .section-header__label {
   display: block;
   font-family: var(--font-body);
