@@ -1,0 +1,596 @@
+/* =====================================================
+   JAPAN FRESH PAGE — japan-fresh.css
+   Agriculture > Japan Fresh — Division 01 product.
+   Requires base.css. Follows waste-management.css pattern.
+===================================================== */
+
+/* ─── HERO ──────────────────────────────────────────────── */
+.jf-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 72px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.jf-hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.jf-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+  filter: saturate(0.85) brightness(0.55);
+}
+.jf-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+}
+.jf-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--content-wide, 1200px);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 3rem);
+  padding-top: 120px;
+}
+.jf-hero__breadcrumb {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 20px;
+}
+.jf-hero__breadcrumb a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.jf-hero__breadcrumb a:hover { color: #fff; }
+.jf-hero__eyebrow {
+  display: block;
+  font-family: var(--ff-head, 'Barlow', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 16px;
+}
+.jf-hero__headline {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.jf-hero__headline em {
+  font-style: italic;
+  color: var(--red, #D62828);
+}
+.jf-hero__sub {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.65);
+  max-width: 48ch;
+}
+/* A-5 badge */
+.jf-hero__badge {
+  position: absolute;
+  z-index: 3;
+  bottom: 72px;
+  right: clamp(1.5rem, 5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(214,40,40,0.12);
+  border: 2px solid var(--red, #D62828);
+  padding: 16px 20px;
+  text-align: center;
+  min-width: 88px;
+}
+.jf-hero__badge-grade {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--red, #D62828);
+  line-height: 1;
+}
+.jf-hero__badge-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+/* ─── INTRO BAND ────────────────────────────────────────── */
+.jf-intro {
+  padding: 80px 0;
+  background: var(--black, #0D0D0D);
+}
+.jf-intro__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: start;
+  position: relative;
+  padding-left: 32px;
+}
+.jf-intro__accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--red, #D62828), var(--yellow, #F5C518), var(--blue, #1A56DB));
+}
+.jf-intro__text h2, .jf-intro__title {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--white, #f2f2f2);
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+.jf-intro__text p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--grey-3, #a0a0a0);
+  max-width: 60ch;
+}
+.jf-intro__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 140px;
+}
+.jf-intro__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.jf-intro__stat-num {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--white, #f2f2f2);
+  line-height: 1;
+}
+.jf-intro__stat-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-3, #a0a0a0);
+}
+
+/* ─── WAGYU SECTION ─────────────────────────────────────── */
+.jf-wagyu {
+  padding: 96px 0;
+  background: var(--grey-1, #111);
+}
+.jf-wagyu__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+}
+.jf-wagyu__title {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: var(--white, #f2f2f2);
+  margin-bottom: 24px;
+  margin-top: 8px;
+}
+.jf-wagyu__title em {
+  font-style: italic;
+  color: var(--red, #D62828);
+}
+.jf-wagyu__lead {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--grey-3, #a0a0a0);
+  max-width: 52ch;
+  margin-bottom: 32px;
+}
+.jf-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.jf-feature-list li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.jf-feature-list__bar {
+  flex-shrink: 0;
+  width: 4px;
+  min-height: 48px;
+  margin-top: 4px;
+}
+.jf-feature-list__bar--red    { background: var(--red, #D62828); }
+.jf-feature-list__bar--yellow { background: var(--yellow, #F5C518); }
+.jf-feature-list__bar--blue   { background: var(--blue, #1A56DB); }
+.jf-feature-list li strong {
+  display: block;
+  font-family: var(--ff-head, 'Barlow', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white, #f2f2f2);
+  margin-bottom: 4px;
+}
+.jf-feature-list li p {
+  font-size: 0.87rem;
+  line-height: 1.6;
+  color: var(--grey-3, #a0a0a0);
+  margin: 0;
+}
+.jf-wagyu__img-wrap {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+}
+.jf-wagyu__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+/* ─── HALAL CERTIFICATION ───────────────────────────────── */
+.jf-halal {
+  padding: 96px 0;
+  background: #0a0a0a;
+}
+.jf-halal__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+.jf-halal__cert-frame {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  max-width: 380px;
+  margin-inline: auto;
+}
+.jf-halal__cert-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.jf-halal__cert-caption {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-3, #a0a0a0);
+  margin-top: 12px;
+}
+.jf-halal__title {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: var(--white, #f2f2f2);
+  margin-bottom: 24px;
+  margin-top: 8px;
+}
+.jf-halal__title em {
+  font-style: italic;
+  color: var(--yellow, #F5C518);
+}
+.jf-halal__lead {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--grey-3, #a0a0a0);
+  max-width: 54ch;
+  margin-bottom: 36px;
+}
+.jf-halal__pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.jf-halal__pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 16px;
+  border-left: 3px solid transparent;
+  position: relative;
+}
+.jf-halal__pillar-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+}
+.jf-halal__pillar-bar--red    { background: var(--red, #D62828); }
+.jf-halal__pillar-bar--yellow { background: var(--yellow, #F5C518); }
+.jf-halal__pillar-bar--blue   { background: var(--blue, #1A56DB); }
+.jf-halal__pillar strong {
+  font-family: var(--ff-head, 'Barlow', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white, #f2f2f2);
+}
+.jf-halal__pillar p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--grey-3, #a0a0a0);
+  margin: 0;
+}
+
+/* ─── SEAFOOD SECTION ───────────────────────────────────── */
+.jf-seafood {
+  padding: 96px 0;
+  background: var(--black, #0D0D0D);
+}
+.jf-seafood__header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.jf-seafood__title {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: var(--white, #f2f2f2);
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+.jf-seafood__title em {
+  font-style: italic;
+  color: var(--red, #D62828);
+}
+.jf-seafood__sub {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--grey-3, #a0a0a0);
+  max-width: 52ch;
+  margin-inline: auto;
+}
+.jf-seafood__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.jf-seafood__card {
+  background: var(--grey-1, #111);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.jf-seafood__card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+.jf-seafood__card-bar--red    { background: var(--red, #D62828); }
+.jf-seafood__card-bar--yellow { background: var(--yellow, #F5C518); }
+.jf-seafood__card-bar--blue   { background: var(--blue, #1A56DB); }
+.jf-seafood__card-icon {
+  color: rgba(255,255,255,0.15);
+  margin-bottom: 8px;
+}
+.jf-seafood__card-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey-3, #a0a0a0);
+}
+.jf-seafood__card-name {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--white, #f2f2f2);
+  line-height: 1;
+}
+.jf-seafood__card-origin {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red, #D62828);
+  margin-bottom: 4px;
+}
+.jf-seafood__card-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--grey-3, #a0a0a0);
+  margin: 0;
+}
+
+/* ─── SUPPLY CHAIN BAND ─────────────────────────────────── */
+.jf-supply {
+  background: var(--grey-1, #111);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+.jf-supply__inner {
+  position: relative;
+  padding-left: 32px;
+}
+.jf-supply__blocks {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.jf-supply__block {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  top: 0;
+}
+.jf-supply__block--r { background: var(--red, #D62828);    left: 0; }
+.jf-supply__block--y { background: var(--yellow, #F5C518); left: 6px; }
+.jf-supply__block--b { background: var(--blue, #1A56DB);   left: 12px; }
+.jf-supply__title {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--white, #f2f2f2);
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+.jf-supply__title em {
+  font-style: italic;
+  color: var(--yellow, #F5C518);
+}
+.jf-supply__desc {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--grey-3, #a0a0a0);
+  max-width: 56ch;
+  margin-bottom: 40px;
+}
+.jf-supply__regions-label,
+.jf-supply__clients-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 12px;
+}
+.jf-supply__regions-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+.jf-supply__regions-list li {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white, #f2f2f2);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 14px;
+}
+.jf-supply__clients-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.jf-supply__client {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--white, #f2f2f2);
+}
+.jf-supply__client small {
+  color: var(--grey-3, #a0a0a0);
+  font-size: 0.78rem;
+}
+.jf-supply__client-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.jf-supply__client-dot--red    { background: var(--red, #D62828); }
+.jf-supply__client-dot--yellow { background: var(--yellow, #F5C518); }
+.jf-supply__client-dot--blue   { background: var(--blue, #1A56DB); }
+
+/* ─── CTA BAND ──────────────────────────────────────────── */
+.jf-cta {
+  background: var(--black, #0D0D0D);
+  padding: 80px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.jf-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.jf-cta__title {
+  font-family: var(--ff-head, 'Barlow Condensed', sans-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--white, #f2f2f2);
+}
+.jf-cta__sub {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--grey-3, #a0a0a0);
+  max-width: 52ch;
+  text-align: center;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .jf-seafood__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .jf-wagyu__inner  { grid-template-columns: 1fr; }
+  .jf-halal__inner  { grid-template-columns: 1fr; }
+  .jf-halal__cert-frame { max-width: 280px; }
+  .jf-intro__inner  { grid-template-columns: 1fr; }
+  .jf-intro__stats  { flex-direction: row; gap: 32px; }
+}
+@media (max-width: 640px) {
+  .jf-seafood__grid         { grid-template-columns: 1fr; }
+  .jf-supply__clients-grid  { grid-template-columns: 1fr; }
+  .jf-hero__badge           { display: none; }
+}
