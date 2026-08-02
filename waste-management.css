@@ -56,10 +56,19 @@
   text-transform: uppercase;
   color: rgba(247,245,240,0.45);
   margin-bottom: 20px;
+  /* FIX: increase tap target height for breadcrumb links */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
 }
 .wm-hero__breadcrumb a {
   color: rgba(247,245,240,0.45);
   transition: color 0.15s;
+  /* FIX: meet 44px WCAG touch target */
+  padding-block: 0.5rem;
+  display: inline-flex;
+  align-items: center;
 }
 .wm-hero__breadcrumb a:hover { color: var(--yellow); }
 .wm-hero__headline {
@@ -76,6 +85,8 @@
 .wm-hero__headline em {
   font-style: normal;
   color: var(--red);
+  /* FIX: anchor red headline text against variable video backgrounds */
+  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
 }
 .wm-hero__sub {
   font-family: var(--ff-head);
@@ -84,6 +95,10 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(247,245,240,0.65);
+  /* FIX: allow wrapping so text is never clipped */
+  white-space: normal;
+  /* FIX: ensure subtitle never runs under the absolutely-positioned badge */
+  padding-right: 0;
 }
 .wm-hero__badge {
   position: absolute;
@@ -611,9 +626,40 @@ thead th:last-child {
   }
 }
 @media (max-width: 600px) {
-  .wm-hero__badge { right: 20px; bottom: 20px; }
-  .wm-hero__content { padding: 40px 20px 40px; }
-  .wm-intro__stats { flex-direction: column; }
+  /* ── HERO MOBILE FIXES ─────────────────────────── */
+  .wm-hero__content {
+    /* FIX: reduce bottom padding so badge gets its own space below the text */
+    padding: 40px 20px 160px;
+  }
+  .wm-hero__sub {
+    /* FIX: smaller tracking so subtitle fits within the viewport width */
+    font-size: 0.78rem;
+    letter-spacing: 0.10em;
+    /* FIX: constrain width so it never reaches the badge area */
+    max-width: calc(100% - 150px);
+  }
+  .wm-hero__badge {
+    /* FIX: detach from content area — anchor to bottom-left on narrow screens
+       so badge never overlaps the headline or subtitle text */
+    right: auto;
+    left: 20px;
+    bottom: 40px;
+    /* FIX: scale down badge so it takes less vertical space */
+    padding: 14px 20px;
+    min-width: 100px;
+  }
+  .wm-hero__badge-num {
+    /* FIX: reduce num size proportionally */
+    font-size: 2.2rem;
+  }
+
+  /* ── STATS MOBILE FIXES ────────────────────────── */
+  /* FIX: stack stats vertically on phones — row layout crowds at 375px */
+  .wm-intro__stats {
+    flex-direction: column;
+    border-top: 3px solid var(--black);
+    padding-top: 24px;
+  }
   .wm-intro__stat {
     padding-inline: 0;
     padding-block: 16px;
@@ -622,6 +668,8 @@ thead th:last-child {
     border-left: none;
     border-top: 1px solid rgba(28, 28, 28, 0.14);
   }
+
+  /* ── OTHER SMALL-SCREEN FIXES ──────────────────── */
   .wm-cta__inner { padding: 0 20px; }
   .wm-download__action { flex-direction: column; align-items: flex-start; }
   .wm-download__btn { width: 100%; text-align: center; }
