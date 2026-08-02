@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
    PRYMM GROUP — BAUHAUS LANDING PAGE
-   Interactions v12 — data-count stat refactor
+   Interactions v13 — Division 01 drawer
    ─ Nav scroll state
    ─ Active nav scroll-spy (IntersectionObserver)
    ─ Active nav indicator on sub-pages
@@ -18,6 +18,7 @@
    ─ Smooth anchor scrolling
    ─ Page fade-in + PAGE-EXIT CROSS-FADE
    ─ SCROLL PROGRESS BAR
+   ─ DIVISION 01 EXPAND DRAWER
 ═══════════════════════════════════════════════ */
 
 (function () {
@@ -495,5 +496,59 @@
       });
     });
   }
+
+  /* ─────────────────────────────────────────────
+     12. DIVISION 01 EXPAND DRAWER
+     Uses scrollHeight for pixel-perfect animation
+     so max-height never clips the content.
+     Moves focus to the first product card on open
+     so keyboard users land in the drawer directly.
+  ───────────────────────────────────────────── */
+  (function () {
+    var btn    = document.querySelector('.division__toggle');
+    var drawer = document.getElementById('drawer-industrial');
+    var card   = document.getElementById('div-industrial');
+    if (!btn || !drawer) return;
+
+    function openDrawer() {
+      btn.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawer.classList.add('division__drawer--open');
+      card.classList.add('division--active');
+      /* Use scrollHeight for exact height — no hardcoded max-height needed */
+      drawer.style.maxHeight = drawer.scrollHeight + 'px';
+      /* Move focus to the first product card after the transition ends */
+      drawer.addEventListener('transitionend', function onEnd(e) {
+        if (e.propertyName !== 'max-height') return;
+        drawer.removeEventListener('transitionend', onEnd);
+        var firstCard = drawer.querySelector('.division__product-card');
+        if (firstCard) firstCard.focus();
+      });
+    }
+
+    function closeDrawer() {
+      btn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawer.classList.remove('division__drawer--open');
+      card.classList.remove('division--active');
+      drawer.style.maxHeight = '0';
+    }
+
+    btn.addEventListener('click', function () {
+      if (btn.getAttribute('aria-expanded') === 'true') {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    /* Escape key closes the drawer and returns focus to the toggle */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        closeDrawer();
+        btn.focus();
+      }
+    });
+  })();
 
 })();
