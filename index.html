@@ -263,7 +263,7 @@
 
       </div><!-- /.divisions__grid -->
 
-      <!-- DIVISION 01 DRAWER — expands below the grid on click -->
+      <!-- DIVISION 01 DRAWER — expands below the full-width grid on click -->
       <div
         class="division__drawer"
         id="drawer-industrial"
@@ -493,22 +493,6 @@
   <script src="main.js"></script>
   <script>
     document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-    // Division 01 drawer toggle
-    (function () {
-      var btn    = document.querySelector('.division__toggle');
-      var drawer = document.getElementById('drawer-industrial');
-      var card   = document.getElementById('div-industrial');
-      if (!btn || !drawer) return;
-
-      btn.addEventListener('click', function () {
-        var open = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!open));
-        drawer.setAttribute('aria-hidden', String(open));
-        drawer.classList.toggle('division__drawer--open', !open);
-        card.classList.toggle('division--active', !open);
-      });
-    })();
   </script>
 </body>
 </html>

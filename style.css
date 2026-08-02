@@ -1,6 +1,6 @@
 /* =====================================================
    PRYMM GROUP — INDEX PAGE STYLES
-   Style System v15 — Division 01 expand drawer
+   Style System v16 — Division 01 expand drawer
 
    Shared system (tokens, reset, nav, footer,
    buttons, reveal, animations, responsive base)
@@ -217,8 +217,7 @@
    DIVISION 01 EXPAND DRAWER
    Sits below the full-width grid, hidden by default.
    Opens via JS toggle; animates with max-height driven
-   by a CSS custom property set in JS so it always
-   matches the real content height.
+   by scrollHeight set directly on the element in JS.
 ===================================================== */
 .division__drawer {
   overflow: hidden;
@@ -231,16 +230,9 @@
   border-top: none;
   background: var(--white);
 }
-/*
-  JS sets --drawer-h to the scrollHeight of the inner element
-  before opening, so max-height always matches real content.
-  Fallback of 9999px is intentionally generous — it only applies
-  if JS fails to set the variable, which should never happen in
-  normal operation but prevents a permanently stuck-closed drawer.
-*/
 .division__drawer--open {
-  max-height: var(--drawer-h, 9999px);
   opacity: 1;
+  /* max-height is set inline by JS to drawer.scrollHeight for pixel-perfect animation */
 }
 .division__drawer-inner {
   padding: clamp(32px, 5vw, 56px) 0 clamp(40px, 6vw, 64px);
@@ -279,13 +271,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   min-height: 340px;
   text-decoration: none;
   color: inherit;
   border-right: 3px solid var(--black);
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+  /* overflow:hidden so the absolutely-positioned photo is clipped to the card bounds */
+  overflow: hidden;
 }
 .division__product-card:last-child { border-right: none; }
 
