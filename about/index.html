@@ -62,8 +62,7 @@
   <link rel="stylesheet" href="../about.css" />
 
   <style>
-    /* DIVISIONS SECTION: bypass reveal animation — declarations kept here
-       because they depend on the live animation state in JS/base.css */
+    /* DIVISIONS SECTION: bypass reveal animation */
     .about-divisions [data-no-reveal] {
       opacity: 1;
       transform: none;
@@ -73,6 +72,37 @@
     }
     .about-divisions .section-header__label[data-no-reveal] {
       color: #111111;
+    }
+
+    /* Division 01 sub-card layout — mirrors homepage pattern */
+    .about-div-card--split {
+      display: contents;
+    }
+    .about-divisions__grid--has-split {
+      /* Grid stays 3-col; Division 01 slot is replaced by two stacked sub-cards */
+    }
+    .about-div-subcards {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .about-div-subcards .about-div-card {
+      flex: 1;
+      border-radius: 0;
+    }
+    .about-div-subcards .about-div-card:first-child {
+      border-radius: var(--radius-card, 0) var(--radius-card, 0) 0 0;
+    }
+    .about-div-subcards .about-div-card:last-child {
+      border-radius: 0 0 var(--radius-card, 0) var(--radius-card, 0);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    /* Agriculture sub-card accent — yellow bar */
+    .about-div-card--agriculture .about-div-card__bar {
+      background: var(--clr-yellow, #f5c518);
+    }
+    .about-div-card--agriculture .about-div-card__index {
+      color: var(--clr-yellow, #f5c518);
     }
   </style>
 </head>
@@ -191,13 +221,33 @@
           <h2 class="section-header__title" data-no-reveal style="color:#111111;">Three Divisions.<br />One Direction.</h2>
         </header>
         <div class="about-divisions__grid">
-          <a href="/waste-management" class="about-div-card about-div-card--industrial reveal" aria-label="Industrial &amp; Trade &mdash; Waste Management">
-            <div class="about-div-card__bar" aria-hidden="true"></div>
-            <p class="about-div-card__index">01</p>
-            <h3 class="about-div-card__name">Industrial<br />&amp; Trade</h3>
-            <p class="about-div-card__desc">Heavy machinery fabrication and global environmental technologies. We engineer the physical backbone of modern infrastructure &mdash; from thermal waste systems to industrial-grade fabrication.</p>
-            <span class="about-div-card__arrow" aria-hidden="true">&rarr;</span>
-          </a>
+
+          <!-- Division 01 — Industrial & Trade: two sub-cards stacked -->
+          <div class="about-div-subcards">
+
+            <!-- Sub-card A: Waste Management -->
+            <a href="/waste-management" class="about-div-card about-div-card--industrial reveal" aria-label="Industrial &amp; Trade &mdash; Waste Management">
+              <div class="about-div-card__bar" aria-hidden="true"></div>
+              <p class="about-div-card__index">01</p>
+              <p class="about-div-card__sub-tag">Trade &bull; Environmental</p>
+              <h3 class="about-div-card__name">Industrial<br />&amp; Trade</h3>
+              <p class="about-div-card__desc">Heavy machinery fabrication and global environmental technologies. We engineer the physical backbone of modern infrastructure &mdash; from thermal waste systems to industrial-grade fabrication.</p>
+              <span class="about-div-card__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <!-- Sub-card B: Agriculture — Japan Fresh -->
+            <a href="/japan-fresh" class="about-div-card about-div-card--industrial about-div-card--agriculture reveal" aria-label="Industrial &amp; Trade &mdash; Agriculture &mdash; Japan Fresh">
+              <div class="about-div-card__bar" aria-hidden="true"></div>
+              <p class="about-div-card__index">01</p>
+              <p class="about-div-card__sub-tag">Agriculture &bull; Japan Fresh</p>
+              <h3 class="about-div-card__name">Prymm<br />Farm</h3>
+              <p class="about-div-card__desc">Direct-from-origin premium Japanese A-5 Kuroge Wagyu and Halal-certified beef. Sourced across Japan, distributed globally from our Osaka hub.</p>
+              <span class="about-div-card__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+
+          </div>
+
+          <!-- Division 02 — Technology & Systems -->
           <a href="/ev-charging-station" class="about-div-card about-div-card--tech reveal" aria-label="Technology &amp; Systems &mdash; EV Charging">
             <div class="about-div-card__bar" aria-hidden="true"></div>
             <p class="about-div-card__index">02</p>
@@ -205,6 +255,8 @@
             <p class="about-div-card__desc">Digital platforms, EV infrastructure, and systems innovation. We build the intelligent networks that orchestrate tomorrow&rsquo;s operations and connect communities to clean energy.</p>
             <span class="about-div-card__arrow" aria-hidden="true">&rarr;</span>
           </a>
+
+          <!-- Division 03 — Education & Human Capital -->
           <a href="/technical-skills-institution" class="about-div-card about-div-card--edu reveal" aria-label="Education &amp; Human Capital &mdash; Technical Skills Institution">
             <div class="about-div-card__bar" aria-hidden="true"></div>
             <p class="about-div-card__index">03</p>
@@ -212,6 +264,7 @@
             <p class="about-div-card__desc">Technical-vocational training and workforce upskilling. We develop the human operators who sustain every system we build &mdash; because infrastructure is only as strong as the people behind it.</p>
             <span class="about-div-card__arrow" aria-hidden="true">&rarr;</span>
           </a>
+
         </div>
       </div>
     </section>
