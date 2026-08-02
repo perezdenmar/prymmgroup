@@ -151,15 +151,29 @@
   color: var(--grey-2);
   max-width: 560px;
 }
+
+/* Stats column */
 .wm-intro__stats {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 0;
   flex-shrink: 0;
   min-width: 180px;
   border-left: 3px solid var(--black);
   padding-left: 32px;
 }
+
+/* Divider between each stat */
+.wm-intro__stat {
+  padding-block: 20px;
+}
+.wm-intro__stat + .wm-intro__stat {
+  border-top: 1px solid rgba(28, 28, 28, 0.14);
+}
+.wm-intro__stat:first-child { padding-top: 0; }
+.wm-intro__stat:last-child  { padding-bottom: 0; }
+
+/* Stat number */
 .wm-intro__stat-num {
   display: block;
   font-family: var(--ff-head);
@@ -168,22 +182,28 @@
   line-height: 1;
   color: var(--black);
 }
+
+/* kg unit — rendered as superscript-style qualifier, not a true subscript */
 .wm-intro__stat-num sub {
-  font-size: 0.9rem;
+  font-size: 0.55em;
   font-weight: 700;
-  vertical-align: baseline;
-  margin-left: 2px;
-  color: var(--grey-3);
+  vertical-align: super;
+  position: relative;
+  top: 0.15em;
+  margin-left: 1px;
+  color: var(--grey-2);
 }
+
+/* Stat label — darkened and slightly larger for legibility */
 .wm-intro__stat-label {
   display: block;
   font-family: var(--ff-head);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--grey-3);
-  margin-top: 2px;
+  color: var(--grey-2);
+  margin-top: 4px;
 }
 
 /* ── COMPARISON TABLE ────────────────────────────── */
@@ -562,6 +582,19 @@ thead th:last-child {
     border-top: 3px solid var(--black);
     padding-left: 0;
     padding-top: 24px;
+    gap: 0;
+  }
+  /* On mobile row layout, dividers flip to vertical between stat items */
+  .wm-intro__stat {
+    padding-block: 0;
+    padding-inline: 20px;
+    flex: 1;
+  }
+  .wm-intro__stat:first-child { padding-left: 0; }
+  .wm-intro__stat:last-child  { padding-right: 0; }
+  .wm-intro__stat + .wm-intro__stat {
+    border-top: none;
+    border-left: 1px solid rgba(28, 28, 28, 0.14);
   }
   .wm-compliance__inner { flex-direction: column; }
   .wm-compliance__blocks { flex-direction: row; }
@@ -581,6 +614,14 @@ thead th:last-child {
   .wm-hero__badge { right: 20px; bottom: 20px; }
   .wm-hero__content { padding: 40px 20px 40px; }
   .wm-intro__stats { flex-direction: column; }
+  .wm-intro__stat {
+    padding-inline: 0;
+    padding-block: 16px;
+  }
+  .wm-intro__stat + .wm-intro__stat {
+    border-left: none;
+    border-top: 1px solid rgba(28, 28, 28, 0.14);
+  }
   .wm-cta__inner { padding: 0 20px; }
   .wm-download__action { flex-direction: column; align-items: flex-start; }
   .wm-download__btn { width: 100%; text-align: center; }
