@@ -128,9 +128,9 @@
 
 /* ── INTRO ────────────────────────────────────────── */
 .wm-intro {
-  background: var(--white);
+  background: #ffffff;
   padding: 80px 0;
-  border-bottom: 3px solid var(--black);
+  border-bottom: 3px solid #1c1c1c;
 }
 .wm-intro__inner {
   display: grid;
@@ -152,12 +152,12 @@
   line-height: 1;
   text-transform: uppercase;
   margin-bottom: 16px;
-  color: var(--black);
+  color: #1c1c1c;
 }
 .wm-intro__text p {
   font-size: 0.95rem;
   line-height: 1.75;
-  color: var(--grey-2);
+  color: rgba(28, 28, 28, 0.70);
   max-width: 560px;
 }
 
@@ -168,7 +168,7 @@
   gap: 0;
   flex-shrink: 0;
   min-width: 180px;
-  border-left: 3px solid var(--black);
+  border-left: 3px solid #1c1c1c;
   padding-left: 32px;
 }
 
@@ -189,7 +189,7 @@
   font-weight: 900;
   font-size: 2.2rem;
   line-height: 1;
-  color: var(--black);
+  color: #1c1c1c;
 }
 
 /* kg unit */
@@ -200,7 +200,7 @@
   position: relative;
   top: 0.15em;
   margin-left: 1px;
-  color: var(--grey-2);
+  color: rgba(28, 28, 28, 0.55);
 }
 
 /* Stat label */
@@ -211,7 +211,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--grey-2);
+  color: rgba(28, 28, 28, 0.55);
   margin-top: 4px;
 }
 
@@ -474,19 +474,13 @@ thead th:last-child {
 }
 
 /* ══════════════════════════════════════════════════
-   COMPLIANCE BAND — redesigned
-   Changes:
-   1. border-top separator (1px alpha) for clear ceiling edge
-   2. Asymmetric grid: first item wider (1.25fr vs 1fr)
-   3. Replaced .wm-compliance__icon with .wm-compliance__num
-      — large bold numerals (01 / 02 / 03) in brand colors,
-      no colored box background (removes the "icon in square" template look)
-   4. strong heading: explicit color: var(--black) so it's
-      always readable regardless of inherited dark-mode overrides
-   5. p body text: bumped to rgba(28,28,28,0.82) for WCAG AA
+   COMPLIANCE BAND
+   – background: #ffffff (hardcoded, immune to dark-mode variable bleed)
+   – all text colors hardcoded in rgba/hex (no CSS vars that could flip)
+   – numeral colors hardcoded in hex so dark-mode tokens can't override
 ══════════════════════════════════════════════════ */
 .wm-compliance {
-  background: var(--white);
+  background: #ffffff;
   padding: 100px 0;
   border-top: 1px solid rgba(28, 28, 28, 0.12);
 }
@@ -502,9 +496,9 @@ thead th:last-child {
   flex-shrink: 0;
 }
 .wm-compliance__block { width: 8px; height: 60px; }
-.wm-compliance__block--r { background: var(--red); }
-.wm-compliance__block--y { background: var(--yellow); }
-.wm-compliance__block--b { background: var(--blue); }
+.wm-compliance__block--r { background: #c0392b; }
+.wm-compliance__block--y { background: #e6b800; }
+.wm-compliance__block--b { background: #1a3ebf; }
 
 /* Asymmetric 3-col: first item gets more horizontal space */
 .wm-compliance__items {
@@ -519,20 +513,19 @@ thead th:last-child {
   gap: 16px;
 }
 
-/* Bold numeral marker — replaces colored square icon */
+/* Bold numeral — hardcoded hex, zero CSS-variable dependency */
 .wm-compliance__num {
   font-family: var(--ff-head);
   font-weight: 900;
   font-size: 2.4rem;
   line-height: 1;
   letter-spacing: -0.02em;
-  /* color set per modifier below */
 }
-.wm-compliance__num--red    { color: var(--red); }
-.wm-compliance__num--yellow { color: var(--yellow); }
-.wm-compliance__num--blue   { color: var(--blue); }
+.wm-compliance__num--red    { color: #c0392b; }
+.wm-compliance__num--yellow { color: #c69500; }   /* slightly darker for contrast on white */
+.wm-compliance__num--blue   { color: #1a3ebf; }
 
-/* Heading — explicit black so dark-mode base overrides can't steal it */
+/* Heading — hardcoded near-black, overrides any inherited color */
 .wm-compliance__item strong {
   display: block;
   font-family: var(--ff-head);
@@ -540,15 +533,15 @@ thead th:last-child {
   font-weight: 900;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--black);
+  color: #1c1c1c !important;
   margin-bottom: 6px;
 }
 
-/* Body — bumped contrast for WCAG AA on white */
+/* Body — hardcoded dark with opacity, WCAG AA on #ffffff */
 .wm-compliance__item p {
   font-size: 0.9rem;
   line-height: 1.72;
-  color: rgba(28, 28, 28, 0.75);
+  color: rgba(28, 28, 28, 0.72) !important;
 }
 
 /* ── CTA BAND ──────────────────────────────────────── */
@@ -603,7 +596,7 @@ thead th:last-child {
     grid-column: 2;
     flex-direction: row;
     border-left: none;
-    border-top: 3px solid var(--black);
+    border-top: 3px solid #1c1c1c;
     padding-left: 0;
     padding-top: 24px;
     gap: 0;
@@ -637,24 +630,6 @@ thead th:last-child {
 
 /* ═══════════════════════════════════════════════════════
    HERO MOBILE FIX — <=768px
-
-   WHY 768px (not 600px):
-   The previous fix used max-width:600px, which missed all
-   tablet/responsive viewport widths between 600–768px where
-   the badge still overlapped the subtitle as shown in the
-   browser DevTools responsive mode screenshot.
-
-   The badge is a sibling of .wm-hero__content inside the
-   .wm-hero flex container. As long as it is position:absolute,
-   it floats over content at any width where the hero is
-   not wide enough for the badge to sit safely in the corner.
-
-   The ONLY reliable fix is:
-     1. Switch .wm-hero to flex-direction:column (children stack)
-     2. Set .wm-hero__badge to position:static (in normal flow,
-        BELOW the content — physically impossible to overlap)
-     3. Scale headline down at this breakpoint so it never
-        pushes the content area so wide that the badge clips it
 ═══════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
 
@@ -688,7 +663,7 @@ thead th:last-child {
 
   /* 5. Badge: pull OUT of absolute, flow below content as a bar */
   .wm-hero__badge {
-    position: static;          /* <-- THE core fix: in normal flow, below content */
+    position: static;
     width: 100%;
     flex-direction: row;
     align-items: center;
@@ -715,7 +690,7 @@ thead th:last-child {
   /* INTRO STATS — stack vertically on very narrow phones */
   .wm-intro__stats {
     flex-direction: column;
-    border-top: 3px solid var(--black);
+    border-top: 3px solid #1c1c1c;
     padding-top: 24px;
   }
   .wm-intro__stat        { padding-inline: 0; padding-block: 16px; }
