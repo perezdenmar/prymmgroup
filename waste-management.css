@@ -474,15 +474,14 @@ thead th:last-child {
 }
 
 /* ══════════════════════════════════════════════════
-   COMPLIANCE BAND
-   – background: #ffffff (hardcoded, immune to dark-mode variable bleed)
-   – all text colors hardcoded in rgba/hex (no CSS vars that could flip)
-   – numeral colors hardcoded in hex so dark-mode tokens can't override
+   COMPLIANCE BAND — dark background, white text
+   Accent numerals keep red / yellow / blue identity.
+   All body text and headings are explicitly white.
 ══════════════════════════════════════════════════ */
 .wm-compliance {
-  background: #ffffff;
+  background: #111111;
   padding: 100px 0;
-  border-top: 1px solid rgba(28, 28, 28, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 .wm-compliance__inner {
   display: flex;
@@ -513,7 +512,7 @@ thead th:last-child {
   gap: 16px;
 }
 
-/* Bold numeral — hardcoded hex, zero CSS-variable dependency */
+/* Bold numeral — accent colors, visible on dark bg */
 .wm-compliance__num {
   font-family: var(--ff-head);
   font-weight: 900;
@@ -521,11 +520,11 @@ thead th:last-child {
   line-height: 1;
   letter-spacing: -0.02em;
 }
-.wm-compliance__num--red    { color: #c0392b; }
-.wm-compliance__num--yellow { color: #c69500; }   /* slightly darker for contrast on white */
-.wm-compliance__num--blue   { color: #1a3ebf; }
+.wm-compliance__num--red    { color: #e05545; }   /* slightly lighter red for dark bg */
+.wm-compliance__num--yellow { color: #e6b800; }   /* full yellow — pops on dark */
+.wm-compliance__num--blue   { color: #4d6fe8; }   /* lighter blue for dark bg legibility */
 
-/* Heading — hardcoded near-black, overrides any inherited color */
+/* Heading — white on dark */
 .wm-compliance__item strong {
   display: block;
   font-family: var(--ff-head);
@@ -533,15 +532,15 @@ thead th:last-child {
   font-weight: 900;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #1c1c1c !important;
+  color: #ffffff !important;
   margin-bottom: 6px;
 }
 
-/* Body — hardcoded dark with opacity, WCAG AA on #ffffff */
+/* Body — white at reduced opacity for hierarchy, WCAG AA on #111111 */
 .wm-compliance__item p {
   font-size: 0.9rem;
   line-height: 1.72;
-  color: rgba(28, 28, 28, 0.72) !important;
+  color: rgba(247, 245, 240, 0.72) !important;
 }
 
 /* ── CTA BAND ──────────────────────────────────────── */
